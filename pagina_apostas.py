@@ -1,32 +1,29 @@
 import streamlit as st
 import pandas as pd
+import os
 
-# Função para armazenar e recuperar dados usando cache
-@st.cache(allow_output_mutation=True)
-def load_data():
-    try:
-        df = pd.read_csv('data.csv')
-    except FileNotFoundError:
-        df = pd.DataFrame({'Nome': [], 'Idade': []})
-    return df
+# Carrega os dados existentes do arquivo CSV ou cria um DataFrame vazio
+data_file = 'data.csv'
+if os.path.exists(data_file):
+    df = pd.read_csv(data_file)
+else:
+    df = pd.DataFrame(columns=['Time A', 'Placar A', 'Time B', 'Placar B'])
 
-# Página principal
-st.title('Página de Informações')
+# Interface para inserção de novos dados
+st.title('Inserir Dados de Jogos de Futebol')
+time_a = st.text_input('Time A')
+placar_a = st.number_input('Placar A', min_value=0)
+time_b = st.text_input('Time B')
+placar_b = st.number_input('Placar B', min_value=0)
 
-# Carregar dados usando a função de cache
-df = load_data()
+if st.button('Inserir'):
+    new_row = {'Time A': time_a, 'Placar A': placar_a, 'Time B': time_b, 'Placar B': placar_b}
+    df = df.append(new_row, ignore_index=True)
+    df.to_csv(data_file, index=False)
+    st.success('Dados inseridos com sucesso!')
 
-# Aba para inserir informações
-with st.sidebar:
-    st.header('Inserir Informações')
-    nome = st.text_input('Nome:')
-    idade = st.number_input('Idade:', min_value=0)
+# Mostra os dados inseridos
+st.title('Dados de Jogos de Futebol')
+st.dataframe(df)
 
-    if st.button('Salvar'):
-        df = df.append({'Nome': nome, 'Idade': idade}, ignore_index=True)
-        df.to_csv('data.csv', index=False)
-        st.success('Informações salvas com sucesso!')
 
-# Mostrar DataFrame atualizado
-st.write('Informações Atuais:')
-st.write(df)
