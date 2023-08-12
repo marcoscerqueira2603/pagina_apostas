@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Função para armazenar e recuperar dados usando cache
-@st.cache(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
 def load_data():
     try:
         df = pd.read_csv('data.csv')
