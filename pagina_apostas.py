@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
+import openpyxl
 
 # Carrega os dados existentes do arquivo CSV ou cria um DataFrame vazio
 st.set_page_config(
