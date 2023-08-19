@@ -2,6 +2,16 @@ import streamlit as st
 import pandas as pd
 import os
 from openpyxl import load_workbook
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+
+
+scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_name('/content/drive/MyDrive/Arquivos/Apostas/neural-entropy-380504-b54c8a0b4a05.json', scope)
+client = gspread.authorize(creds)
+planilha = client.open_by_url('https://docs.google.com/spreadsheets/d/1jVlA-G52DgopiiLnxh6qJ21TEYgfi824c3jZHSlM46c/edit?usp=sharing')
+planilha
 
 # Carrega os dados existentes do arquivo CSV ou cria um DataFrame vazio
 st.set_page_config(
