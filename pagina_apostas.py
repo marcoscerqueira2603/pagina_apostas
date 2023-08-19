@@ -8,7 +8,7 @@ import json
 
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name("C:/Users/marco/Streamlit - Aposta/neural-entropy-380504-b54c8a0b4a05.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(credentials), scope)
 client = gspread.authorize(creds)
 planilha = client.open_by_url('https://docs.google.com/spreadsheets/d/1jVlA-G52DgopiiLnxh6qJ21TEYgfi824c3jZHSlM46c/edit?usp=sharing')
 planilha
