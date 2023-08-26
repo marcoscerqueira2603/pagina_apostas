@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import os
 from openpyxl import load_workbook
-#import gspread
-#from oauth2client.service_account import ServiceAccountCredentials
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 #import json
 
 
@@ -15,6 +15,11 @@ st.set_page_config(
 )
 
 st.title('Página de Análise')
+
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("https://drive.google.com/drive/folders/1b2bAL7o_G5Z0uQ3BBvU8YdElg6Fm3LVm", scope)
+client = gspread.authorize(creds)
+
 
 
 @st.cache_data(ttl=600)
@@ -480,30 +485,32 @@ with tab1:
 
 
 
+    def update_sheet(new_data):
+        worksheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0").get_worksheet(0)
+        worksheet.update([new_data])
+
+    # Streamlit
     with st.form('form'):
         col1, col2, col3 = st.columns([0.5, 0.5, 0.5])
         
         with col1:
             if st.form_submit_button('Adicionar Linha 1.5'):
                 nova_linha = [casa, fora, '-', '1.5', 'Gols', 'Jogo', o_u5casac_gols_1, o_u5casag_gols_1, o_u5foraf_gols_1, o_u5forag_gols_1, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, m_liga_gols, o_liga_gols_1, o_liga_gols_1]
-                tendencias = pd.concat([tendencias, pd.Series(nova_linha, index=tendencias.columns)], ignore_index=True)
-                # Atualizar o DataFrame carregado com a nova linha
-                session_state.data = tendencias
+                tendencias = tendencias.append(pd.Series(nova_linha, index=tendencias.columns), ignore_index=True)
+                update_sheet(tendencias.values.tolist())
         
         with col2:
             if st.form_submit_button('Adicionar Linha 7.5'):
                 nova_linha = [casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7]
-                tendencias = pd.concat([tendencias, pd.Series(nova_linha, index=tendencias.columns)], ignore_index=True)
-                # Atualizar o DataFrame carregado com a nova linha
-                session_state.data = tendencias
+                tendencias = tendencias.append(pd.Series(nova_linha, index=tendencias.columns), ignore_index=True)
+                update_sheet(tendencias.values.tolist())
         
         with col3:
             if st.form_submit_button('Adicionar Linha 8.5'):
                 nova_linha = [casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8]
-                tendencias = pd.concat([tendencias, pd.Series(nova_linha, index=tendencias.columns)], ignore_index=True)
-                # Atualizar o DataFrame carregado com a nova linha
+                tendencias = tendencias.append(pd.Series(nova_linha, index=tendencias.columns), ignore_index=True)
+                update_sheet(tendencias.values.tolist())
 
-# Agora, 'tendencias' contém as linhas adicionadas
 
 
 
