@@ -2,17 +2,21 @@ import streamlit as st
 import pandas as pd
 import os
 from openpyxl import load_workbook
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import json
+#import gspread
+#from oauth2client.service_account import ServiceAccountCredentials
+#import json
 
 
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(credentials), scope)
-client = gspread.authorize(creds)
-planilha = client.open_by_url('https://docs.google.com/spreadsheets/d/1jVlA-G52DgopiiLnxh6qJ21TEYgfi824c3jZHSlM46c/edit?usp=sharing')
-planilha
+@st.cache_data(ttl=600)
+def load_data(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_excel(csv_url)
 
+df = load_data(st.secrets["public_gsheets_url"])
+
+# Print results.
+for row in df.itertuples():
+    st.write(f"{row.name} has a :{row.pet}:")
 # Carrega os dados existentes do arquivo CSV ou cria um DataFrame vazio
 st.set_page_config(
     page_title="Apostas",
