@@ -22,7 +22,7 @@ client = gspread.authorize(creds)
 
 
 
-@st.cache_data(ttl=600)
+@st.cache_data()
 def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
