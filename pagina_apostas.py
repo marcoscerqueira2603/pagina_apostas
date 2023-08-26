@@ -36,11 +36,11 @@ def load_data(sheets_url):
 tendencias = load_data(st.secrets["public_gsheets_url"])
 
 @st.cache_data()
-def load_data(sheets_url):
+def load_data2(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-analise_2_5 = load_data(st.secrets["public_gsheets_url2"])
+analise_2_5 = load_data2(st.secrets["public_gsheets_url2"])
 
 
 
