@@ -485,32 +485,39 @@ with tab1:
 
 
 
-    def update_sheet(new_data):
-        worksheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0").get_worksheet(0)
-        worksheet.update([new_data])
+    novas_linhas = []
 
     # Streamlit
     with st.form('form'):
         col1, col2, col3 = st.columns([0.5, 0.5, 0.5])
-        
+
         with col1:
             if st.form_submit_button('Adicionar Linha 1.5'):
                 nova_linha = [casa, fora, '-', '1.5', 'Gols', 'Jogo', o_u5casac_gols_1, o_u5casag_gols_1, o_u5foraf_gols_1, o_u5forag_gols_1, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, m_liga_gols, o_liga_gols_1, o_liga_gols_1]
-                tendencias = tendencias.append(pd.Series(nova_linha, index=tendencias.columns), ignore_index=True)
-                update_sheet(tendencias.values.tolist())
+                novas_linhas.append(nova_linha)
         
         with col2:
             if st.form_submit_button('Adicionar Linha 7.5'):
                 nova_linha = [casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7]
-                tendencias = tendencias.append(pd.Series(nova_linha, index=tendencias.columns), ignore_index=True)
-                update_sheet(tendencias.values.tolist())
+                novas_linhas.append(nova_linha)
         
         with col3:
             if st.form_submit_button('Adicionar Linha 8.5'):
                 nova_linha = [casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8]
-                tendencias = tendencias.append(pd.Series(nova_linha, index=tendencias.columns), ignore_index=True)
-                update_sheet(tendencias.values.tolist())
+                novas_linhas.append(nova_linha)
 
+    # Adicionar as novas linhas ao DataFrame
+    if novas_linhas:
+        novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias.columns)
+        tendencias = tendencias.append(novas_linhas_df, ignore_index=True)
+
+        # Atualizar a planilha com as novas linhas
+        worksheet = client.open_by_url("your_google_sheets_url").get_worksheet(0)
+        worksheet.clear()  # Limpar o conteúdo atual da planilha
+        worksheet.insert_rows(tendencias.values.tolist(), 2)  # Inserir as linhas atualizadas
+
+        # Notificar o usuário sobre a atualização bem-sucedida
+        st.success("Dados adicionados com sucesso à planilha!")
 
 
 
