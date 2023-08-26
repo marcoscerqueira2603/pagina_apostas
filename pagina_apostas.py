@@ -486,8 +486,6 @@ with tab1:
 
 
     novas_linhas = []
-
-    # Streamlit
     with st.form('form'):
         col1, col2, col3 = st.columns([0.5, 0.5, 0.5])
 
@@ -512,7 +510,7 @@ with tab1:
         tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
 
         # Atualizar a planilha com as novas linhas
-        worksheet = client.open_by_url("your_google_sheets_url").get_worksheet(0)
+        worksheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0").get_worksheet(0)
         worksheet.clear()  # Limpar o conteúdo atual da planilha
         values_to_insert = [tendencias.columns.tolist()] + tendencias.values.tolist()  # Inserir cabeçalho e dados
         worksheet.insert_rows(values_to_insert, 2)  # Inserir as linhas atualizadas
