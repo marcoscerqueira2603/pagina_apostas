@@ -511,8 +511,13 @@ with tab1:
 
         # Atualizar a planilha com as novas linhas
         worksheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0").get_worksheet(0)
-        values_to_insert = [tendencias.columns.tolist()] + tendencias.values.tolist()  # Inserir cabeçalho e dados
-        worksheet.insert_rows(values_to_insert, 2)  # Inserir as linhas atualizadas
+        
+        # Obter o número de linhas existentes na planilha
+        num_rows = len(worksheet.get_all_values())
+        
+        # Inserir os dados nas linhas subsequentes
+        values_to_insert = tendencias.values.tolist()
+        worksheet.insert_rows(values_to_insert, num_rows + 1)  # Insere as linhas atualizadas a partir do final existente
 
         # Notificar o usuário sobre a atualização bem-sucedida
         st.success("Dados adicionados com sucesso à planilha!")
