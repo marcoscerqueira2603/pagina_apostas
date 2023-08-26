@@ -508,7 +508,7 @@ with tab1:
             
     if novas_linhas:
         novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias.columns)
-        tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
+        #tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
 
         # Atualizar a planilha com as novas linhas
         worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0').get_worksheet(0)
