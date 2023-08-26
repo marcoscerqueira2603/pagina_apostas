@@ -510,7 +510,7 @@ if novas_linhas:
     tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
 
     # Atualizar a planilha com as novas linhas
-    worksheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0").get_worksheet(0)
+    worksheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit?usp=sharing").get_worksheet(0)
     
     # Obter o número de linhas existentes na planilha
     num_rows = len(worksheet.get_all_values())
