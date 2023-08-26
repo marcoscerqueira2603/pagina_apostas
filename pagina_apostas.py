@@ -517,7 +517,7 @@ with tab1:
         num_rows = len(worksheet.get_all_values())
         
         # Inserir os dados nas linhas subsequentes
-        values_to_insert = tendencias.values.tolist()
+        values_to_insert = novas_linhas_df.values.tolist()
         worksheet.insert_rows(values_to_insert, num_rows + 1)  # Insere as linhas atualizadas a partir do final existente
 
         # Notificar o usuário sobre a atualização bem-sucedida
