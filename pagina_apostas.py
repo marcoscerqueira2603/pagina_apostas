@@ -5,6 +5,7 @@ from openpyxl import load_workbook
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, date
+import numpy as np
 #import json
 
 # Obtém a data atual
@@ -27,12 +28,19 @@ client = gspread.authorize(creds)
 
 
 
-@st.cache_data(ttl=600)
+@st.cache_data()
 def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
 tendencias = load_data(st.secrets["public_gsheets_url"])
+
+@st.cache_data()
+def load_data(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+analise_2_5 = load_data(st.secrets["public_gsheets_url2"])
 
 
 
@@ -474,8 +482,23 @@ with tab1:
     o_u5foragtf_cantos_5 = len(bd_u5foragt.loc[bd_u5foragt['Cantos']>5])
     o_u5casagtr_cantos_5 = len(bd_u5casagt.loc[bd_u5casagt['Cantos Forçados']>5])
 
+    analise_linha = [[casa, fora, '-', o_u5casac_gols_2, o_u5casag_gols_2, o_u5foraf_gols_2, o_u5forag_gols_2, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, o_liga_gols_2, m_u5casact_f_cantos, m_u5casagt_f_cantos,   m_u5foraft_f_cantos,m_u5foragt_f_cantos, m_liga_cantosc, m_liga_cantosf,m_liga_cantos_times, liga_string]]
+    analise_adicao = pd.DataFrame(analise_linha, columns= ['Casa', 'Fora','Bateu','Casa Fazer - M','Casa Fazer - G', 'Fora Fazer - M', 'Fora Fazer - G', 'Média Casa - M','Média Casa - G', 'Média Fora - M','Média Fora - G',  'Media Liga','Ocorrencia Liga', 'C - Média Casa - M','C - Média Casa - G', 'C - Média Fora - M', 'C- Média Fora - G',  'C - Media Liga - Casa', 'C - Media Liga - Fora','C - Média Times', 'Liga'])
+    #analise_adicao = pd.concat([bd_analise, analise_linha])
 
+    analise_adicao['Média Casa FM'] = np.where(analise_adicao['Média Casa - M'] > analise_adicao['Media Liga'], 1, 0)
+    analise_adicao['Média Casa FG'] = np.where(analise_adicao['Média Casa - G'] > analise_adicao['Media Liga'], 1, 0)
+    analise_adicao['Média Fora FM'] = np.where(analise_adicao['Média Fora - M'] > analise_adicao['Media Liga'], 1, 0)
+    analise_adicao['Média Fora FG'] = np.where(analise_adicao['Média Fora - G'] > analise_adicao['Media Liga'], 1, 0)
+    analise_adicao['Soma Média'] = analise_adicao['Média Casa FM'] + analise_adicao['Média Casa FG'] + analise_adicao['Média Fora FM'] + analise_adicao['Média Fora FG']
+    analise_adicao['C - Média Casa FM'] = np.where(analise_adicao['C - Média Casa - M'] > analise_adicao['C - Media Liga - Casa'], 1, 0)
+    analise_adicao['C - Média Casa FG'] = np.where(analise_adicao['C - Média Casa - G'] > analise_adicao['C - Média Times'], 1, 0)
+    analise_adicao['C - Média Fora FM'] = np.where(analise_adicao['C - Média Fora - M'] > analise_adicao['C - Media Liga - Fora'], 1, 0)
+    analise_adicao['C - Média Fora FG'] = np.where(analise_adicao['C- Média Fora - G'] > analise_adicao['C - Média Times'], 1, 0)
+    analise_adicao['C - Soma Média'] = analise_adicao['C - Média Casa FM'] + analise_adicao['C - Média Casa FG'] + analise_adicao['C - Média Fora FM'] + analise_adicao['C - Média Fora FG']
     #parte do código que cria uma flag mostrando se tem linhas interessantes naquele jogo
+
+
     valores_1_5 = o_u5casac_gols_1 + o_u5casag_gols_1+  o_u5foraf_gols_1+  o_u5forag_gols_1
     valores_7_5 = o_u5casac_cantos_7+  o_u5casag_cantos_7+ o_u5foraf_cantos_7+ o_u5forag_cantos_7
     valores_8_5 = o_u5casac_cantos_8+ o_u5casag_cantos_8+ o_u5foraf_cantos_8+ o_u5forag_cantos_8
@@ -493,7 +516,7 @@ with tab1:
 
     novas_linhas = []
     with st.form('form'):
-        col1, col2, col3 = st.columns([0.5, 0.5, 0.5])
+        col1, col2, col3, col4 = st.columns([0.5, 0.5, 0.5, 0.5])
 
         with col1:
             if st.form_submit_button('Adicionar Linha 1.5'):
@@ -509,6 +532,17 @@ with tab1:
             if st.form_submit_button('Adicionar Linha 8.5'):
                 nova_linha = [casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8,liga_string, data_formatada]
                 novas_linhas.append(nova_linha)
+        with col4:
+            if st.form_submit_button('Adicionar linha 2.5'):
+                worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/17YiO2vWLU2iM8DHG7bFWI8VjKcx_aOqeww6bjvJOMRs/edit#gid=1561702516').get_worksheet(0)
+        
+        # Obter o número de linhas existentes na planilha
+                num_rows = len(worksheet.get_all_values())
+        
+        # Inserir os dados nas linhas subsequentes
+                values_to_insert = analise_adicao.values.tolist()
+                worksheet.insert_rows(values_to_insert, num_rows + 1) 
+
 
     # Adicionar as novas linhas ao DataFrame
             
@@ -517,7 +551,7 @@ with tab1:
         #tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
 
         # Atualizar a planilha com as novas linhas
-        worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0').get_worksheet(0)
+        worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/11pW8bTEOeKUXOb7kd53_MJwGUHG19fLWTfHvpIYVUIY/edit#gid=0').get_worksheet(0)
         
         # Obter o número de linhas existentes na planilha
         num_rows = len(worksheet.get_all_values())
