@@ -22,7 +22,7 @@ client = gspread.authorize(creds)
 
 
 
-@st.cache_data()
+@st.cache_data(ttl=600)
 def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
@@ -507,22 +507,15 @@ with tab1:
     # Adicionar as novas linhas ao DataFrame
     if novas_linhas:
         novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias.columns)
-        tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
+        tendencias = tendencias.append(novas_linhas_df, ignore_index=True)
 
-        # Atualizar a planilha com as novas linhas
-        worksheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1fElWE33Hg1U6FOpy_mbRjjOH6teC5OwRAr5cGm_GLos/edit#gid=0").get_worksheet(0)
-        
-        # Obter o número de linhas existentes na planilha
-        num_rows = len(worksheet.get_all_values())
-        
-        # Inserir os dados nas linhas subsequentes
-        values_to_insert = tendencias.values.tolist()
-        worksheet.insert_rows(values_to_insert, num_rows + 1)  # Insere as linhas atualizadas a partir do final existente
+    # Atualizar a planilha com as novas linhas
+    worksheet = client.open_by_url("your_google_sheets_url").get_worksheet(0)
+    worksheet.clear()  # Limpar o conteúdo atual da planilha
+    worksheet.insert_rows(novas_linhas_df.values.tolist(), len(tendencias) + 2)  # Inserir as linhas atualizadas
 
-        # Notificar o usuário sobre a atualização bem-sucedida
-        st.success("Dados adicionados com sucesso à planilha!")
-
-
+    # Notificar o usuário sobre a atualização bem-sucedida
+    st.success("Dados adicionados com sucesso à planilha!")
 
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
