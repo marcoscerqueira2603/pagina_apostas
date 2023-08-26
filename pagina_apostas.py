@@ -4,9 +4,14 @@ import os
 from openpyxl import load_workbook
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime, date
 #import json
 
+# Obtém a data atual
+data_atual = date.today()
 
+# Formata a data atual no formato "DD/MM/YYYY"
+data_formatada = data_atual.strftime('%d/%m/%Y')
 
 # Carrega os dados existentes do arquivo CSV ou cria um DataFrame vazio
 st.set_page_config(
@@ -492,17 +497,17 @@ with tab1:
 
         with col1:
             if st.form_submit_button('Adicionar Linha 1.5'):
-                nova_linha = [casa, fora, '-', '1.5', 'Gols', 'Jogo', o_u5casac_gols_1, o_u5casag_gols_1, o_u5foraf_gols_1, o_u5forag_gols_1, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, m_liga_gols, o_liga_gols_1, o_liga_gols_1, liga_string]
+                nova_linha = [casa, fora, '-', '1.5', 'Gols', 'Jogo', o_u5casac_gols_1, o_u5casag_gols_1, o_u5foraf_gols_1, o_u5forag_gols_1, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, m_liga_gols, o_liga_gols_1, o_liga_gols_1, liga_string, data_formatada]
                 novas_linhas.append(nova_linha)
         
         with col2:
             if st.form_submit_button('Adicionar Linha 7.5'):
-                nova_linha = [casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7, liga_string]
+                nova_linha = [casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7, liga_string, data_formatada]
                 novas_linhas.append(nova_linha)
         
         with col3:
             if st.form_submit_button('Adicionar Linha 8.5'):
-                nova_linha = [casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8,liga_string]
+                nova_linha = [casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8,liga_string, data_formatada]
                 novas_linhas.append(nova_linha)
 
     # Adicionar as novas linhas ao DataFrame
