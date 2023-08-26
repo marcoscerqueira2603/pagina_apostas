@@ -22,10 +22,9 @@ def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-df = load_data(st.secrets["public_gsheets_url"])
+tendencias = load_data(st.secrets["public_gsheets_url"])
 
-# Print results.
-df
+
 
 # Interface para inserção de novos dados
 
@@ -479,55 +478,33 @@ with tab1:
     if valores_8_5 >=15:
         st.markdown('## **Interessante para Cantos 8.5**')    
 
-    caminho_arquivo_excel = 'Tendências.xlsx'
 
-    # Função para adicionar uma linha ao DataFrame
-    def adicionar_linha_df(df, novos_dados):
-        novas_linhas = pd.DataFrame(novos_dados, columns=df.columns)
-        return pd.concat([df, novas_linhas], ignore_index=True)
 
-    # Carregar dados do arquivo Excel, se existir
-    if os.path.exists(caminho_arquivo_excel):
-        adicionar_linha = pd.read_excel(caminho_arquivo_excel)
-    else:
-        colunas = ['Casa', 'Fora', 'Linha', 'Tipo de Linha', 'Quem Faz', 'Bateu',
-                'Casa Fazer - M', 'Casa Fazer - G', 'Fora Fazer - M', 'Fora Fazer - G',
-                'Média Casa - M', 'Média Casa - G', 'Média Fora - M', 'Média Fora - G',
-                'Media Liga Casa', 'Media Liga Fora', 'Ocorrencia Liga Casa', 'Ocorrencia Liga Fora']
-        adicionar_linha = pd.DataFrame(columns=colunas)
-
-    # Classe para armazenar dados da sessão
-    class SessionState:
-        def __init__(self):
-            self.data = None
-
-    # Interface do Streamlit
-    st.title('Adicionar Linhas ao DataFrame')
-
-    # Obter estado da sessão
-    session_state = SessionState()
-
-    # Criar um formulário usando st.form
     with st.form('form'):
         col1, col2, col3 = st.columns([0.5, 0.5, 0.5])
+        
         with col1:
             if st.form_submit_button('Adicionar Linha 1.5'):
-                adicionar_linha_1_5 = [[casa, fora, '-', '1.5', 'Gols', 'Jogo', o_u5casac_gols_1, o_u5casag_gols_1, o_u5foraf_gols_1, o_u5forag_gols_1, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, m_liga_gols, o_liga_gols_1, o_liga_gols_1]]
-                adicionar_linha = adicionar_linha_df(adicionar_linha, adicionar_linha_1_5)
-                session_state.data = adicionar_linha
+                nova_linha = [casa, fora, '-', '1.5', 'Gols', 'Jogo', o_u5casac_gols_1, o_u5casag_gols_1, o_u5foraf_gols_1, o_u5forag_gols_1, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, m_liga_gols, o_liga_gols_1, o_liga_gols_1]
+                tendencias = pd.concat([tendencias, pd.Series(nova_linha, index=tendencias.columns)], ignore_index=True)
+                # Atualizar o DataFrame carregado com a nova linha
+                session_state.data = tendencias
+        
         with col2:
             if st.form_submit_button('Adicionar Linha 7.5'):
-                adicionar_linha_7_5 = [[casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7]]
-                adicionar_linha = adicionar_linha_df(adicionar_linha, adicionar_linha_7_5)
-                session_state.data = adicionar_linha
+                nova_linha = [casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7]
+                tendencias = pd.concat([tendencias, pd.Series(nova_linha, index=tendencias.columns)], ignore_index=True)
+                # Atualizar o DataFrame carregado com a nova linha
+                session_state.data = tendencias
+        
         with col3:
             if st.form_submit_button('Adicionar Linha 8.5'):
-                adicionar_linha_8_5 = [[casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8]]
-                adicionar_linha = adicionar_linha_df(adicionar_linha, adicionar_linha_8_5)
-                session_state.data = adicionar_linha
+                nova_linha = [casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8]
+                tendencias = pd.concat([tendencias, pd.Series(nova_linha, index=tendencias.columns)], ignore_index=True)
+                # Atualizar o DataFrame carregado com a nova linha
 
-    # Salvar o DataFrame em um arquivo Excel
-    adicionar_linha.to_excel(caminho_arquivo_excel, index=False)
+# Agora, 'tendencias' contém as linhas adicionadas
+
 
 
     st.title('Análise 1.5')
