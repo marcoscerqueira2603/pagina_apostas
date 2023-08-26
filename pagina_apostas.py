@@ -17,7 +17,7 @@ st.set_page_config(
 st.title('Página de Análise')
 
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("https://drive.google.com/drive/folders/1b2bAL7o_G5Z0uQ3BBvU8YdElg6Fm3LVm", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name("chave_api.json", scope)
 client = gspread.authorize(creds)
 
 
