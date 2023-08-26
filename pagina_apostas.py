@@ -7,15 +7,7 @@ from openpyxl import load_workbook
 #import json
 
 
-@st.cache_data(ttl=600)
-def load_data(sheets_url):
-    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
-    return pd.read_csv(csv_url)
 
-df = load_data(st.secrets["public_gsheets_url"])
-
-# Print results.
-df
 # Carrega os dados existentes do arquivo CSV ou cria um DataFrame vazio
 st.set_page_config(
     page_title="Apostas",
@@ -25,6 +17,15 @@ st.set_page_config(
 st.title('Página de Análise')
 
 
+@st.cache_data(ttl=600)
+def load_data(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+df = load_data(st.secrets["public_gsheets_url"])
+
+# Print results.
+df
 
 # Interface para inserção de novos dados
 
