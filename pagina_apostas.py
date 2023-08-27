@@ -693,7 +693,7 @@ with tab1:
     analise
 
 with tab2:
-    st.markdown('Tendências')
+
     df_tendencias = tendencias 
 
     df_tendencias['Data'] = pd.to_datetime(df_tendencias['Data'], format='mixed', dayfirst=True)
@@ -707,6 +707,6 @@ with tab2:
     # Criando o gráfico usando Plotly Express
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', title='Aproveitamento por Mês',
                 labels={'porcentagem': 'Aproveitamento (%)'})
-
+    fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
     # Exibindo o gráfico
     st.plotly_chart(fig_tendencias)
