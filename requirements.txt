@@ -7,3 +7,4 @@ tox
 gspread
 drive
 oauth2client
+plotly express
