@@ -699,8 +699,8 @@ with tab2:
     df_tendencias['Data'] = pd.to_datetime(df_tendencias['Data'], format='mixed', dayfirst=True)
     df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
     
-    #df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    #df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
+
+    df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
     df_grouped = df_tendencias.groupby('mês').agg({'Bateu': 'sum', 'Bateu': 'mean'}).reset_index()
     df_grouped['porcentagem'] = (df_grouped['Bateu'] / df_grouped['Bateu']) * 100  # Calculando a porcentagem
 
