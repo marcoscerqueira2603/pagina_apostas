@@ -695,5 +695,5 @@ with tab2:
     st.title('Tendências')
     df_tendencias = tendencias 
 
-    df_tendencias['mês'] = df_tendencias['data'].dt.strftime('%b')
+    df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
     df_tendencias
