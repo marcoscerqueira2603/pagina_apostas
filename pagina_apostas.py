@@ -46,7 +46,7 @@ analise_2_5 = load_data2(st.secrets["public_gsheets_url2"])
 
 # Interface para inserção de novos dados
 
-tab1,tab2, tab3=  st.tabs(['Analise Jogo','Adicionar Apostas','Dash'])
+tab1,tab2=  st.tabs(['Analise Jogo','Dash'])
 
 
 with tab1:
@@ -691,3 +691,9 @@ with tab1:
     analise = analise.reset_index(drop=True)
     analise
 
+with tab2:
+    st.title('Tendências')
+    df_tendencias = tendencias 
+
+    df_tendencias['mês'] = df_tendencias['data'].dt.strftime('%b')
+    df_tendencias
