@@ -6,6 +6,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, date
 import numpy as np
+import plotly.express as px
 #import json
 
 # Obtém a data atual
@@ -696,7 +697,14 @@ with tab2:
     df_tendencias = tendencias 
 
     df_tendencias['Data'] = pd.to_datetime(df_tendencias['Data'], format='mixed', dayfirst=True)
-
-
     df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
-    df_tendencias
+    
+    df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
+    df_tendencias['porcentagem'] = (df_tendencias['bateu'] / df_tendencias['Bateu']) * 100  # Calculando a porcentagem
+
+# Criando o gráfico usando Plotly Express
+    fig = px.bar(df_tendencias, x='mês', y='porcentagem', title='Aproveitamento por Mês',
+                 labels={'porcentagem': 'Aproveitamento (%)'}, color='mês')
+
+# Exibindo o gráfico
+    fig.show()
