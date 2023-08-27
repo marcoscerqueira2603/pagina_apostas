@@ -691,4 +691,3 @@ with tab1:
     analise = analise.reset_index(drop=True)
     analise
 
-with tab2:
