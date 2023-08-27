@@ -709,4 +709,4 @@ with tab2:
                 labels={'porcentagem': 'Aproveitamento (%)'})
 
     # Exibindo o gráfico
-    st.plotly(fig_tendencias)
+    st.plotly_chart(fig_tendencias)
