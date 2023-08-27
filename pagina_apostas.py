@@ -666,7 +666,7 @@ with tab1:
         st.subheader(fora)
 
         st.markdown('**Últimos jogos fora de casa:** {}'.format(o_u5foraf_cantos_8))
-        st.markdown('**Últimos jogos em geral:** {}'.format( o_u5forag_cantos_8))
+        st.markdown('**Últimos jogos em geral:** {}'.format(o_u5forag_cantos_8))
         st.markdown('**Média últimos 5 jogos forade casa:** {}'.format(m_u5casac_cantos))
         st.markdown('**Média últimos 5 jogos geral:** {}'.format(m_u5casag_cantos))
 
