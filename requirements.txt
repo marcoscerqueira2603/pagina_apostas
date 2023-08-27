@@ -7,4 +7,4 @@ tox
 gspread
 drive
 oauth2client
-plotly
+plotly==5.9.0
