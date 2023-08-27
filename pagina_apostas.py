@@ -700,11 +700,13 @@ with tab2:
     df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
     
     #df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    df_tendencias['porcentagem'] = (df_tendencias['Bateu'] / df_tendencias['Bateu']) * 100  # Calculando a porcentagem
+    df_tendencias['bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
+    df_grouped = df_tendencias.groupby('mês').agg({'Bateu': 'sum', 'Bateu': 'mean'}).reset_index()
+    df_grouped['porcentagem'] = (df_grouped['Bateu'] / df_grouped['Bateu']) * 100  # Calculando a porcentagem
 
-# Criando o gráfico usando Plotly Express
-    fig = px.bar(df_tendencias, x='mês', y='porcentagem', title='Aproveitamento por Mês',
-                 labels={'porcentagem': 'Aproveitamento (%)'}, color='mês')
+    # Criando o gráfico usando Plotly Express
+    fig = px.bar(df_grouped, x='mês', y='porcentagem', title='Aproveitamento por Mês',
+                labels={'porcentagem': 'Aproveitamento (%)'})
 
-# Exibindo o gráfico
+    # Exibindo o gráfico
     fig.show()
