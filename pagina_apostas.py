@@ -701,12 +701,12 @@ with tab2:
     
     df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    df_grouped = df_tendencias.groupby('mês')['Bateu'].mean().reset_index()
-    df_grouped['porcentagem'] = df_grouped['Bateu'] * 100
+    df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
 
     # Criando o gráfico usando Plotly Express
-    fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', title='Aproveitamento por Mês',
-                labels={'porcentagem': 'Aproveitamento (%)'})
+    fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
+                            title='Aproveitamento por Mês - Cantos vs. Gols',
+                            labels={'Bateu': 'Aproveitamento (%)'})
     
     fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
     # Exibindo o gráfico
