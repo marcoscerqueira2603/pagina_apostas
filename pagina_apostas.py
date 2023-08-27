@@ -46,7 +46,7 @@ analise_2_5 = load_data2(st.secrets["public_gsheets_url2"])
 
 # Interface para inserção de novos dados
 
-tab1,tab2, tab3=  st.tabs(['Analise Jogo','Tendências','Dash'])
+tab1,tab2, tab3=  st.tabs(['Analise Jogo','Adicionar Apostas','Dash'])
 
 
 with tab1:
@@ -657,16 +657,16 @@ with tab1:
     with col1:
         st.subheader(casa)
 
-        st.markdown('**Últimos jogos em casa:** {}'.format(o_u5casac_cantos_7))
-        st.markdown('**Últimos jogos em geral:** {}'.format(o_u5casag_cantos_7))
+        st.markdown('**Últimos jogos em casa:** {}'.format(o_u5casac_cantos_8))
+        st.markdown('**Últimos jogos em geral:** {}'.format(o_u5casag_cantos_8))
         st.markdown('**Média últimos 5 jogos em casa:** {}'.format(m_u5casac_cantos))
         st.markdown('**Média últimos 5 jogos geral:** {}'.format( m_u5casag_cantos))
 
     with col2:
         st.subheader(fora)
 
-        st.markdown('**Últimos jogos fora de casa:** {}'.format(o_u5foraf_cantos_7))
-        st.markdown('**Últimos jogos em geral:** {}'.format( o_u5forag_cantos_7))
+        st.markdown('**Últimos jogos fora de casa:** {}'.format(o_u5foraf_cantos_8))
+        st.markdown('**Últimos jogos em geral:** {}'.format( o_u5forag_cantos_9))
         st.markdown('**Média últimos 5 jogos forade casa:** {}'.format(m_u5casac_cantos))
         st.markdown('**Média últimos 5 jogos geral:** {}'.format(m_u5casag_cantos))
 
@@ -691,3 +691,4 @@ with tab1:
     analise = analise.reset_index(drop=True)
     analise
 
+with tab2:
