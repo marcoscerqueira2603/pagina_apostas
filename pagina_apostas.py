@@ -705,8 +705,9 @@ with tab2:
 
     # Criando o gráfico usando Plotly Express
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
-                            title='Aproveitamento por Mês - Cantos vs. Gols',
-                            labels={'Bateu': 'Aproveitamento (%)'})
+                         title='Aproveitamento por Mês - Cantos vs. Gols',
+                         labels={'Bateu': 'Aproveitamento (%)'},
+                         barmode='group')
     
     fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
     # Exibindo o gráfico
