@@ -700,7 +700,7 @@ with tab2:
     df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
     
     #df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    df_tendencias['porcentagem'] = (df_tendencias['bateu'] / df_tendencias['Bateu']) * 100  # Calculando a porcentagem
+    df_tendencias['porcentagem'] = (df_tendencias['Bateu'] / df_tendencias['Bateu']) * 100  # Calculando a porcentagem
 
 # Criando o gráfico usando Plotly Express
     fig = px.bar(df_tendencias, x='mês', y='porcentagem', title='Aproveitamento por Mês',
