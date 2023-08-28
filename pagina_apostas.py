@@ -701,10 +701,12 @@ with tab2:
     
     df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
-    df_grouped['Bateu'] = df_grouped['Bateu']*100
     order_months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-    df_grouped = df_grouped.sort_values('mês')
+    df_tendencias['mês'] = pd.Categorical(df_tendencias['mês'], categories=order_months, ordered=True)
+    df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
+    df_grouped['Bateu'] = round(df_grouped['Bateu']*100,2)
+    
+    
     df_grouped
     # Criando o gráfico usando Plotly Express
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
