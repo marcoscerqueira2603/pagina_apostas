@@ -703,7 +703,7 @@ with tab2:
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
     df_tendencias_metric = sum(df_tendencias['Bateu']) / len(df_tendencias['Bateu'])
     df_tendencias_metric = round(df_tendencias_metric*100,1)
-    df_totals = df_tendencias.groupby('mês')['Bateu'].sum().reset_index()
+    df_totals = df_tendencias.groupby('mês')['Bateu'].mean().reset_index()
     df_totals['Tipo de Linha'] = 'Total'
 
 # Adicionando os totais ao DataFrame df_grouped
