@@ -699,10 +699,9 @@ with tab2:
     df_tendencias['Data'] = pd.to_datetime(df_tendencias['Data'], format='mixed', dayfirst=True)
     df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
     
-    df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]
-    df_tendencias_metric = sum(df_tendencias['Bateu']) / len(df_tendencias['Bateu'])
-    
+    df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]  
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
+    df_tendencias_metric = sum(df_tendencias['Bateu']) / len(df_tendencias['Bateu'])
     order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
     df_tendencias['mês'] = pd.Categorical(df_tendencias['mês'], categories=order_months, ordered=True)
     df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
