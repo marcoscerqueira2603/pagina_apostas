@@ -695,19 +695,21 @@ with tab1:
 with tab2:
 
     df_tendencias = tendencias 
-
+    
     df_tendencias['Data'] = pd.to_datetime(df_tendencias['Data'], format='mixed', dayfirst=True)
     df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
-    df_tendencias
+    
     df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]
+    df_tendencias_metric = round(df_tendencias['Bateu'].mean() *100,2)
+    
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    order_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Ago']
+    order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
     df_tendencias['mês'] = pd.Categorical(df_tendencias['mês'], categories=order_months, ordered=True)
     df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
     df_grouped['Bateu'] = round(df_grouped['Bateu']*100,2)
     
     
-    df_grouped
+    
     # Criando o gráfico usando Plotly Express
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
                          title='Aproveitamento por Mês - Cantos vs. Gols',
@@ -718,4 +720,5 @@ with tab2:
 
     fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
     # Exibindo o gráfico
+    st.metric('Linhas %',df_tendencias_metric)
     st.plotly_chart(fig_tendencias)
