@@ -720,7 +720,7 @@ with tab2:
                          labels={'Bateu': 'Aproveitamento (%)'},
                          barmode='group')
     
-    fig_tendencias.update_traces(texttemplate='%{y:.2f}%', textposition='outside', font_size=20)
+    fig_tendencias.update_traces(texttemplate='%{y:.2f}%', textposition='outside', textfont=dict(size=20))
 
     fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
     # Exibindo o gráfico
