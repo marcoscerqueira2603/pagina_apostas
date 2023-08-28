@@ -700,7 +700,7 @@ with tab2:
     df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
     
     df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]
-    df_tendencias_metric = round(df_tendencias['Bateu'].mean() *100,2)
+    df_tendencias_metric = df_tendencias['Bateu'].mean()
     
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
     order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
