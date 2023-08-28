@@ -702,6 +702,7 @@ with tab2:
     df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]  
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
     df_tendencias_metric = sum(df_tendencias['Bateu']) / len(df_tendencias['Bateu'])
+    df_tendencias_metric = round(df_tendencias_metric*100,1)
     order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
     df_tendencias['mês'] = pd.Categorical(df_tendencias['mês'], categories=order_months, ordered=True)
     df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
