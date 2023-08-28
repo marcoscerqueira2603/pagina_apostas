@@ -702,7 +702,7 @@ with tab2:
     df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
     df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
-
+    df_tendencias
     # Criando o gráfico usando Plotly Express
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
                          title='Aproveitamento por Mês - Cantos vs. Gols',
