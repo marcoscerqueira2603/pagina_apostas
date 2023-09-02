@@ -729,6 +729,7 @@ with tab2:
     entradas_semmetodo['Cluster'] = entradas_anytimes['Cluster'] = 'Sem Método'
 
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
+    entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
     entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
     investimento_total = entradas['Investimento'].sum()
