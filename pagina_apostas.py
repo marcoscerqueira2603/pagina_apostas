@@ -741,9 +741,9 @@ with tab2:
     retorno_total_percentual = (retorno_total/investimento_total)-1
     retorno_total_odd_percentual = (retorno_total_odd/qtd_apostas)-1
 
-    delta_investimento = "Qtd Apostas: " + qtd_apostas
-    delta_retorno = 'Retorno reduzido a odd: ' + retorno_total_odd
-    delta_retorno_percentual = 'Retorno reduzido a odd percentual: ' + retorno_total_odd_percentual
+    delta_investimento = "Qtd Apostas: " + str(qtd_apostas)
+    delta_retorno = 'Retorno reduzido a odd: ' + str(retorno_total_odd)
+    delta_retorno_percentual = 'Retorno reduzido a odd percentual: ' + str(retorno_total_odd_percentual)
 
     col1, col2, col3= st.columns(3)
 
