@@ -730,7 +730,7 @@ with tab2:
 
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
-
+    entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
     investimento_total = entradas['Investimento'].sum()
     retorno_total = entradas['Retorno'].sum()
 
@@ -739,7 +739,8 @@ with tab2:
     with col1:
         st.metric('Investimento Total %',investimento_total)
 
-
+    with col2:
+        st.metric('Investimento Total %',retorno_total)
 
 
     st.subheader("Análise Tendências")
