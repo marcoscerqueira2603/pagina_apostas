@@ -706,13 +706,13 @@ with tab2:
     df_totals = df_tendencias.groupby('mês')['Bateu'].mean().reset_index()
     df_totals['Tipo de Linha'] = 'Total'
      
-    order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
+    order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sept']
     df_tendencias['mês'] = pd.Categorical(df_tendencias['mês'], categories=order_months, ordered=True)
     df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
-    df_grouped['Bateu'] = round(df_grouped['Bateu']*100,1)
-    df_totals['Bateu'] = round(df_totals['Bateu']*100,1)
+    df_grouped['Bateu'] = round(df_grouped['Bateu']*100,0)
+    df_totals['Bateu'] = round(df_totals['Bateu']*100,0)
     df_grouped = pd.concat([df_grouped, df_totals])
-    
+    df_grouped
     
     # Criando o gráfico usando Plotly Express
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
