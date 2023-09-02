@@ -734,13 +734,22 @@ with tab2:
     entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
     investimento_total = entradas['Investimento'].sum()
     retorno_total = entradas['Retorno'].sum()
+    qtd_apostas = entradas['Investimento'].len()
 
-    col1, col2, col3, col4 = st.columns()
+    entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
+
+    col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.metric('Investimento Total %',investimento_total)
+        st.metric('Investimento Total',investimento_total, delta=qtd_apostas)
 
     with col2:
+        st.metric('Retorno Total',retorno_total)
+        
+    with col3:
+        st.metric('Total Apostas',investimento_total)
+
+    with col4:
         st.metric('Investimento Total %',retorno_total)
 
 
