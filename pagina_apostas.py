@@ -710,7 +710,7 @@ with tab2:
     df_tendencias['mês'] = pd.Categorical(df_tendencias['mês'], categories=order_months, ordered=True)
     df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
     df_grouped['Bateu'] = round(df_grouped['Bateu']*100,1)
-    df_totals['Bateu'] = round(df_totals['Bateu']*100,21
+    df_totals['Bateu'] = round(df_totals['Bateu']*100,1)
     df_grouped = pd.concat([df_grouped, df_totals])
     
     
