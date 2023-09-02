@@ -34,21 +34,42 @@ def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-tendencias = load_data(st.secrets["url_tendencias_2linhas"])
+tendencias_2linhas = load_data(st.secrets["url_tendencias_2linhas"])
 
 @st.cache_data(ttl=1)
 def load_data2(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-analise_2_5 = load_data2(st.secrets["url_tendencias_2gols"])
+tendencias_2gols = load_data2(st.secrets["url_tendencias_2gols"])
 
 @st.cache_data(ttl=1)
 def load_data3(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-entradas_2linhas = load_data3(st.secrets["url_tendencias_2linhas"])
+entradas_2linhas = load_data3(st.secrets["url_entradas_2linhas"])
+
+@st.cache_data(ttl=1)
+def load_data4(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+entradas_2gols = load_data4(st.secrets["url_entradas_2gols"])
+
+@st.cache_data(ttl=1)
+def load_data5(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+entradas_anytimes = load_data5(st.secrets["url_entradas_anytime"])
+
+@st.cache_data(ttl=1)
+def load_data6(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+entradas_semmetodo = load_data6(st.secrets["url_entradas_semmetodo"])
 
 
 
@@ -555,7 +576,7 @@ with tab1:
     # Adicionar as novas linhas ao DataFrame
             
     if novas_linhas:
-        novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias.columns)
+        novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias_2linhas.columns)
         #tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
 
         # Atualizar a planilha com as novas linhas
@@ -705,21 +726,21 @@ with tab2:
 
 
     st.subheader("Análise Tendências")
-    df_tendencias = tendencias 
+    df_tendencias_2linhas = tendencias_2linhas 
     
-    df_tendencias['Data'] = pd.to_datetime(df_tendencias['Data'], format='mixed', dayfirst=True)
-    df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
+    df_tendencias_2linhas['Data'] = pd.to_datetime(df_tendencias_2linhas['Data'], format='mixed', dayfirst=True)
+    df_tendencias_2linhas['mês'] = df_tendencias_2linhas['Data'].dt.strftime('%b')
     
-    df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]  
-    df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    df_tendencias_metric = sum(df_tendencias['Bateu']) / len(df_tendencias['Bateu'])
-    df_tendencias_metric = round(df_tendencias_metric*100,1)
-    df_totals = df_tendencias.groupby('mês')['Bateu'].mean().reset_index()
+    df_tendencias_2linhass = df_tendencias_2linhas[df_tendencias_2linhas['Bateu'] != "-"]  
+    df_tendencias_2linhas['Bateu'] =df_tendencias_2linhas['Bateu'].astype(int)  # Convertendo 'bateu' para int
+    df_tendencias_2linhas_metric = sum(df_tendencias_2linhass['Bateu']) / len(df_tendencias_2linhas['Bateu'])
+    df_tendencias_2linhas_metric = round(df_tendencias_2linhas_metric*100,1)
+    df_totals = df_tendencias_2linhas.groupby('mês')['Bateu'].mean().reset_index()
     df_totals['Tipo de Linha'] = 'Total'
      
     order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sept']
-    df_tendencias['mês'] = pd.Categorical(df_tendencias['mês'], categories=order_months, ordered=True)
-    df_grouped = df_tendencias.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
+    df_tendencias_2linhas['mês'] = pd.Categorical(df_tendencias_2linhas['mês'], categories=order_months, ordered=True)
+    df_grouped = df_tendencias_2linhas.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
     df_grouped['Bateu'] = round(df_grouped['Bateu']*100,0)
     df_totals['Bateu'] = round(df_totals['Bateu']*100,0)
     df_grouped = pd.concat([df_grouped, df_totals])
@@ -735,7 +756,10 @@ with tab2:
 
     fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
     # Exibindo o gráfico
-    st.metric('Linhas %',df_tendencias_metric)
+    st.metric('Linhas %',df_tendencias_2linhas_metric)
     st.plotly_chart(fig_tendencias)
 
-    entradas_2linhas 
+    entradas_2gols
+    entradas_2linhas
+    entradas_anytimes
+    entradas_semmetodo
