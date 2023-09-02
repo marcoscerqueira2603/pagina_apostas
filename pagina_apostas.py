@@ -693,13 +693,13 @@ with tab1:
     analise
 
 with tab2:
-    st.subheader("Apostas - 2 linhas")
+    st.subheader("Entradas")
 
     st.subheader("Análise Tendências")
     df_tendencias = tendencias 
     
     df_tendencias['Data'] = pd.to_datetime(df_tendencias['Data'], format='mixed', dayfirst=True)
-    df_tendencias['mês'] = df_tendencias['Data']sdt.strftime('%b')
+    df_tendencias['mês'] = df_tendencias['Data'].dt.strftime('%b')
     
     df_tendencias = df_tendencias[df_tendencias['Bateu'] != "-"]  
     df_tendencias['Bateu'] = df_tendencias['Bateu'].astype(int)  # Convertendo 'bateu' para int
