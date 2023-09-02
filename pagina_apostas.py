@@ -712,7 +712,7 @@ with tab2:
     df_grouped['Bateu'] = round(df_grouped['Bateu']*100,0)
     df_totals['Bateu'] = round(df_totals['Bateu']*100,0)
     df_grouped = pd.concat([df_grouped, df_totals])
-    df_grouped
+ 
     
     # Criando o gráfico usando Plotly Express
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
