@@ -731,26 +731,34 @@ with tab2:
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
+    entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
     entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
+    
     investimento_total = entradas['Investimento'].sum()
     retorno_total = entradas['Retorno'].sum()
-    qtd_apostas = entradas['Investimento'].len()
+    qtd_apostas = len(entradas['Investimento'])
+    retorno_total_odd =  entradas['Retorno - reduzido a odd'].sum()
+    retorno_total_percentual = (retorno_total/investimento_total)-1
+    retorno_total_odd_percentual = (retorno_total_odd/qtd_apostas)-1
 
-    entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
+    delta_investimento = "Qtd Apostas: " + qtd_apostas
+    delta_retorno = 'Retorno reduzido a odd: ' + retorno_total_odd
+    delta_retorno_percentual = 'Retorno reduzido a odd percentual: ' + retorno_total_odd_percentual
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3= st.columns(3)
+
+
 
     with col1:
-        st.metric('Investimento Total',investimento_total, delta=qtd_apostas)
+        st.metric('Investimento Total',investimento_total, delta= delta_investimento)
 
     with col2:
-        st.metric('Retorno Total',retorno_total)
+        st.metric('Retorno Total',retorno_total, delta = delta_retorno)
         
     with col3:
-        st.metric('Total Apostas',investimento_total)
+        st.metric('% retornado',retorno_total_percentual, delta = delta_retorno_percentual)
 
-    with col4:
-        st.metric('Investimento Total %',retorno_total)
+
 
 
     st.subheader("Análise Tendências")
