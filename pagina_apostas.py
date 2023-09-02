@@ -723,6 +723,23 @@ with tab1:
 with tab2:
     st.subheader("Entradas")
 
+    entradas_2gols['Cluster'] = entradas_2gols['Cluster'] = '2gols'
+    entradas_2linhas['Cluster'] = entradas_2linhas['Cluster'] = '2Linhas'
+    entradas_anytimes['Cluster'] = entradas_anytimes['Cluster'] = 'Anytime'
+    entradas_semmetodo['Cluster'] = entradas_anytimes['Cluster'] = 'Sem Método'
+
+    entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
+    entradas['Mês'] = entradas['Data'].dt.strftime('%b')
+
+    investimento_total = entradas['Investimento'].sum()
+    retorno_total = entradas['Retorno'].sum()
+
+    col1, col2, col3, col4 = st.columns()
+
+    with col1:
+        st.metric('Investimento Total %',investimento_total)
+
+
 
 
     st.subheader("Análise Tendências")
@@ -759,7 +776,3 @@ with tab2:
     st.metric('Linhas %',df_tendencias_2linhas_metric)
     st.plotly_chart(fig_tendencias)
 
-    entradas_2gols
-    entradas_2linhas
-    entradas_anytimes
-    entradas_semmetodo
