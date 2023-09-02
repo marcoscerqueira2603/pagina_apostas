@@ -34,14 +34,14 @@ def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-tendencias = load_data(st.secrets["public_gsheets_url"])
+tendencias = load_data(st.secrets["url_tendencias_2linhas"])
 
 @st.cache_data(ttl=1)
 def load_data2(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-analise_2_5 = load_data2(st.secrets["public_gsheets_url2"])
+analise_2_5 = load_data2(st.secrets["url_tendencias_2gols"])
 
 
 
@@ -694,6 +694,8 @@ with tab1:
 
 with tab2:
     st.subheader("Entradas")
+
+
 
     st.subheader("Análise Tendências")
     df_tendencias = tendencias 
