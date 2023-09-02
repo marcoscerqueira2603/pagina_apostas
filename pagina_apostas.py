@@ -43,6 +43,13 @@ def load_data2(sheets_url):
 
 analise_2_5 = load_data2(st.secrets["url_tendencias_2gols"])
 
+@st.cache_data(ttl=1)
+def load_data3(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+entradas_2linhas = load_data3(st.secrets["url_tendencias_2linhas"])
+
 
 
 # Interface para inserção de novos dados
@@ -730,3 +737,5 @@ with tab2:
     # Exibindo o gráfico
     st.metric('Linhas %',df_tendencias_metric)
     st.plotly_chart(fig_tendencias)
+
+    entradas_2linhas 
