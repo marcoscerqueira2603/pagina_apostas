@@ -731,9 +731,9 @@ with tab2:
     df_tendencias_2linhas['Data'] = pd.to_datetime(df_tendencias_2linhas['Data'], format='mixed', dayfirst=True)
     df_tendencias_2linhas['mês'] = df_tendencias_2linhas['Data'].dt.strftime('%b')
     
-    df_tendencias_2linhass = df_tendencias_2linhas[df_tendencias_2linhas['Bateu'] != "-"]  
-    df_tendencias_2linhas['Bateu'] =df_tendencias_2linhas['Bateu'].astype(int)  # Convertendo 'bateu' para int
-    df_tendencias_2linhas_metric = sum(df_tendencias_2linhass['Bateu']) / len(df_tendencias_2linhas['Bateu'])
+    df_tendencias_2linhas = df_tendencias_2linhas[df_tendencias_2linhas['Bateu'] != "-"]  
+    df_tendencias_2linhas['Bateu'] = df_tendencias_2linhas['Bateu'].astype(int)  # Convertendo 'bateu' para int
+    df_tendencias_2linhas_metric = sum(df_tendencias_2linhas['Bateu']) / len(df_tendencias_2linhas['Bateu'])
     df_tendencias_2linhas_metric = round(df_tendencias_2linhas_metric*100,1)
     df_totals = df_tendencias_2linhas.groupby('mês')['Bateu'].mean().reset_index()
     df_totals['Tipo de Linha'] = 'Total'
