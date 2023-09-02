@@ -10,7 +10,6 @@ import plotly.express as px
 #import json
 
 # Obtém a data atual
-st.set_page_config(layout="wide")
 data_atual = date.today()
 
 # Formata a data atual no formato "DD/MM/YYYY"
@@ -719,7 +718,8 @@ with tab2:
     fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
                          title='Aproveitamento por Mês - Cantos vs. Gols',
                          labels={'Bateu': 'Aproveitamento (%)'},
-                         barmode='group')
+                         barmode='group',
+                         text_auto=True)
     
 
     fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
