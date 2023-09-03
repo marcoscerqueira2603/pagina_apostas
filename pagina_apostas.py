@@ -734,17 +734,17 @@ with tab2:
     entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
     entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
     entradas['Retorno - reduzido a odd'] = entradas['Retorno - reduzido a odd'].astype(float)
-    entradas
+
     entradas['Investimento'] = entradas['Investimento'].str.replace(',', '.').astype(float)
     entradas['Retorno'] = entradas['Retorno'].str.replace(',', '.').astype(float)
 # Converter a coluna para float (ou int, dependendo do caso)
     entradas['Retorno - reduzido a odd'] = entradas['Retorno - reduzido a odd'].astype(float)
     entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
     investimento_total = entradas['Investimento'].sum()
-    retorno_total = entradas['Retorno'].sum()
+    retorno_total = round(entradas['Retorno'].sum(),2)
     qtd_apostas = len(entradas['Investimento'])
-    retorno_total_odd =  entradas['Odd'].sum()
-    retorno_total_odd = entradas['Retorno - reduzido a odd'].sum()
+    #retorno_total_odd =  entradas['Odd'].sum()
+    retorno_total_odd = round(entradas['Retorno - reduzido a odd'].sum(),2)
 
     
     retorno_total_percentual = round(((retorno_total/investimento_total)-1)*100,2)
