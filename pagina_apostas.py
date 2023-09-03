@@ -737,8 +737,10 @@ with tab2:
     investimento_total = entradas['Investimento'].sum()
     retorno_total = entradas['Retorno'].sum()
     qtd_apostas = len(entradas['Investimento'])
+    retorno_total_odd =  entradas['Odd'].sum()
     
-    retorno_total_odd =  entradas['Retorno - reduzido a odd'].sum()
+    
+    #retorno_total_odd =  entradas['Retorno - reduzido a odd'].sum()
     retorno_total_percentual = round(((retorno_total/investimento_total)-1)*100,2)
     retorno_total_odd_percentual = round(((retorno_total_odd/qtd_apostas)-1)*100,2)
 
