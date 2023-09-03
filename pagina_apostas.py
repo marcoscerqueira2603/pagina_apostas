@@ -733,7 +733,7 @@ with tab2:
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
     entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
     entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
-    
+    entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
     investimento_total = entradas['Investimento'].sum()
     retorno_total = entradas['Retorno'].sum()
     qtd_apostas = len(entradas['Investimento'])
