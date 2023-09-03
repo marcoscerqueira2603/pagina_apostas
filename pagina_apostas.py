@@ -29,42 +29,42 @@ client = gspread.authorize(creds)
 
 
 
-@st.cache_data(ttl=1)
+@st.cache_data(ttl=20)
 def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
 tendencias_2linhas = load_data(st.secrets["url_tendencias_2linhas"])
 
-@st.cache_data(ttl=1)
+@st.cache_data(ttl=20)
 def load_data2(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
 tendencias_2gols = load_data2(st.secrets["url_tendencias_2gols"])
 
-@st.cache_data(ttl=1)
+@st.cache_data(ttl=20)
 def load_data3(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
 entradas_2linhas = load_data3(st.secrets["url_entradas_2linhas"])
 
-@st.cache_data(ttl=1)
+@st.cache_data(ttl=20)
 def load_data4(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
 entradas_2gols = load_data4(st.secrets["url_entradas_2gols"])
 
-@st.cache_data(ttl=1)
+@st.cache_data(ttl=20)
 def load_data5(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
 entradas_anytimes = load_data5(st.secrets["url_entradas_anytime"])
 
-@st.cache_data(ttl=1)
+@st.cache_data(ttl=20)
 def load_data6(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
