@@ -732,6 +732,7 @@ with tab2:
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
     entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
+    entradas['Retorno - reduzido a odd'] = entradas['Retorno - reduzido a odd'].astype(float)
     entradas
 
 # Converter a coluna para float (ou int, dependendo do caso)
