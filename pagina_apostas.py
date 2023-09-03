@@ -731,7 +731,18 @@ with tab2:
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
-    entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
+    #entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
+    def calcular_retorno(row):
+        if row['Resultado'] == 1:
+            return row['Odd']
+        else:
+            return row['Retorno - reduzido a odd']
+
+# Aplicar a função a cada linha do DataFrame
+    entradas['Retorno - reduzido a odd'] = entradas.apply(calcular_retorno, axis=1)
+
+# Converter a coluna para float (ou int, dependendo do caso)
+    entradas['Retorno - reduzido a odd'] = entradas['Retorno - reduzido a odd'].astype(float)
     entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
     entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
     investimento_total = entradas['Investimento'].sum()
