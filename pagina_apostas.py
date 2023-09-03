@@ -739,7 +739,6 @@ with tab2:
 # Converter a coluna para float (ou int, dependendo do caso)
     entradas['Retorno - reduzido a odd'] = entradas['Retorno - reduzido a odd'].astype(float)
     entradas = entradas[entradas['Aposta Anulada?'] != "Sim"]
-    entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
     investimento_total = entradas['Investimento'].sum()
     retorno_total = entradas['Retorno'].sum()
     qtd_apostas = len(entradas['Investimento'])
