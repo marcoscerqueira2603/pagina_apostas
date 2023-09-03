@@ -783,7 +783,7 @@ with tab2:
     df_totals = df_tendencias_2linhas.groupby('mês')['Bateu'].mean().reset_index()
     df_totals['Tipo de Linha'] = 'Total'
      
-    order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sept']
+    order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
     df_tendencias_2linhas['mês'] = pd.Categorical(df_tendencias_2linhas['mês'], categories=order_months, ordered=True)
     df_grouped = df_tendencias_2linhas.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
     df_grouped['Bateu'] = round(df_grouped['Bateu']*100,0)
