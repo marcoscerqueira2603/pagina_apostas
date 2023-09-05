@@ -8,6 +8,8 @@ from datetime import datetime, date
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
 
 #import json
 
@@ -769,7 +771,51 @@ with tab2:
     with col3:
         st.metric('% retornado',retorno_total_percentual, delta = delta_retorno_percentual)
 
+    col1, col2 = st.columns(2)
 
+    with col1:
+        geral_investimento_mes = entradas.groupby('Mês')['Investimento'].sum()
+        geral_retorno_mes = entradas.groupby('Mês')['Retorno'].sum()
+        geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
+
+        cores_barras = ['#FF5733', '#33FF57', '#337DFF']
+        cor_dispersao = '#FF33A1'
+
+        # Crie subplots com dois eixos y (um para barras e outro para o gráfico de dispersão)
+        fig_geral_investimento = make_subplots(specs=[[{"secondary_y": True}]])
+
+        # Adicione os gráficos de barras para Investimento e Retorno
+        for i, nome in enumerate(['Investimento', 'Retorno']):
+            fig_geral_investimento.add_trace(
+                go.Bar(
+                    x=geral_investimento_mes.index,
+                    y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
+                    name=nome,
+                    marker=dict(color=cores_barras[i]),
+                    text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
+                ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
+            )
+
+        # Adicione o gráfico de dispersão para o Aproveitamento no segundo eixo y (direita)
+        fig_geral_investimento.add_trace(
+            go.Scatter(
+                x=geral_retorno_aproveitamento.index,
+                y=geral_retorno_aproveitamento.values,
+                mode='lines+markers+text',  # Adicione o modo 'text' para exibir rótulos de dados
+                name='Aproveitamento',
+                text=geral_retorno_aproveitamento.values,  # Rótulos de dados
+                textposition='top center',  # Posição dos rótulos de dados
+                line=dict(
+                    width=3,  # Ajuste a largura da linha conforme desejado
+                    color=cor_dispersao
+                )
+            ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
+            )
+
+            # Atualize os rótulos dos eixos y
+        fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
+        fig_geral_investimento.update_yaxes(title_text='Valor Percentual', secondary_y=True)
+        st.plotly_chart(fig_geral_investimento)
 
 
     st.subheader("Análise Tendências")
