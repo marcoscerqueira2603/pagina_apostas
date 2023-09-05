@@ -779,7 +779,19 @@ with tab2:
 
     with col1:
              
-    
+        def filtrar_dataframe(df, cluster):
+            if cluster == 'Total':
+                return df
+            else:
+                return df[df['Cluster'] == cluster]
+
+
+
+        opcoes_clusters = ['Total'] + list(entradas['Cluster'].unique())
+        cluster_selecionado = st.radio('Selecione o Cluster:', opcoes_clusters)
+
+
+
         geral_investimento_mes = round(entradas.groupby('Mês')['Investimento'].sum(),0)
         geral_retorno_mes = round(entradas.groupby('Mês')['Retorno'].sum(),0)
         geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
