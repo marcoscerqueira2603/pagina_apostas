@@ -774,7 +774,12 @@ with tab2:
 
     col1, col2 = st.columns(2)
 
+    order_months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
+    entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
+
     with col1:
+             
+    
         geral_investimento_mes = entradas.groupby('Mês')['Investimento'].sum()
         geral_retorno_mes = entradas.groupby('Mês')['Retorno'].sum()
         geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
