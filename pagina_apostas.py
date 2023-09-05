@@ -780,8 +780,8 @@ with tab2:
     with col1:
              
     
-        geral_investimento_mes = entradas.groupby('Mês')['Investimento'].sum()
-        geral_retorno_mes = entradas.groupby('Mês')['Retorno'].sum()
+        geral_investimento_mes = round(entradas.groupby('Mês')['Investimento'].sum(),0)
+        geral_retorno_mes = round(entradas.groupby('Mês')['Retorno'].sum(),0)
         geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
 
         cores_barras = ['#FF5733', '#33FF57', '#337DFF']
