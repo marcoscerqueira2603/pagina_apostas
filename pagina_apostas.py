@@ -790,7 +790,7 @@ with tab2:
         opcoes_clusters = ['Total'] + list(entradas['Cluster'].unique())
         cluster_selecionado = st.radio('Selecione o Cluster:', opcoes_clusters)
 
-
+        entradas = filtrar_dataframe(entradas, cluster_selecionado)
 
         geral_investimento_mes = round(entradas.groupby('Mês')['Investimento'].sum(),0)
         geral_retorno_mes = round(entradas.groupby('Mês')['Retorno'].sum(),0)
