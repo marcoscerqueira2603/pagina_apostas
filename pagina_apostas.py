@@ -762,7 +762,7 @@ with tab2:
     col1, col2, col3= st.columns(3)
 
 
-
+    entradas
     with col1:
         st.metric('Investimento Total',investimento_total, delta= delta_investimento)
 
