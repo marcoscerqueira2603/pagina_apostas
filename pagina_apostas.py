@@ -680,8 +680,8 @@ with tab1:
 
         st.markdown('**Últimos jogos fora de casa:** {}'.format(o_u5foraf_cantos_7))
         st.markdown('**Últimos jogos em geral:** {}'.format( o_u5forag_cantos_7))
-        st.markdown('**Média últimos 5 jogos forade casa:** {}'.format(m_u5casac_cantos))
-        st.markdown('**Média últimos 5 jogos geral:** {}'.format(m_u5casag_cantos))
+        st.markdown('**Média últimos 5 jogos forade casa:** {}'.format(m_u5foraf_cantos))
+        st.markdown('**Média últimos 5 jogos geral:** {}'.format(m_u5forag_cantos))
 
     st.title('Análise  Cantos 8.5')
     
@@ -700,8 +700,8 @@ with tab1:
 
         st.markdown('**Últimos jogos fora de casa:** {}'.format(o_u5foraf_cantos_8))
         st.markdown('**Últimos jogos em geral:** {}'.format(o_u5forag_cantos_8))
-        st.markdown('**Média últimos 5 jogos forade casa:** {}'.format(m_u5casac_cantos))
-        st.markdown('**Média últimos 5 jogos geral:** {}'.format(m_u5casag_cantos))
+        st.markdown('**Média últimos 5 jogos forade casa:** {}'.format(m_u5foraf_cantos))
+        st.markdown('**Média últimos 5 jogos geral:** {}'.format(m_u5forag_cantos))
 
     st.title('Linhas Extras - Cantos')
 
