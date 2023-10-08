@@ -774,7 +774,7 @@ with tab2:
 
     col1, col2 = st.columns(2)
 
-    order_months = ['Mar', 'Apr', 'May','Jul', 'Aug', 'Sep']
+    order_months = ['Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct']
     entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
 
     with col1:
