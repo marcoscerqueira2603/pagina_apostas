@@ -731,7 +731,7 @@ with tab2:
     entradas_2linhas['Cluster'] = entradas_2linhas['Cluster'] = '2Linhas'
     entradas_anytimes['Cluster'] = entradas_anytimes['Cluster'] = 'Anytime'
     entradas_semmetodo['Cluster'] = entradas_semmetodo['Cluster'] = 'Sem Método'
-
+    entradas_semmetodo
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
