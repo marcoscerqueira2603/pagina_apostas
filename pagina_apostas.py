@@ -733,6 +733,7 @@ with tab2:
     entradas_semmetodo['Cluster'] = entradas_anytimes['Cluster'] = 'Sem Método'
 
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
+    entradas_semmetodo
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
     entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
