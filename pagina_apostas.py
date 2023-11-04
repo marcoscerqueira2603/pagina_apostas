@@ -722,6 +722,7 @@ with tab1:
 
     analise = pd.DataFrame(dados_cantos_extras, columns= ['Casa', 'Fora', 'Tipo de Linha','Bateu','Casa Fazer - M','Casa Fazer - G', 'Fora Fazer - M', 'Fora Fazer - G', 'Média Casa - M','Média Casa - G', 'Média Fora - M','Média Fora - G', 'Ocorrencia Liga Casa','Ocorrencia Liga Fora'])
     analise = analise.reset_index(drop=True)
+    analise
     
 
 with tab2:
