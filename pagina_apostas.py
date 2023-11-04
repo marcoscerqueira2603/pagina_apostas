@@ -722,7 +722,7 @@ with tab1:
 
     analise = pd.DataFrame(dados_cantos_extras, columns= ['Casa', 'Fora', 'Tipo de Linha','Bateu','Casa Fazer - M','Casa Fazer - G', 'Fora Fazer - M', 'Fora Fazer - G', 'Média Casa - M','Média Casa - G', 'Média Fora - M','Média Fora - G', 'Ocorrencia Liga Casa','Ocorrencia Liga Fora'])
     analise = analise.reset_index(drop=True)
-    analise
+    
 
 with tab2:
     st.subheader("Entradas")
@@ -731,7 +731,6 @@ with tab2:
     entradas_2linhas['Cluster'] = entradas_2linhas['Cluster'] = '2Linhas'
     entradas_anytimes['Cluster'] = entradas_anytimes['Cluster'] = 'Anytime'
     entradas_semmetodo['Cluster'] = entradas_semmetodo['Cluster'] = 'Sem Método'
-    entradas_semmetodo
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
