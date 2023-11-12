@@ -758,7 +758,7 @@ with tab2:
     delta_retorno = 'Retorno reduzido a odd: ' + str(retorno_total_odd)
     delta_retorno_percentual = 'Retorno reduzido a odd percentual: ' + str(retorno_total_odd_percentual)
     entradas['Lucro Aposta'] = round((entradas['Retorno']/entradas['Investimento'])-1,2)
-    entradas
+    
     col1, col2, col3= st.columns(3)
 
     with col1:
