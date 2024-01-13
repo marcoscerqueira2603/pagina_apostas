@@ -81,7 +81,7 @@ entradas_semmetodo = load_data6(st.secrets["url_entradas_semmetodo"])
 
 tab1,tab2=  st.tabs(['Analise Jogo','Dash'])
 
-
+#a
 with tab1:
 
     ligas = ['chines','espanhol', 'frances','holandes','ingles','portugues','serie_a','serie_b','bundesliga']
