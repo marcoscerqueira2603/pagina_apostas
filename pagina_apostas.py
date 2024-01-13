@@ -84,7 +84,7 @@ tab1,tab2=  st.tabs(['Analise Jogo','Dash'])
 
 with tab1:
 
-    ligas = ['chines','espanhol', 'frances','holandes','ingles','portugues','serie_a','serie_b']
+    ligas = ['chines','espanhol', 'frances','holandes','ingles','portugues','serie_a','serie_b','bundesliga']
     liga = st.selectbox('Selecione a liga:', ligas, index=1, key ='lista_de_ligas')
 
     liga_string = liga
