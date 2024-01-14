@@ -815,10 +815,10 @@ with tab2:
             fig_geral_investimento.add_trace(
                 go.Bar(
                     x=totais_por_mes['Mês'],
-                    y=totais_por_mes['Total Investido'] if i == 0 else totais_por_mes['Total Retornado'],
+                    y=totais_por_mes['Investimento'] if i == 0 else totais_por_mes['Investimento'],
                     name=nome,
                     marker=dict(color=cor),
-                    text=totais_por_mes['Total Investido'] if i == 0 else totais_por_mes['Total Retornado'],
+                    text=totais_por_mes['Investimento'] if i == 0 else totais_por_mes['Retorno'],
                 ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
             )
 
@@ -826,7 +826,7 @@ with tab2:
         fig_geral_investimento.add_trace(
             go.Scatter(
                 x=totais_por_mes['Mês'],
-                y=totais_por_mes['Lucro'],
+                y=totais_por_mes['Lucro por mês'],
                 mode='lines+markers+text',  # Adicione o modo 'text' para exibir rótulos de dados
                 name='Aproveitamento',
                 text=geral_retorno_aproveitamento.values,  # Rótulos de dados
