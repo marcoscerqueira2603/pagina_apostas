@@ -800,14 +800,19 @@ with tab2:
         # Crie subplots com dois eixos y (um para barras e outro para o gráfico de dispersão)
         fig_geral_investimento = make_subplots(specs=[[{"secondary_y": True}]])
 
+        cor_barras_investimento = '#00CED1'
+        cor_barras_retorno = '#00FF7F'
+        cor_linha_dispersao = '#8B0000'
+
         # Adicione os gráficos de barras para Investimento e Retorno
         for i, nome in enumerate(['Investimento', 'Retorno']):
+            cor = cor_barras_investimento if i == 0 else cor_barras_retorno
             fig_geral_investimento.add_trace(
                 go.Bar(
                     x=geral_investimento_mes.index,
                     y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                     name=nome,
-                    marker=dict(color=cores_barras[i]),
+                    marker=dict(color=cor),
                     text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                 ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
             )
@@ -823,7 +828,7 @@ with tab2:
                 textposition='top center',  # Posição dos rótulos de dados
                 line=dict(
                     width=3,  # Ajuste a largura da linha conforme desejado
-                    color=cor_dispersao
+                    color= cor_linha_dispersao
                 )
             ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
             )
