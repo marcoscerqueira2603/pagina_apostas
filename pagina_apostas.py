@@ -827,6 +827,8 @@ with tab2:
                 )
             ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
             )
+        fig_geral_investimento.update_xaxes(showgrid=False)
+        fig_geral_investimento.update_yaxes(showgrid=False)
 
             # Atualize os rótulos dos eixos y
         fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
