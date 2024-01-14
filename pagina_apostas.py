@@ -829,15 +829,16 @@ with tab2:
             )
         fig_geral_investimento.update_xaxes(showgrid=False)
         fig_geral_investimento.update_yaxes(showgrid=False)
+
         fig_geral_investimento.update_xaxes(
             showline=False,
             zeroline=False
-            )
+        )
 
         fig_geral_investimento.update_yaxes(
             showline=False,
             zeroline=False
-            )
+        )
 
             # Atualize os rótulos dos eixos y
         fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
