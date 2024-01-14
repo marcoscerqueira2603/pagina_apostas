@@ -809,26 +809,23 @@ with tab2:
         cor_barras_retorno = '#00FF7F'
         cor_linha_dispersao = '#8B0000'
        
-        fig_geral_investimento = go.Figure()
-
-        # Adicione as barras empilhadas para Investimento e Retorno
         fig_geral_investimento.add_trace(
             go.Bar(
                 x=totais_por_mes['Mês'],
-                y=totais_por_mes['Total Investido'],
+                y=totais_por_mes['Investimento'],
                 name='Investimento',
                 marker=dict(color=cor_barras_investimento),
-                text=totais_por_mes['Total Investido'],
+                text=totais_por_mes['Investimento'],
             )
         )
 
         fig_geral_investimento.add_trace(
             go.Bar(
                 x=totais_por_mes['Mês'],
-                y=totais_por_mes['Total Retornado'],
+                y=totais_por_mes['Retorno'],
                 name='Retorno',
                 marker=dict(color=cor_barras_retorno),
-                text=totais_por_mes['Total Retornado'],
+                text=totais_por_mes['Retorno'],
             )
         )
 
@@ -836,10 +833,10 @@ with tab2:
         fig_geral_investimento.add_trace(
             go.Scatter(
                 x=totais_por_mes['Mês'],
-                y=totais_por_mes['Lucro'],
+                y=totais_por_mes['Lucro por mês'],
                 mode='lines+markers+text',
                 name='Aproveitamento',
-                text=totais_por_mes['Lucro'],
+                text=totais_por_mes['Lucro por mês'],
                 textposition='top center',
                 line=dict(
                     width=3,
@@ -853,7 +850,7 @@ with tab2:
         fig_geral_investimento.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
 
         # Ajuste manualmente a escala do eixo y para garantir proporção adequada
-        fig_geral_investimento.update_yaxes(range=[0, max(totais_por_mes['Total Investido'].max(), totais_por_mes['Total Retornado'].max())])
+        fig_geral_investimento.update_yaxes(range=[0, max(totais_por_mes['Investimento'].max(), totais_por_mes['Retorno'].max())])
 
         # Atualize os rótulos dos eixos y
         fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
