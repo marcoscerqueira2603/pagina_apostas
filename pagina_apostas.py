@@ -736,7 +736,7 @@ with tab2:
     entradas_semmetodo['Cluster'] = entradas_semmetodo['Cluster'] = 'Sem Método'
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     selected_clusters = st.multiselect('Escolha os Clusters', entradas['Cluster'].unique())
-    filtered_df = entradas[entradas['Cluster'].isin(selected_clusters)]
+    entradas = entradas[entradas['Cluster'].isin(selected_clusters)]
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
     entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
