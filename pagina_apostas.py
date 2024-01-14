@@ -843,7 +843,7 @@ with tab2:
         fig_geral_investimento.update_xaxes(showline=True, showgrid=False, showticklabels=True, zeroline=False)
         fig_geral_investimento.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
 
-        fig_geral_investimento.update_yaxes(range=[0, max(totais_por_mes['Investido'].max(), totais_por_mes['Retorno'].max())])
+        fig_geral_investimento.update_yaxes(range=[0, max(totais_por_mes['Investimento'].max(), totais_por_mes['Retorno'].max())])
 
             # Atualize os rótulos dos eixos y
         fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
