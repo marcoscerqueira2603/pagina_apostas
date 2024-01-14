@@ -807,8 +807,8 @@ with tab2:
     )
 
     # Atualizar layout do gráfico 1
-    fig1.update_xaxes(title_text='Mês')
-    fig1.update_yaxes(title_text='Valor')
+    fig1.update_xaxes(title_text='Mês', showgrid=False)
+    fig1.update_yaxes(title_text='Valor', showgrid=False)
     fig1.update_layout(title_text='Investimento e Retorno por Mês')
 
     # Exibir o gráfico 1 na coluna 1
@@ -833,8 +833,8 @@ with tab2:
     )
 
     # Atualizar layout do gráfico 2
-    fig2.update_xaxes(title_text='Mês')
-    fig2.update_yaxes(title_text='Lucro (%)')
+    fig2.update_xaxes(title_text='Mês', showgrid=False)
+    fig2.update_yaxes(title_text='Lucro (%)', showgrid=False)
     fig2.update_layout(title_text='Lucro por Mês')
 
     # Exibir o gráfico 2 na coluna 2
