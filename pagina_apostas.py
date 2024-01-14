@@ -809,46 +809,59 @@ with tab2:
         cor_barras_retorno = '#00FF7F'
         cor_linha_dispersao = '#8B0000'
        
-        # Adicione os gráficos de barras para Investimento e Retorno
-        for i, nome in enumerate(['Investimento', 'Retorno']):
-            cor = cor_barras_investimento if i == 0 else cor_barras_retorno
-            fig_geral_investimento.add_trace(
-                go.Bar(
-                    x=totais_por_mes['Mês'],
-                    y=totais_por_mes['Investimento'] if i == 0 else totais_por_mes['Investimento'],
-                    name=nome,
-                    marker=dict(color=cor),
-                    text=totais_por_mes['Investimento'] if i == 0 else totais_por_mes['Retorno'],
-                ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
+        fig_geral_investimento = go.Figure()
+
+        # Adicione as barras empilhadas para Investimento e Retorno
+        fig_geral_investimento.add_trace(
+            go.Bar(
+                x=totais_por_mes['Mês'],
+                y=totais_por_mes['Total Investido'],
+                name='Investimento',
+                marker=dict(color=cor_barras_investimento),
+                text=totais_por_mes['Total Investido'],
             )
+        )
+
+        fig_geral_investimento.add_trace(
+            go.Bar(
+                x=totais_por_mes['Mês'],
+                y=totais_por_mes['Total Retornado'],
+                name='Retorno',
+                marker=dict(color=cor_barras_retorno),
+                text=totais_por_mes['Total Retornado'],
+            )
+        )
 
         # Adicione o gráfico de dispersão para o Aproveitamento no segundo eixo y (direita)
         fig_geral_investimento.add_trace(
             go.Scatter(
                 x=totais_por_mes['Mês'],
-                y=totais_por_mes['Lucro por mês'],
-                mode='lines+markers+text',  # Adicione o modo 'text' para exibir rótulos de dados
+                y=totais_por_mes['Lucro'],
+                mode='lines+markers+text',
                 name='Aproveitamento',
-                text=geral_retorno_aproveitamento.values,  # Rótulos de dados
-                textposition='top center',  # Posição dos rótulos de dados
+                text=totais_por_mes['Lucro'],
+                textposition='top center',
                 line=dict(
-                    width=3,  # Ajuste a largura da linha conforme desejado
-                    color= cor_linha_dispersao
+                    width=3,
+                    color=cor_linha_dispersao
                 )
             ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
-            )
-        fig_geral_investimento.update_xaxes(showgrid=True)
-        fig_geral_investimento.update_yaxes(showgrid=True)
+        )
 
-        fig_geral_investimento.update_xaxes(showline=True, showgrid=False, showticklabels=True, zeroline=False)
+        # Atualize os eixos x e y
+        fig_geral_investimento.update_xaxes(showline=True, showgrid=True, showticklabels=True, zeroline=False)
         fig_geral_investimento.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
 
-        fig_geral_investimento.update_yaxes(range=[0, max(totais_por_mes['Investimento'].max(), totais_por_mes['Retorno'].max())])
+        # Ajuste manualmente a escala do eixo y para garantir proporção adequada
+        fig_geral_investimento.update_yaxes(range=[0, max(totais_por_mes['Total Investido'].max(), totais_por_mes['Total Retornado'].max())])
 
-            # Atualize os rótulos dos eixos y
+        # Atualize os rótulos dos eixos y
         fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
         fig_geral_investimento.update_yaxes(title_text='Valor Percentual', secondary_y=True)
+
+        # Exiba o gráfico
         st.plotly_chart(fig_geral_investimento)
+
 
 
     st.subheader("Análise Tendências")
