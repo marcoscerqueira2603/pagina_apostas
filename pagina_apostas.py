@@ -761,7 +761,7 @@ with tab2:
     delta_investimento = "Qtd Apostas: " + str(qtd_apostas)
     delta_retorno = 'Retorno reduzido a odd: ' + str(retorno_total_odd)
     delta_retorno_percentual = 'Retorno reduzido a odd percentual: ' + str(retorno_total_odd_percentual)
-    entradas['Investimento - redudizdo a odd'] = 1 
+    entradas['Investimento - reduzido a odd'] = 1 
     col1, col2, col3= st.columns(3)
 
     with col1:
@@ -778,10 +778,19 @@ with tab2:
     order_months = ['Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
     entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
 
-    opcao_radio = st.radio("Escolha a opção:", ['Investimento e Retorno', 'Investimento Reduzido a Odd e Retorno Reduzido a Odd'])
+    opcao_radio = st.radio("Escolha a opção:", ['Normal', 'Odd'])
 
-    totais_por_mes = entradas.groupby('Mês').agg({'Investimento': 'sum', 'Retorno': 'sum'}).reset_index()
-    totais_por_mes['Lucro por mês'] = round(((totais_por_mes['Retorno'] / totais_por_mes['Investimento']) - 1) * 100,2)
+# Lógica para determinar colunas com base na opção selecionada
+    if opcao_radio == 'Normal':
+        col_investimento, col_retorno = 'Investimento', 'Retorno'
+    elif opcao_radio == 'Odd':
+        col_investimento, col_retorno = 'Investimento - reduzido a odd', 'Retorno - reduzido a odd'
+
+    totais_por_mes = entradas.groupby('Mês').agg({col_investimento: 'sum', col_retorno: 'sum'}).reset_index()
+    totais_por_mes['Lucro por mês'] = round(((totais_por_mes[col_retorno] / totais_por_mes[col_investimento]) - 1) * 100, 2)
+    
+    totais_por_mes.rename(columns={col_investimento: 'Investimento', col_retorno: 'Retorno'}, inplace=True)
+
     col1, col2 = st.columns(2)
 
 # Gráfico 1: Barras de Investimento e Retorno por Mês
