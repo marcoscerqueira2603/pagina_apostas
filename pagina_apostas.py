@@ -10,8 +10,6 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from tkinter import *
-from tkinter import ttk
 
 
 #import json
@@ -817,7 +815,7 @@ with tab2:
                     y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                     name=nome,
                     marker=dict(color=cor),
-                    #width = largura_das_barras,
+                    width = 0.8,
                     text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                 ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
             )
