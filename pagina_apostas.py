@@ -805,7 +805,7 @@ with tab2:
         cor_barras_investimento = '#00CED1'
         cor_barras_retorno = '#00FF7F'
         cor_linha_dispersao = '#8B0000'
-
+        geral_investimento_mes
         # Adicione os gráficos de barras para Investimento e Retorno
         for i, nome in enumerate(['Investimento', 'Retorno']):
             cor = cor_barras_investimento if i == 0 else cor_barras_retorno
