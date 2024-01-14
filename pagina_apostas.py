@@ -835,7 +835,7 @@ with tab2:
             ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
             )
         fig_geral_investimento.update_xaxes(showgrid=True)
-        fig_geral_investimento.update_yaxes(showgrid=False)
+        fig_geral_investimento.update_yaxes(showgrid=True)
 
         fig_geral_investimento.update_xaxes(showline=True, showgrid=False, showticklabels=True, zeroline=False)
         fig_geral_investimento.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
