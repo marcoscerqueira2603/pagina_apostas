@@ -761,8 +761,7 @@ with tab2:
     delta_investimento = "Qtd Apostas: " + str(qtd_apostas)
     delta_retorno = 'Retorno reduzido a odd: ' + str(retorno_total_odd)
     delta_retorno_percentual = 'Retorno reduzido a odd percentual: ' + str(retorno_total_odd_percentual)
-    entradas['Lucro Aposta'] = round((entradas['Retorno']/entradas['Investimento'])-1,2)
-    
+    entradas['Investimento - redudizdo a odd'] = 1 
     col1, col2, col3= st.columns(3)
 
     with col1:
@@ -778,6 +777,8 @@ with tab2:
 
     order_months = ['Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
     entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
+
+    opcao_radio = st.radio("Escolha a opção:", ['Investimento e Retorno', 'Investimento Reduzido a Odd e Retorno Reduzido a Odd'])
 
     totais_por_mes = entradas.groupby('Mês').agg({'Investimento': 'sum', 'Retorno': 'sum'}).reset_index()
     totais_por_mes['Lucro por mês'] = round(((totais_por_mes['Retorno'] / totais_por_mes['Investimento']) - 1) * 100,2)
