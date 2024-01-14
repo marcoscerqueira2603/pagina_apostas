@@ -728,13 +728,15 @@ with tab1:
     
 
 with tab2:
-    st.subheader("Entradas")
+    st.subheader("Entradas Gerais")
 
     entradas_2gols['Cluster'] = entradas_2gols['Cluster'] = '2gols'
     entradas_2linhas['Cluster'] = entradas_2linhas['Cluster'] = '2Linhas'
     entradas_anytimes['Cluster'] = entradas_anytimes['Cluster'] = 'Anytime'
     entradas_semmetodo['Cluster'] = entradas_semmetodo['Cluster'] = 'Sem Método'
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
+    selected_clusters = st.multiselect('Escolha os Clusters', entradas['Cluster'].unique())
+    filtered_df = entradas[entradas['Cluster'].isin(selected_clusters)]
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
     entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
