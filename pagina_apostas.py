@@ -792,9 +792,6 @@ with tab2:
 
         entradas = filtrar_dataframe(entradas, cluster_selecionado)
 
-        geral_investimento_mes = round(entradas.groupby('Mês')['Investimento'].sum(),0)
-        geral_retorno_mes = round(entradas.groupby('Mês')['Retorno'].sum(),0)
-        geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
 
         totais_por_mes = entradas.groupby('Mês').agg({'Investimento': 'sum', 'Retorno': 'sum'}).reset_index()
         totais_por_mes['Lucro por mês'] = round(((totais_por_mes['Retorno'] / totais_por_mes['Investimento']) - 1) * 100,2)
@@ -803,13 +800,9 @@ with tab2:
         cor_dispersao = '#FF33A1'
 
         # Crie subplots com dois eixos y (um para barras e outro para o gráfico de dispersão)
-        fig_geral_investimento = make_subplots(specs=[[{"secondary_y": True}]])
+        fig_barras = go.Figure()
 
-        cor_barras_investimento = '#00CED1'
-        cor_barras_retorno = '#00FF7F'
-        cor_linha_dispersao = '#8B0000'
-       
-        fig_geral_investimento.add_trace(
+        fig_barras.add_trace(
             go.Bar(
                 x=totais_por_mes['Mês'],
                 y=totais_por_mes['Investimento'],
@@ -819,7 +812,7 @@ with tab2:
             )
         )
 
-        fig_geral_investimento.add_trace(
+        fig_barras.add_trace(
             go.Bar(
                 x=totais_por_mes['Mês'],
                 y=totais_por_mes['Retorno'],
@@ -829,35 +822,21 @@ with tab2:
             )
         )
 
-        # Adicione o gráfico de dispersão para o Aproveitamento no segundo eixo y (direita)
-        fig_geral_investimento.add_trace(
-            go.Scatter(
-                x=totais_por_mes['Mês'],
-                y=totais_por_mes['Lucro por mês'].round(2),
-                mode='lines+markers+text',
-                name='Aproveitamento',
-                text=totais_por_mes['Lucro por mês'].round(2),
-                textposition='top center',
-                line=dict(
-                    width=3,
-                    color=cor_linha_dispersao
-                )
-            ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
-        )
-
-        # Atualize os eixos x e y
-        fig_geral_investimento.update_xaxes(showline=True, showgrid=True, showticklabels=True, zeroline=False)
-        fig_geral_investimento.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
+        # Ajustar o layout
+        fig_barras.update_xaxes(showline=True, showgrid=False, showticklabels=True, zeroline=False)  # Removido showgrid
+        fig_barras.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
 
         # Ajuste manualmente a escala do eixo y para garantir proporção adequada
-        fig_geral_investimento.update_yaxes(range=[0, max(totais_por_mes['Investimento'].max(), totais_por_mes['Retorno'].max())])
+        fig_barras.update_yaxes(range=[0, max(totais_por_mes['Investimento'].max(), totais_por_mes['Retorno'].max())])
 
-        # Atualize os rótulos dos eixos y
-        fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
-        fig_geral_investimento.update_yaxes(title_text='Valor Percentual', secondary_y=True)
+        # Remover os títulos dos eixos y
+        fig_barras.update_yaxes(title_text='', secondary_y=False)
+        fig_barras.update_yaxes(title_text='', secondary_y=True)
 
-        # Exiba o gráfico
-        st.plotly_chart(fig_geral_investimento)
+        # Adicionar o título principal ao gráfico de barras
+        fig_barras.update_layout(
+            title_text="Investimento e Retorno por Mês - Barras",  # Adicionado título principal
+        )
 
 
 
