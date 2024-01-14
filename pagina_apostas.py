@@ -815,7 +815,7 @@ with tab2:
                 y=totais_por_mes['Investimento'],
                 name='Investimento',
                 marker=dict(color=cor_barras_investimento),
-                text=totais_por_mes['Investimento'],
+                text=totais_por_mes['Investimento'].round(2),
             )
         )
 
@@ -825,7 +825,7 @@ with tab2:
                 y=totais_por_mes['Retorno'],
                 name='Retorno',
                 marker=dict(color=cor_barras_retorno),
-                text=totais_por_mes['Retorno'],
+                text=otais_por_mes['Retorno'].round(2),
             )
         )
 
@@ -833,10 +833,10 @@ with tab2:
         fig_geral_investimento.add_trace(
             go.Scatter(
                 x=totais_por_mes['Mês'],
-                y=totais_por_mes['Lucro por mês'],
+                y=totais_por_mes['Lucro por mês'].round(2),
                 mode='lines+markers+text',
                 name='Aproveitamento',
-                text=totais_por_mes['Lucro por mês'],
+                text=totais_por_mes['Lucro por mês'].round(2),
                 textposition='top center',
                 line=dict(
                     width=3,
