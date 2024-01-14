@@ -781,33 +781,61 @@ with tab2:
 
     totais_por_mes = entradas.groupby('Mês').agg({'Investimento': 'sum', 'Retorno': 'sum'}).reset_index()
     totais_por_mes['Lucro por mês'] = round(((totais_por_mes['Retorno'] / totais_por_mes['Investimento']) - 1) * 100,2)
-    with col1:
+    col1, col2 = st.beta_columns(2)
 
-        investimento_mes = go.Figure()
-        investimento_mes.add_trace(
-            go.Bar(
-                x=totais_por_mes['Mês'],
-                y=totais_por_mes['Investimento'],
-                name='Investimento',
-                marker=dict(color='blue'),
-                text=totais_por_mes['Investimento'].round(2),
+# Gráfico 1: Barras de Investimento e Retorno por Mês
+    fig1 = go.Figure()
+
+    fig1.add_trace(
+        go.Bar(
+            x=totais_por_mes['Mês'],
+            y=totais_por_mes['Investimento'],
+            name='Investimento',
+            marker=dict(color='blue'),
+            text=round(totais_por_mes['Investimento'], 2),
+        )
+    )
+
+    fig1.add_trace(
+        go.Bar(
+            x=totais_por_mes['Mês'],
+            y=totais_por_mes['Retorno'],
+            name='Retorno',
+            marker=dict(color='orange'),
+            text=round(totais_por_mes['Retorno'], 2),
+        )
+    )
+
+    # Atualizar layout do gráfico 1
+    fig1.update_xaxes(title_text='Mês')
+    fig1.update_yaxes(title_text='Valor')
+    fig1.update_layout(title_text='Investimento e Retorno por Mês')
+
+    # Exibir o gráfico 1 na coluna 1
+    col1.plotly_chart(fig1)
+
+    # Gráfico 2: Linha de Lucro por Mês
+    fig2 = go.Figure()
+
+    fig2.add_trace(
+        go.Scatter(
+            x=totais_por_mes['Mês'],
+            y=totais_por_mes['Lucro por mês'],
+            mode='lines+markers+text',
+            name='Lucro por Mês',
+            text=round(totais_por_mes['Lucro por mês'], 2),
+            textposition='top center',
+            line=dict(
+                width=3,
+                color='green'
             )
         )
+    )
 
-        investimento_mes.add_trace(
-            go.Bar(
-                x=totais_por_mes['Mês'],
-                y=totais_por_mes['Retorno'],
-                name='Retorno',
-                marker=dict(color='orange'),
-                text=totais_por_mes['Retorno'].round(2),
-            )
-        )
+    # Atualizar layout do gráfico 2
+    fig2.update_xaxes(title_text='Mês')
+    fig2.update_yaxes(title_text='Lucro (%)')
+    fig2.update_layout(title_text='Lucro por Mês')
 
-        # Atualizar layout do gráfico 1
-        investimento_mes.update_xaxes(title_text='Mês')
-        investimento_mes.update_yaxes(title_text='Valor')
-        investimento_mes.update_layout(title_text='Investimento e Retorno por Mês')
-
-        # Exibir o gráfico 1 na coluna 1
-        col1.plotly_chart(investimento_mes)
+    # Exibir o gráfico 2 na coluna 2
+    col2.plotly_chart(fig2)
