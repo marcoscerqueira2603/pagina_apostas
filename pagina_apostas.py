@@ -807,7 +807,7 @@ with tab2:
                 x=totais_por_mes['Mês'],
                 y=totais_por_mes['Investimento'],
                 name='Investimento',
-                marker=dict(color=cor_barras_investimento),
+                marker=dict(color="#8B0000"),
                 text=totais_por_mes['Investimento'].round(2),
             )
         )
@@ -817,7 +817,7 @@ with tab2:
                 x=totais_por_mes['Mês'],
                 y=totais_por_mes['Retorno'],
                 name='Retorno',
-                marker=dict(color=cor_barras_retorno),
+                marker=dict(color="#7FFFD4"),
                 text=totais_por_mes['Retorno'].round(2),
             )
         )
