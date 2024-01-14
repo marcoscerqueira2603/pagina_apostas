@@ -781,7 +781,7 @@ with tab2:
 
     totais_por_mes = entradas.groupby('Mês').agg({'Investimento': 'sum', 'Retorno': 'sum'}).reset_index()
     totais_por_mes['Lucro por mês'] = round(((totais_por_mes['Retorno'] / totais_por_mes['Investimento']) - 1) * 100,2)
-    col1, col2 = st.beta_columns(2)
+    col1, col2 = st.columns(2)
 
 # Gráfico 1: Barras de Investimento e Retorno por Mês
     fig1 = go.Figure()
