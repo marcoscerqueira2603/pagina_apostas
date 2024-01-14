@@ -825,7 +825,7 @@ with tab2:
                 y=totais_por_mes['Retorno'],
                 name='Retorno',
                 marker=dict(color=cor_barras_retorno),
-                text=otais_por_mes['Retorno'].round(2),
+                text=totais_por_mes['Retorno'].round(2),
             )
         )
 
