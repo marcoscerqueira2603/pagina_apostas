@@ -770,112 +770,107 @@ with tab2:
     with col3:
         st.metric('% retornado',retorno_total_percentual, delta = delta_retorno_percentual)
 
-    
+    col1, col2 = st.columns(2)
+
     order_months = ['Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
     entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
 
-    
-            
-    def filtrar_dataframe(df, cluster):
-        if cluster == 'Total':
-            return df
-        else:
-            return df[df['Cluster'] == cluster]
+    with col1:
+             
+        def filtrar_dataframe(df, cluster):
+            if cluster == 'Total':
+                return df
+            else:
+                return df[df['Cluster'] == cluster]
 
 
 
-    opcoes_clusters = ['Total'] + list(entradas['Cluster'].unique())
-    cluster_selecionado = st.radio('Selecione o Cluster:', opcoes_clusters)
+        opcoes_clusters = ['Total'] + list(entradas['Cluster'].unique())
+        cluster_selecionado = st.radio('Selecione o Cluster:', opcoes_clusters)
 
-    entradas = filtrar_dataframe(entradas, cluster_selecionado)
+        entradas = filtrar_dataframe(entradas, cluster_selecionado)
 
-    geral_investimento_mes = round(entradas.groupby('Mês')['Investimento'].sum(),0)
-    geral_retorno_mes = round(entradas.groupby('Mês')['Retorno'].sum(),0)
-    geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
+        geral_investimento_mes = round(entradas.groupby('Mês')['Investimento'].sum(),0)
+        geral_retorno_mes = round(entradas.groupby('Mês')['Retorno'].sum(),0)
+        geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
 
-    cores_barras = ['#FF5733', '#33FF57', '#337DFF']
-    cor_dispersao = '#FF33A1'
+        cores_barras = ['#FF5733', '#33FF57', '#337DFF']
+        cor_dispersao = '#FF33A1'
 
-    # Crie subplots com dois eixos y (um para barras e outro para o gráfico de dispersão)
-    fig_geral_investimento = make_subplots(specs=[[{"secondary_y": True}]])
+        # Crie subplots com dois eixos y (um para barras e outro para o gráfico de dispersão)
+        fig_geral_investimento = make_subplots(specs=[[{"secondary_y": True}]])
 
-    # Adicione os gráficos de barras para Investimento e Retorno
-    for i, nome in enumerate(['Investimento', 'Retorno']):
-        fig_geral_investimento.add_trace(
-            go.Bar(
-                x=geral_investimento_mes.index,
-                y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
-                name=nome,
-                marker=dict(color=cores_barras[i]),
-                text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
-            ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
-        )
-
-    # Adicione o gráfico de dispersão para o Aproveitamento no segundo eixo y (direita)
-    fig_geral_investimento.add_trace(
-        go.Scatter(
-            x=geral_retorno_aproveitamento.index,
-            y=geral_retorno_aproveitamento.values,
-            mode='lines+markers+text',  # Adicione o modo 'text' para exibir rótulos de dados
-            name='Aproveitamento',
-            text=geral_retorno_aproveitamento.values,  # Rótulos de dados
-            textposition='top center',  # Posição dos rótulos de dados
-            line=dict(
-                width=3,  # Ajuste a largura da linha conforme desejado
-                color=cor_dispersao
+        # Adicione os gráficos de barras para Investimento e Retorno
+        for i, nome in enumerate(['Investimento', 'Retorno']):
+            fig_geral_investimento.add_trace(
+                go.Bar(
+                    x=geral_investimento_mes.index,
+                    y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
+                    name=nome,
+                    marker=dict(color=cores_barras[i]),
+                    text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
+                ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
             )
-        ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
-        )
-    fig_geral_investimento.update_xaxes(showgrid=False)
-    fig_geral_investimento.update_yaxes(showgrid=False)
 
-    fig_geral_investimento.update_xaxes(
-        showline=False,
-        zeroline=False
-    )
+        # Adicione o gráfico de dispersão para o Aproveitamento no segundo eixo y (direita)
+        fig_geral_investimento.add_trace(
+            go.Scatter(
+                x=geral_retorno_aproveitamento.index,
+                y=geral_retorno_aproveitamento.values,
+                mode='lines+markers+text',  # Adicione o modo 'text' para exibir rótulos de dados
+                name='Aproveitamento',
+                text=geral_retorno_aproveitamento.values,  # Rótulos de dados
+                textposition='top center',  # Posição dos rótulos de dados
+                line=dict(
+                    width=3,  # Ajuste a largura da linha conforme desejado
+                    color=cor_dispersao
+                )
+            ), secondary_y=True  # Associe este traço ao segundo eixo y (direita)
+            )
+        fig_geral_investimento.update_xaxes(showgrid=False)
+        fig_geral_investimento.update_yaxes(showgrid=False)
 
-    fig_geral_investimento.update_yaxes(
-        showline=False,
-        zeroline=False
-    )
-
-        # Atualize os rótulos dos eixos y
-    fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
-    fig_geral_investimento.update_yaxes(title_text='Valor Percentual', secondary_y=True)
-    st.plotly_chart(fig_geral_investimento)
+        fig_geral_investimento.update_xaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
+        fig_geral_investimento.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
 
 
-st.subheader("Análise Tendências")
-df_tendencias_2linhas = tendencias_2linhas 
+            # Atualize os rótulos dos eixos y
+        fig_geral_investimento.update_yaxes(title_text='Valor Absoluto', secondary_y=False)
+        fig_geral_investimento.update_yaxes(title_text='Valor Percentual', secondary_y=True)
+        st.plotly_chart(fig_geral_investimento)
 
-df_tendencias_2linhas['Data'] = pd.to_datetime(df_tendencias_2linhas['Data'], format='mixed', dayfirst=True)
-df_tendencias_2linhas['mês'] = df_tendencias_2linhas['Data'].dt.strftime('%b')
 
-df_tendencias_2linhas = df_tendencias_2linhas[df_tendencias_2linhas['Bateu'] != "-"]  
-df_tendencias_2linhas['Bateu'] = df_tendencias_2linhas['Bateu'].astype(int)  # Convertendo 'bateu' para int
-df_tendencias_2linhas_metric = sum(df_tendencias_2linhas['Bateu']) / len(df_tendencias_2linhas['Bateu'])
-df_tendencias_2linhas_metric = round(df_tendencias_2linhas_metric*100,1)
-df_totals = df_tendencias_2linhas.groupby('mês')['Bateu'].mean().reset_index()
-df_totals['Tipo de Linha'] = 'Total'
+    st.subheader("Análise Tendências")
+    df_tendencias_2linhas = tendencias_2linhas 
     
-order_months = ['Mar', 'Apr', 'May', 'Jun','Jul', 'Aug','Sep','Oct','Nov']
-df_tendencias_2linhas['mês'] = pd.Categorical(df_tendencias_2linhas['mês'], categories=order_months, ordered=True)
-df_grouped = df_tendencias_2linhas.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
-df_grouped['Bateu'] = round(df_grouped['Bateu']*100,0)
-df_totals['Bateu'] = round(df_totals['Bateu']*100,0)
-df_grouped = pd.concat([df_grouped, df_totals])
+    df_tendencias_2linhas['Data'] = pd.to_datetime(df_tendencias_2linhas['Data'], format='mixed', dayfirst=True)
+    df_tendencias_2linhas['mês'] = df_tendencias_2linhas['Data'].dt.strftime('%b')
+    
+    df_tendencias_2linhas = df_tendencias_2linhas[df_tendencias_2linhas['Bateu'] != "-"]  
+    df_tendencias_2linhas['Bateu'] = df_tendencias_2linhas['Bateu'].astype(int)  # Convertendo 'bateu' para int
+    df_tendencias_2linhas_metric = sum(df_tendencias_2linhas['Bateu']) / len(df_tendencias_2linhas['Bateu'])
+    df_tendencias_2linhas_metric = round(df_tendencias_2linhas_metric*100,1)
+    df_totals = df_tendencias_2linhas.groupby('mês')['Bateu'].mean().reset_index()
+    df_totals['Tipo de Linha'] = 'Total'
+     
+    order_months = ['Mar', 'Apr', 'May', 'Jun','Jul', 'Aug','Sep','Oct','Nov']
+    df_tendencias_2linhas['mês'] = pd.Categorical(df_tendencias_2linhas['mês'], categories=order_months, ordered=True)
+    df_grouped = df_tendencias_2linhas.groupby(['mês', 'Tipo de Linha'])['Bateu'].mean().reset_index()
+    df_grouped['Bateu'] = round(df_grouped['Bateu']*100,0)
+    df_totals['Bateu'] = round(df_totals['Bateu']*100,0)
+    df_grouped = pd.concat([df_grouped, df_totals])
+ 
+    
+    # Criando o gráfico usando Plotly Express
+    fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
+                         title='Aproveitamento por Mês - Cantos vs. Gols',
+                         labels={'Bateu': 'Aproveitamento (%)'},
+                         barmode='group',
+                         text_auto=True)
+    
 
-
-# Criando o gráfico usando Plotly Express
-fig_tendencias = px.bar(df_grouped, x='mês', y='Bateu', color='Tipo de Linha',
-                        title='Aproveitamento por Mês - Cantos vs. Gols',
-                        labels={'Bateu': 'Aproveitamento (%)'},
-                        barmode='group',
-                        text_auto=True)
-
-
-fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
-# Exibindo o gráfico
-st.metric('Linhas %',df_tendencias_2linhas_metric)
-st.plotly_chart(fig_tendencias)
+    fig_tendencias.update_layout(xaxis_title='Mês', yaxis_title='Aproveitamento (%)')
+    # Exibindo o gráfico
+    st.metric('Linhas %',df_tendencias_2linhas_metric)
+    st.plotly_chart(fig_tendencias)
 
