@@ -9,4 +9,4 @@ drive
 oauth2client
 plotly==5.9.0
 libtk8.6.so
-tkinter
+tk
