@@ -837,7 +837,7 @@ with tab2:
         fig_geral_investimento.update_xaxes(showgrid=False)
         fig_geral_investimento.update_yaxes(showgrid=False)
 
-        fig_geral_investimento.update_xaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
+        fig_geral_investimento.update_xaxes(showline=True, showgrid=False, showticklabels=True, zeroline=False)
         fig_geral_investimento.update_yaxes(showline=False, showgrid=False, showticklabels=False, zeroline=False)
 
 
