@@ -815,7 +815,7 @@ with tab2:
                     y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                     name=nome,
                     marker=dict(color=cor),
-                    width = largura_das_barras
+                    width = largura_das_barras,
                     text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                 ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
             )
