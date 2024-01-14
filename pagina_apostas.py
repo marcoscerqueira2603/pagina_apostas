@@ -760,7 +760,7 @@ with tab2:
     delta_retorno = 'Retorno reduzido a odd: ' + str(retorno_total_odd)
     delta_retorno_percentual = 'Retorno reduzido a odd percentual: ' + str(retorno_total_odd_percentual)
     entradas['Lucro Aposta'] = round((entradas['Retorno']/entradas['Investimento'])-1,2)
-    entradas
+    
     col1, col2, col3= st.columns(3)
 
     with col1:
@@ -796,6 +796,9 @@ with tab2:
         geral_retorno_mes = round(entradas.groupby('Mês')['Retorno'].sum(),0)
         geral_retorno_aproveitamento = round(entradas.groupby('Mês')['Lucro Aposta'].mean(),2)*100
 
+        totais_por_mes = entradas.groupby('Mês').agg({'Investimento': 'sum', 'Retorno': 'sum'}).reset_index()
+        totais_por_mes['Lucro por mês'] = round(((totais_por_mes['Retorno'] / totais_por_mes['Investimento']) - 1) * 100,2)
+         
         cores_barras = ['#FF5733', '#33FF57', '#337DFF']
         cor_dispersao = '#FF33A1'
 
@@ -805,25 +808,25 @@ with tab2:
         cor_barras_investimento = '#00CED1'
         cor_barras_retorno = '#00FF7F'
         cor_linha_dispersao = '#8B0000'
-        geral_investimento_mes
+       
         # Adicione os gráficos de barras para Investimento e Retorno
         for i, nome in enumerate(['Investimento', 'Retorno']):
             cor = cor_barras_investimento if i == 0 else cor_barras_retorno
             fig_geral_investimento.add_trace(
                 go.Bar(
-                    x=geral_investimento_mes.index,
-                    y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
+                    x=totais_por_mes['Mês'],
+                    y=totais_por_mes['Total Investido'] if i == 0 else totais_por_mes['Total Retornado'],
                     name=nome,
                     marker=dict(color=cor),
-                    text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
+                    text=totais_por_mes['Total Investido'] if i == 0 else totais_por_mes['Total Retornado'],
                 ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
             )
 
         # Adicione o gráfico de dispersão para o Aproveitamento no segundo eixo y (direita)
         fig_geral_investimento.add_trace(
             go.Scatter(
-                x=geral_retorno_aproveitamento.index,
-                y=geral_retorno_aproveitamento.values,
+                x=totais_por_mes['Mês'],
+                y=totais_por_mes['Lucro'],
                 mode='lines+markers+text',  # Adicione o modo 'text' para exibir rótulos de dados
                 name='Aproveitamento',
                 text=geral_retorno_aproveitamento.values,  # Rótulos de dados
