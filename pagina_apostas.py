@@ -1,3 +1,4 @@
+from turtle import width
 import streamlit as st
 import pandas as pd
 import os
@@ -807,12 +808,14 @@ with tab2:
         # Adicione os gráficos de barras para Investimento e Retorno
         for i, nome in enumerate(['Investimento', 'Retorno']):
             cor = cor_barras_investimento if i == 0 else cor_barras_retorno
+            largura_das_barras = 0.6
             fig_geral_investimento.add_trace(
                 go.Bar(
                     x=geral_investimento_mes.index,
                     y=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                     name=nome,
                     marker=dict(color=cor),
+                    width = largura_das_barras
                     text=geral_investimento_mes.values if i == 0 else geral_retorno_mes.values,
                 ), secondary_y=False  # Associe este traço ao primeiro eixo y (esquerda)
             )
