@@ -779,4 +779,35 @@ with tab2:
     order_months = ['Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
     entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
 
-  
+    totais_por_mes = entradas.groupby('Mês').agg({'Investimento': 'sum', 'Retorno': 'sum'}).reset_index()
+    totais_por_mes['Lucro por mês'] = round(((totais_por_mes['Retorno'] / totais_por_mes['Investimento']) - 1) * 100,2)
+    with col1:
+
+        investimento_mes = go.Figure()
+        investimento_mes.add_trace(
+            go.Bar(
+                x=totais_por_mes['Mês'],
+                y=totais_por_mes['Investimento'],
+                name='Investimento',
+                marker=dict(color='blue'),
+                text=totais_por_mes['Investimento'].round(2),
+            )
+        )
+
+        investimento_mes.add_trace(
+            go.Bar(
+                x=totais_por_mes['Mês'],
+                y=totais_por_mes['Retorno'],
+                name='Retorno',
+                marker=dict(color='orange'),
+                text=totais_por_mes['Retorno'].round(2),
+            )
+        )
+
+        # Atualizar layout do gráfico 1
+        investimento_mes.update_xaxes(title_text='Mês')
+        investimento_mes.update_yaxes(title_text='Valor')
+        investimento_mes.update_layout(title_text='Investimento e Retorno por Mês')
+
+        # Exibir o gráfico 1 na coluna 1
+        col1.plotly_chart(investimento_mes)
