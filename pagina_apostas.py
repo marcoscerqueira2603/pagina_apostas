@@ -895,7 +895,7 @@ with tab2:
             x=apostas_feitas['Mês'],
             y=apostas_feitas['% de Aproveitamento'],
             mode='lines+markers+text',
-            name=% de Aproveitamento',
+            name='% de Aproveitamento',
             text=round(apostas_feitas['% de Aproveitamento'], 2),
             textposition='top center',
             line=dict(
