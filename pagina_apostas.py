@@ -855,4 +855,34 @@ with tab2:
     apostas_feitas = entradas.groupby('Mês').agg({'Investimento': 'count', 'Resultado': 'sum'}).reset_index()
     apostas_feitas['% de Aproveitamento'] = round(((apostas_feitas['Resultado'] /apostas_feitas['Investimento'])) * 100, 2)
     apostas_feitas.rename(columns={'Investimento': 'Qtd de Apostas', 'Resultado': 'Qtd de Acertos'}, inplace=True)
-    apostas_feitas
+
+# Gráfico 1: Quantidade de aostas eitas
+    fig1 = go.Figure()
+
+    fig1.add_trace(
+        go.Bar(
+            x=apostas_feitas['Mês'],
+            y=apostas_feitas['Qtd de Apostas'],
+            name='Qtd de Apostas',
+            marker=dict(color='blue'),
+            text=round(apostas_feitas['Qtd de Apostas'], 2),
+        )
+    )
+
+    fig1.add_trace(
+        go.Bar(
+            x=apostas_feitas['Mês'],
+            y=apostas_feitas['Qtd de Acertos'],
+            name='Qtd de Acertos',
+            marker=dict(color='orange'),
+            text=round(apostas_feitas['Qtd de Acertos'], 2),
+        )
+    )
+
+    # Atualizar layout do gráfico 1
+    fig1.update_xaxes(title_text='Mês', showgrid=False)
+    fig1.update_yaxes(title_text='Qtd', showgrid=False)
+    fig1.update_layout(title_text='Qtd de apostas e acertos por mês')
+
+    # Exibir o gráfico 1 na coluna 1
+    col1.plotly_chart(fig1)
