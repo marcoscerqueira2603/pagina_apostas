@@ -1,4 +1,5 @@
 #from turtle import width
+from calendar import c
 import streamlit as st
 import pandas as pd
 import os
@@ -915,12 +916,15 @@ with tab2:
 
     st.subheader("Tendências")
     
-    tendencias_2linhas
+    col1,col2,col3 = st.columms(3)
+
+    
 
     tendencias_2linhas_filtrada =  tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"]
-    tendencias_2linhas_filtrada
-
-    #with col1:
-    #   st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
+    qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
+    qtd_tendencias_aprov = tendencias_2linhas_filtrada['Bateu'].mean()
+    
+    with col1:
+       st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
 
 
