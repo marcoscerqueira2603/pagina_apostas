@@ -924,7 +924,7 @@ with tab2:
     qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
     qtd_tendencias_aprov = len(tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Bateu'] == 1])/len(tendencias_2linhas_filtrada['Bateu'])
     tendencias_2linhas_filtrada
-    #with col1:
-     #  st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
+    with col1:
+       st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
 
 
