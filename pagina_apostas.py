@@ -916,7 +916,7 @@ with tab2:
 
     st.subheader("Tendências")
     
-    col1, col2, col3= st.columns(3)
+    col1, col2= st.columns(2)
 
 
 
@@ -933,6 +933,8 @@ with tab2:
 
 
     with col1:
-       st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov )
+       st.metric('Têndencias', qtd_tendencias)
+    with col1:
+        st.metric('Têndencias % aproveitamento', qtd_tendencias)
 
 
