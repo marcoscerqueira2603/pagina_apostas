@@ -924,7 +924,7 @@ with tab2:
     qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
     qtd_tendencias_aprov = tendencias_2linhas_filtrada['Bateu'].mean()
     tendencias_2linhas_filtrada
-    with col1:
-       st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
+    #with col1:
+     #  st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
 
 
