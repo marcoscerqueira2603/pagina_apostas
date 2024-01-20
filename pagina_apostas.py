@@ -912,3 +912,7 @@ with tab2:
 
     # Exibir o gráfico 2 na coluna 2
     col2.plotly_chart(fig2)
+
+    st.subheader("Tendências")
+    
+    tendencias_2linhas
