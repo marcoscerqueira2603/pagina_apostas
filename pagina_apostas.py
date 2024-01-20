@@ -886,3 +886,29 @@ with tab2:
 
     # Exibir o gráfico 1 na coluna 1
     col1.plotly_chart(fig1)
+
+    # Gráfico 2: % de aproveitamento
+    fig2 = go.Figure()
+
+    fig2.add_trace(
+        go.Scatter(
+            x=apostas_feitas['Mês'],
+            y=apostas_feitas['% de Aproveitamento'],
+            mode='lines+markers+text',
+            name=% de Aproveitamento',
+            text=round(apostas_feitas['% de Aproveitamento'], 2),
+            textposition='top center',
+            line=dict(
+                width=3,
+                color='blue'
+            )
+        )
+    )
+
+    # Atualizar layout do gráfico 2
+    fig2.update_xaxes(title_text='Mês', showgrid=False)
+    fig2.update_yaxes(title_text='% de acertos', showgrid=False)
+    fig2.update_layout(title_text='Aproveitamento %')
+
+    # Exibir o gráfico 2 na coluna 2
+    col2.plotly_chart(fig2)
