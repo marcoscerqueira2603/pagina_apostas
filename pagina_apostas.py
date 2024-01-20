@@ -916,9 +916,9 @@ with tab2:
 
     st.subheader("Tendências")
     
-    col1,col2,col3 = st.columms(3)
+    col1, col2, col3= st.columns(3)
 
-    
+
 
     tendencias_2linhas_filtrada =  tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"]
     qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
