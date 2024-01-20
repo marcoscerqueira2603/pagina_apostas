@@ -852,6 +852,6 @@ with tab2:
 
 
 
-    apostas_feitas = entradas.groupby('Mês').agg({['Investimento']: 'count', 'Resultado': 'sum'}).reset_index()
+    apostas_feitas = entradas.groupby('Mês').agg({'Investimento': 'count', 'Resultado': 'sum'}).reset_index()
     apostas_feitas['% de Aproveitamento'] = round(((apostas_feitas['Resultado'] /apostas_feitas['Investimento']) - 1) * 100, 2)
     apostas_feitas
