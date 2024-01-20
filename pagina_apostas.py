@@ -934,7 +934,7 @@ with tab2:
 
     with col1:
        st.metric('Têndencias', qtd_tendencias)
-    with col1:
-        st.metric('Têndencias % aproveitamento', qtd_tendencias)
+    with col2:
+        st.metric('Têndencias % aproveitamento', qtd_tendencias_aprov)
 
 
