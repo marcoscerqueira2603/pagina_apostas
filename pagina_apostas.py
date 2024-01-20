@@ -916,3 +916,11 @@ with tab2:
     st.subheader("Tendências")
     
     tendencias_2linhas
+
+    qtd_tendencias =  len(tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"])
+    qtd_tendencias_aprov = round(tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"].mean(),2)*100
+
+    with col1:
+        st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
+
+
