@@ -922,8 +922,11 @@ with tab2:
 
     tendencias_2linhas_filtrada =  tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"]
     qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
-    qtd_tendencias_aprov = round(len(tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Bateu'] == 1])/len(tendencias_2linhas_filtrada['Bateu']),2)*100
-    tendencias_2linhas_filtrada
+    tendencias_2linhas_filtrada['Bateu'] = tendencias_2linhas_filtrada['Bateu'].astype(int)
+    qtd_tendencias_aprov = tendencias_2linhas_filtrada['Bateu'].mean()
+    #qtd_tendencias_aprov = round(len(tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Bateu'] == 1])/len(tendencias_2linhas_filtrada['Bateu']),2)*100
+    
+
     with col1:
        st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
 
