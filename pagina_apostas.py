@@ -917,10 +917,10 @@ with tab2:
     
     tendencias_2linhas
 
-    qtd_tendencias =  len(tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"])
-    qtd_tendencias_aprov = round(tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"].mean(),2)*100
+    tendencias_2linhas_filtrada =  tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"]
+    tendencias_2linhas_filtrada
 
-    with col1:
-        st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
+    #with col1:
+    #   st.metric('Têndencias', qtd_tendencias, delta= qtd_tendencias_aprov)
 
 
