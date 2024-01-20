@@ -864,7 +864,7 @@ with tab2:
             x=apostas_feitas['Mês'],
             y=apostas_feitas['Qtd de Apostas'],
             name='Qtd de Apostas',
-            marker=dict(color='blue'),
+            marker=dict(color='green'),
             text=round(apostas_feitas['Qtd de Apostas'], 2),
         )
     )
@@ -874,7 +874,7 @@ with tab2:
             x=apostas_feitas['Mês'],
             y=apostas_feitas['Qtd de Acertos'],
             name='Qtd de Acertos',
-            marker=dict(color='orange'),
+            marker=dict(color='red'),
             text=round(apostas_feitas['Qtd de Acertos'], 2),
         )
     )
