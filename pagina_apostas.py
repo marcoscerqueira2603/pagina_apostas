@@ -738,7 +738,7 @@ with tab2:
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     selected_clusters = st.multiselect('Escolha os Clusters', entradas['Cluster'].unique())
     entradas = entradas[entradas['Cluster'].isin(selected_clusters)]
-    entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')
+    entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')    
     entradas['Mês'] = entradas['Data'].dt.strftime('%b')
     entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
     entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
@@ -917,8 +917,6 @@ with tab2:
     st.subheader("Tendências")
     
     col1, col2= st.columns(2)
-
-
 
     tendencias_2linhas_filtrada =  tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"]
     tendencias_2linhas_filtrada['Bateu'] = tendencias_2linhas_filtrada['Bateu'].astype(int)
