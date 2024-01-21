@@ -930,7 +930,8 @@ with tab2:
     qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
     tendencias_2linhas_filtrada['Bateu'] = tendencias_2linhas_filtrada['Bateu'].astype(int)
     qtd_tendencias_aprov = round(tendencias_2linhas_filtrada['Bateu'].mean()*100,2)
- 
+    tendencias_2linhas_filtrada['Data'] = pd.to_datetime(tendencias_2linhas_filtrada['Data'], errors='coerce')    
+    tendencias_2linhas_filtrada['Mês'] = tendencias_2linhas_filtrada['Data'].dt.strftime('%b')
 
 
     with col1:
