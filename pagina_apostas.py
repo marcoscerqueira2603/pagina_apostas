@@ -938,4 +938,5 @@ with tab2:
     with col2:
         st.metric('Têndencias % aproveitamento', qtd_tendencias_aprov)
 
-
+    tendencias_2linhas_filtrada
+   # tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.groupby('Mês').agg({col_investimento: 'sum', col_retorno: 'sum'}).reset_index()
