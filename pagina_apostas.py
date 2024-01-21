@@ -940,4 +940,8 @@ with tab2:
         st.metric('Têndencias % aproveitamento', qtd_tendencias_aprov)
 
     tendencias_2linhas_filtrada
-   # tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.groupby('Mês').agg({col_investimento: 'sum', col_retorno: 'sum'}).reset_index()
+    tendencias_mes = tendencias_2linhas_filtrada.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
+    tendencias_mes.loc[:, 'Total'] = tendencias_mes.mean(axis=1)4
+    tendencias_mes *= 100
+    tendencias_mes.columns = ['Mês', '% Cantos', '% Gols', '% Total']
+    tendencias_mes
