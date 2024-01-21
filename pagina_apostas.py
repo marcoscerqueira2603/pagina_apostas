@@ -929,7 +929,7 @@ with tab2:
 
     qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
     tendencias_2linhas_filtrada['Bateu'] = tendencias_2linhas_filtrada['Bateu'].astype(int)
-    qtd_tendencias_aprov = tendencias_2linhas_filtrada['Bateu'].mean()*100
+    qtd_tendencias_aprov = round(tendencias_2linhas_filtrada['Bateu'].mean()*100,2)
  
 
 
