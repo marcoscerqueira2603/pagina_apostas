@@ -944,4 +944,6 @@ with tab2:
     tendencias_mes.loc[:, 'Total'] = tendencias_mes.iloc[:, 1:].mean(axis=1)
     tendencias_mes.iloc[:, 1:] *= 100
     tendencias_mes = tendencias_mes.round(0)
+    order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
+    tendencias_mes['Mês'] = pd.Categorical(tendencias_mes['Mês'], categories=order_months_tendencias, ordered=True)
     tendencias_mes
