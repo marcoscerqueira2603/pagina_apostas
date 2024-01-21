@@ -940,10 +940,10 @@ with tab2:
         st.metric('Têndencias % aproveitamento', qtd_tendencias_aprov)
 
     tendencias_2linhas_filtrada
+    order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
+    tendencias_2linhas_filtrada['Mês'] = pd.Categorical(tendencias_2linhas_filtrada['Mês'], categories=order_months_tendencias, ordered=True)
     tendencias_mes = tendencias_2linhas_filtrada.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
     tendencias_mes.loc[:, 'Total'] = tendencias_mes.iloc[:, 1:].mean(axis=1)
     tendencias_mes.iloc[:, 1:] *= 100
     tendencias_mes = tendencias_mes.round(0)
-    order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
-    tendencias_mes['Mês'] = pd.Categorical(tendencias_mes['Mês'], categories=order_months_tendencias, ordered=True)
     tendencias_mes
