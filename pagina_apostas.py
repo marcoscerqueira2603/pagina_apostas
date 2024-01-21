@@ -776,7 +776,8 @@ with tab2:
 
     col1, col2 = st.columns(2)
 
-    order_months = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
+    #order_months = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
+    order_months = ['Jan']
     entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
 
     opcao_radio = st.radio("Escolha a opção:", ['Normal', 'Odd'])
