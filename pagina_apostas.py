@@ -943,4 +943,5 @@ with tab2:
     tendencias_mes = tendencias_2linhas_filtrada.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
     tendencias_mes.loc[:, 'Total'] = tendencias_mes.iloc[:, 1:].mean(axis=1)
     tendencias_mes.iloc[:, 1:] *= 100
+    tendencias_mes = tendencias_mes.round(0)
     tendencias_mes
