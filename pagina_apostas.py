@@ -942,6 +942,5 @@ with tab2:
     tendencias_2linhas_filtrada
     tendencias_mes = tendencias_2linhas_filtrada.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
     tendencias_mes.loc[:, 'Total'] = tendencias_mes.iloc[:, 1:].mean(axis=1)
-    tendencias_mes *= 100
-    #tendencias_mes.columns = ['Mês', '% Cantos', '% Gols', '% Total']
+    tendencias_mes.iloc[:, 1:] *= 100
     tendencias_mes
