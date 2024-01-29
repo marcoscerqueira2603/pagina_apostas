@@ -946,7 +946,9 @@ with tab2:
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
 
     tendencias_2linhas_filtrada_aprov = tendencias_2linhas_filtrada.pivot_table(index='Pais', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
-    tendencias_2linhas_filtrada_aprov.loc[:, 'Total'] = tendencias_2linhas_filtrada_aprov.iloc[:, 1:].mean(axis=1)
+    tendencias_2linhas_filtrada_aprov['Total'] = tendencias_2linhas_filtrada.groupby('Pais')['Bateu'].mean().round(0)
+   
+    #tendencias_2linhas_filtrada_aprov.loc[:, 'Total'] = tendencias_2linhas_filtrada_aprov.iloc[:, 1:].mean(axis=1)
     tendencias_2linhas_filtrada_aprov.iloc[:, 1:] *= 100
     tendencias_2linhas_filtrada_aprov = tendencias_2linhas_filtrada_aprov.round(0)
 
