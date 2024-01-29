@@ -949,19 +949,19 @@ with tab2:
 
 
 
-    tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.pivot_table(index='Pais', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
-    tendencias_2linhas_filtrada.loc[:, 'Total'] = tendencias_2linhas_filtrada.iloc[:, 1:].mean(axis=1)
-    tendencias_2linhas_filtrada.iloc[:, 1:] *= 100
-    tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.round(0)
+    tendencias_2linhas_filtrada_aprov = tendencias_2linhas_filtrada.pivot_table(index='Pais', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
+    tendencias_2linhas_filtrada_aprov.loc[:, 'Total'] = tendencias_2linhas_filtrada_aprov.iloc[:, 1:].mean(axis=1)
+    tendencias_2linhas_filtrada_aprov.iloc[:, 1:] *= 100
+    tendencias_2linhas_filtrada_aprov = tendencias_2linhas_filtrada_aprov.round(0)
 
-    for pais, cor in zip(tendencias_2linhas_filtrada['Pais'], cores_paises):
+    for pais, cor in zip(tendencias_2linhas_filtrada_aprov['Pais'], cores_paises):
         fig_tendencias.add_trace(
             go.Bar(
-                x=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Pais'],
-                y=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
+                x=tendencias_2linhas_filtrada_aprov[tendencias_2linhas_filtrada_aprov['Pais'] == pais]['Pais'],
+                y=tendencias_2linhas_filtrada_aprov[tendencias_2linhas_filtrada_aprov['Pais'] == pais]['Total'],
                 name=pais,
                 marker=dict(color=cor), 
-                text=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
+                text=tendencias_2linhas_filtrada_aprov[tendencias_2linhas_filtrada_aprov['Pais'] == pais]['Total'],
             )
         )
 
