@@ -963,6 +963,7 @@ with tab2:
 
     fig_tendencias.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':order_months_tendencias})
     tendencias_2linhas_filtrada_count = tendencias_2linhas_filtrada.pivot_table(index='Pais', values='Bateu', aggfunc='count').reset_index()
+    tendencias_2linhas_filtrada_count
     fig_tendencias.add_trace(
         go.Scatter(
             x=tendencias_2linhas_filtrada_count['Pais'],
