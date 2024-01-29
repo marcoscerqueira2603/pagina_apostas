@@ -949,12 +949,10 @@ with tab2:
 
         for pais in lista_paises:
             dados_pais = dados_mes[dados_mes['Pais'] == pais]
-            tendencias_2linhas_filtrada['Mês'] = pd.Categorical(tendencias_2linhas_filtrada['Mês'], categories=order_months_tendencias, ordered=True)
-            tendencias_mes = tendencias_2linhas_filtrada.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
-            tendencias_mes.loc[:, 'Total'] = tendencias_mes.iloc[:, 1:].mean(axis=1)
-            tendencias_mes.iloc[:, 1:] *= 100
-            tendencias_mes = tendencias_mes.round(0)
-            tendencias_mes
+            dados_pais = dados_pais.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
+            dados_pais.loc[:, 'Total'] = dados_pais.iloc[:, 1:].mean(axis=1)
+            dados_pais.iloc[:, 1:] *= 100
+            dados_pais = dados_pais.round(0)
 
             fig_tendencias.add_trace(
                 go.Bar(
@@ -972,7 +970,7 @@ with tab2:
     )
 
 
-    st.plotly_chart(fig_tendencias)
+        st.plotly_chart(fig_tendencias)
 
      
 
