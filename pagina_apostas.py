@@ -945,10 +945,6 @@ with tab2:
     lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
 
-    
-
-
-
     tendencias_2linhas_filtrada_aprov = tendencias_2linhas_filtrada.pivot_table(index='Pais', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
     tendencias_2linhas_filtrada_aprov.loc[:, 'Total'] = tendencias_2linhas_filtrada_aprov.iloc[:, 1:].mean(axis=1)
     tendencias_2linhas_filtrada_aprov.iloc[:, 1:] *= 100
@@ -967,7 +963,17 @@ with tab2:
 
     fig_tendencias.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':order_months_tendencias})
     tendencias_2linhas_filtrada_count = tendencias_2linhas_filtrada.pivot_table(index='Pais', values='Bateu', aggfunc='count').reset_index()
-    tendencias_2linhas_filtrada_count
+    fig_tendencias.add_trace(
+        go.Scatter(
+            x=tendencias_2linhas_filtrada_count['Pais'],
+            y=tendencias_2linhas_filtrada_count['Bateu'],
+            mode='lines+markers',
+            name='Contagem',
+            line=dict(color='black', width=2),  # Cor e largura da linha
+            text=tendencias_2linhas_filtrada_count['Bateu'],
+            textposition='top center',
+        )
+    )
     st.plotly_chart(fig_tendencias)
 
      
