@@ -944,29 +944,33 @@ with tab2:
     lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
    
-    for pais in lista_paises:
-        tendencias_2linhas_filtrada = tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]
-        tendencias_2linhas_filtrada['Mês'] = pd.Categorical(tendencias_2linhas_filtrada['Mês'], categories=order_months_tendencias, ordered=True)
-        tendencias_mes = tendencias_2linhas_filtrada.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
-        tendencias_mes.loc[:, 'Total'] = tendencias_mes.iloc[:, 1:].mean(axis=1)
-        tendencias_mes.iloc[:, 1:] *= 100
-        tendencias_mes = tendencias_mes.round(0)
-        tendencias_mes
+    for mes in order_months_tendencias:
+        dados_mes = tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Mês'] == mes]
 
-        fig_tendencias.add_trace(
-            go.Bar(
-                x=order_months_tendencias,
-                y=tendencias_mes['Total'],
-                name= pais,
-                marker=dict(color='red'),
-                text=tendencias_mes['Total'],
+        for pais in lista_paises:
+            dados_pais = dados_mes[dados_mes['Pais'] == pais]
+            tendencias_2linhas_filtrada['Mês'] = pd.Categorical(tendencias_2linhas_filtrada['Mês'], categories=order_months_tendencias, ordered=True)
+            tendencias_mes = tendencias_2linhas_filtrada.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
+            tendencias_mes.loc[:, 'Total'] = tendencias_mes.iloc[:, 1:].mean(axis=1)
+            tendencias_mes.iloc[:, 1:] *= 100
+            tendencias_mes = tendencias_mes.round(0)
+            tendencias_mes
+
+            fig_tendencias.add_trace(
+                go.Bar(
+                    x=[mes],
+                    y=dados_pais['Total'],
+                    name=f'{pais} - {mes}',
+                    marker=dict(color='red'),
+                    text=dados_pais['Total'],
+                )
             )
-        )
     fig_tendencias.update_layout(
         barmode='group',  # Agrupe as barras
         xaxis=dict(type='category', categoryorder='array', categoryarray=order_months_tendencias),  # Ordem correta dos meses
         legend=dict(title='Países'),  # Adicione uma legenda com o título 'Países'
-        )
+    )
+
 
     st.plotly_chart(fig_tendencias)
 
