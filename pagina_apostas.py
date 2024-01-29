@@ -941,7 +941,7 @@ with tab2:
 
     fig_tendencias = go.Figure
 
-    lista_paises = tendencias_2linhas_filtrada['Pais'].unique().tolist()
+    lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
     lista_paises 
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
    
