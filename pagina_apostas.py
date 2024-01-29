@@ -955,7 +955,7 @@ with tab2:
 
         fig_tendencias.add_trace(
                     go.Bar(
-                        x=[mes],
+                        x=dados_pais['Mês'],
                         y=dados_pais['Total'],
                         name=pais,
                         marker=dict(color=cores_paises[i % len(cores_paises)]),  # Ciclo de cores se o número de países for maior que o número de cores
