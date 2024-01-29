@@ -958,7 +958,7 @@ with tab2:
                 go.Bar(
                     x=[mes],
                     y=dados_pais['Total'],
-                    name=f'{pais} - {mes}',
+                    name=pais,
                     marker=dict(color='red'),
                     text=dados_pais['Total'],
                 )
