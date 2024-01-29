@@ -954,13 +954,13 @@ with tab2:
     tendencias_2linhas_filtrada.iloc[:, 1:] *= 100
     tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.round(0)
 
-    for pais in tendencias_2linhas_filtrada['Pais']:
+    for pais, cor in zip(tendencias_2linhas_filtrada['Pais'], cores_paises):
         fig_tendencias.add_trace(
             go.Bar(
                 x=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Pais'],
                 y=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
                 name=pais,
-                marker=dict(color=pais_cor[pais]), 
+                marker=dict(color=cor),  # Atribui a cor específica para o país
                 text=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
             )
         )
