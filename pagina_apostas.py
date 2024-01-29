@@ -11,6 +11,8 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import seaborn as sns
+
     
 
 
@@ -943,35 +945,35 @@ with tab2:
 
     lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
-   
+    cores_paises = sns.color_palette("husl", len(lista_paises))
+
     for mes in order_months_tendencias:
+        # Filtrar dados para o mês atual
         dados_mes = tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Mês'] == mes]
 
-        for pais in lista_paises:
+        # Criar as barras para cada país no mesmo mês
+        for i, pais in enumerate(lista_paises):
             dados_pais = dados_mes[dados_mes['Pais'] == pais]
-            dados_pais = dados_pais.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
-            dados_pais.loc[:, 'Total'] = dados_pais.iloc[:, 1:].mean(axis=1)
-            dados_pais.iloc[:, 1:] *= 100
-            dados_pais = dados_pais.round(0)
-
+            
             fig_tendencias.add_trace(
                 go.Bar(
                     x=[mes],
                     y=dados_pais['Total'],
-                    name=pais,
-                    marker=dict(color='red'),
+                    name=f'{pais} - {mes}',
+                    marker=dict(color=cores_paises[i]),  # Atribuir cor com base na paleta de cores
                     text=dados_pais['Total'],
                 )
             )
+
+    # Atualize o layout conforme necessário
     fig_tendencias.update_layout(
         barmode='group',  # Agrupe as barras
         xaxis=dict(type='category', categoryorder='array', categoryarray=order_months_tendencias),  # Ordem correta dos meses
         legend=dict(title='Países'),  # Adicione uma legenda com o título 'Países'
     )
 
-
+    # Use st.plotly_chart para renderizar a figura
     st.plotly_chart(fig_tendencias)
-
      
 
 
