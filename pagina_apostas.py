@@ -946,29 +946,22 @@ with tab2:
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
 
 
-    for i, pais in enumerate(lista_paises):
-        dados_pais =tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]
-        dados_pais = dados_pais.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
-        dados_pais
-        dados_pais.loc[:, 'Total'] = dados_pais.iloc[:, 1:].mean(axis=1)
-        dados_pais.iloc[:, 1:] *= 100
-        dados_pais = dados_pais.round(0)
 
-        fig_tendencias.add_trace(
-                    go.Bar(
-                        x=dados_pais['Mês'],
-                        y=dados_pais['Total'],
-                        name=pais,
-                        marker=dict(color=cores_paises[i % len(cores_paises)]),  # Ciclo de cores se o número de países for maior que o número de cores
-                        text=dados_pais['Total'],
-                    )
+
+    tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.pivot_table(index='Pais', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
+    tendencias_2linhas_filtrada.loc[:, 'Total'] = tendencias_2linhas_filtrada.iloc[:, 1:].mean(axis=1)
+    tendencias_2linhas_filtrada.iloc[:, 1:] *= 100
+    tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.round(0)
+
+    fig_tendencias.add_trace(
+                go.Bar(
+                    x=tendencias_2linhas_filtrada['Pais'],
+                    y=tendencias_2linhas_filtrada['Total'],
+                    name=tendencias_2linhas_filtrada['Pais'],
+                    marker=dict(tendencias_2linhas_filtrada['Pais']), 
+                    text=tendencias_2linhas_filtrada['Total'],
                 )
-    fig_tendencias.update_layout(
-        barmode='group',  # Agrupe as barras
-        xaxis=dict(type='category', categoryorder='array', categoryarray=order_months_tendencias),  # Ordem correta dos meses
-        legend=dict(title='Países'),  # Adicione uma legenda com o título 'Países'
     )
-
 
     st.plotly_chart(fig_tendencias)
 
