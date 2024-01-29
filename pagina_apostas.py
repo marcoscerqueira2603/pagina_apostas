@@ -960,14 +960,14 @@ with tab2:
                 x=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Pais'],
                 y=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
                 name=pais,
-                marker=dict(color=cor),  # Atribui a cor específica para o país
+                marker=dict(color=cor), 
                 text=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
             )
         )
 
     fig_tendencias.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':order_months_tendencias})
-
-
+    tendencias_2linhas_filtrada_count = tendencias_2linhas_filtrada.pivot_table(index='Pais', values='Pais', aggfunc='count').reset_index()
+    tendencias_2linhas_filtrada_count
     st.plotly_chart(fig_tendencias)
 
      
