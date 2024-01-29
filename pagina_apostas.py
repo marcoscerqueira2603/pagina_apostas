@@ -947,7 +947,8 @@ with tab2:
 
     tendencias_2linhas_filtrada_aprov = tendencias_2linhas_filtrada.pivot_table(index='Pais', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
     media_bateu_por_pais = tendencias_2linhas_filtrada.groupby('Pais')['Bateu'].mean()
-    media_bateu_por_pais.rename(columns={'Bateu': 'Total'}, inplace=True)
+    media_bateu_por_pais = media_bateu_por_pais.rename(columns={'Bateu': 'Total'})
+
     
     tendencias_2linhas_filtrada_aprov = pd.merge(tendencias_2linhas_filtrada_aprov, media_bateu_por_pais, how='left', on='Pais')   
     #tendencias_2linhas_filtrada_aprov.loc[:, 'Total'] = tendencias_2linhas_filtrada_aprov.iloc[:, 1:].mean(axis=1)
