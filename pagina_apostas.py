@@ -953,15 +953,19 @@ with tab2:
     tendencias_2linhas_filtrada.iloc[:, 1:] *= 100
     tendencias_2linhas_filtrada = tendencias_2linhas_filtrada.round(0)
 
-    fig_tendencias.add_trace(
-                go.Bar(
-                    x=tendencias_2linhas_filtrada['Pais'],
-                    y=tendencias_2linhas_filtrada['Total'],
-                    name=tendencias_2linhas_filtrada['Pais'],
-                    marker=dict(tendencias_2linhas_filtrada['Pais']), 
-                    text=tendencias_2linhas_filtrada['Total'],
-                )
-    )
+    for pais in tendencias_2linhas_filtrada['Pais']:
+        fig_tendencias.add_trace(
+            go.Bar(
+                x=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Pais'],
+                y=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
+                name=pais,
+                marker=dict(color='blue'),  # Escolha a cor desejada
+                text=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
+            )
+        )
+
+    fig_tendencias.update_layout(barmode='stack', xaxis={'categoryorder':'array', 'categoryarray':order_months_tendencias})
+
 
     st.plotly_chart(fig_tendencias)
 
