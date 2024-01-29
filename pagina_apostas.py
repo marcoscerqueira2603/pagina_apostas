@@ -955,7 +955,7 @@ with tab2:
         tendencias_mes
 
         fig_tendencias.add_trace(
-            go.Scatter(
+            go.bar(
                 x=tendencias_mes['Mês'],
                 y=tendencias_mes['Total'],
                 mode='lines+markers+text',
