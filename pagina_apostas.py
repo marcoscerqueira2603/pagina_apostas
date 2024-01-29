@@ -955,17 +955,12 @@ with tab2:
         tendencias_mes
 
         fig_tendencias.add_trace(
-            go.bar(
+            go.Bar(
                 x=tendencias_mes['Mês'],
                 y=tendencias_mes['Total'],
-                mode='lines+markers+text',
                 name='Total',
+                marker=dict(color='red'),
                 text=tendencias_mes['Total'],
-                textposition='top center',
-                line=dict(
-                    width=3,
-                    color='blue'
-                )
             )
         )
 
