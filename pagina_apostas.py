@@ -939,10 +939,9 @@ with tab2:
     with col2:
         st.metric('Têndencias % aproveitamento', qtd_tendencias_aprov)
 
-    fig_tendencias = go.Figure
+    fig_tendencias = go.Figure()
 
     lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
-    lista_paises 
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
    
     for pais in lista_paises:
