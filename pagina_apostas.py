@@ -955,12 +955,17 @@ with tab2:
 
         fig_tendencias.add_trace(
             go.Bar(
-                x=tendencias_mes['Mês'],
+                x=order_months_tendencias,
                 y=tendencias_mes['Total'],
-                name='Total',
+                name= pais,
                 marker=dict(color='red'),
                 text=tendencias_mes['Total'],
             )
+        )
+    fig_tendencias.update_layout(
+        barmode='group',  # Agrupe as barras
+        xaxis=dict(type='category', categoryorder='array', categoryarray=order_months_tendencias),  # Ordem correta dos meses
+        legend=dict(title='Países'),  # Adicione uma legenda com o título 'Países'
         )
 
     st.plotly_chart(fig_tendencias)
