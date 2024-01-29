@@ -944,7 +944,7 @@ with tab2:
 
     lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
-    cores_paises = sns.color_palette("husl", len(lista_paises))
+
     for mes in order_months_tendencias:
         dados_mes = tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Mês'] == mes]
 
