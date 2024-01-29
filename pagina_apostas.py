@@ -970,7 +970,7 @@ with tab2:
     )
 
 
-        st.plotly_chart(fig_tendencias)
+    st.plotly_chart(fig_tendencias)
 
      
 
