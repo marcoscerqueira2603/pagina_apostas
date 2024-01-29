@@ -941,10 +941,11 @@ with tab2:
 
     fig_tendencias = go.Figure()
     cores_paises = ['#1f78b4', '#33a02c', '#e31a1c', '#ff7f00', '#6a3d9a', '#b15928', '#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f']
-
+    pais_cor = dict(zip(tendencias_2linhas_filtrada['Pais'], cores_paises))
     lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
     order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
 
+    
 
 
 
@@ -959,7 +960,7 @@ with tab2:
                 x=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Pais'],
                 y=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
                 name=pais,
-                marker=dict(color='blue'),  # Escolha a cor desejada
+                marker=dict(color=pais_cor[pais]), 
                 text=tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]['Total'],
             )
         )
