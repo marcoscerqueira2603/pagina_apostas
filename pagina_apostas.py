@@ -949,6 +949,7 @@ with tab2:
     for i, pais in enumerate(lista_paises):
         dados_pais =tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Pais'] == pais]
         dados_pais = dados_pais.pivot_table(index='Mês', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
+        dados_pais
         dados_pais.loc[:, 'Total'] = dados_pais.iloc[:, 1:].mean(axis=1)
         dados_pais.iloc[:, 1:] *= 100
         dados_pais = dados_pais.round(0)
