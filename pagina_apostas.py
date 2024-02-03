@@ -737,7 +737,6 @@ with tab2:
     entradas_semmetodo['Cluster'] = entradas_semmetodo['Cluster'] = 'Sem Método'
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
     entradas =  entradas[entradas['Aposta Anulada?'] != "Sim"]
-    entradas
     selected_clusters = st.multiselect('Escolha os Clusters', entradas['Cluster'].unique())
     entradas = entradas[entradas['Cluster'].isin(selected_clusters)]
     entradas['Data'] = pd.to_datetime(entradas['Data'], errors='coerce')    
