@@ -736,6 +736,7 @@ with tab2:
     entradas_anytimes['Cluster'] = entradas_anytimes['Cluster'] = 'Anytime'
     entradas_semmetodo['Cluster'] = entradas_semmetodo['Cluster'] = 'Sem Método'
     entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
+    entradas =  entradas[entradas['Aposta Anulada?'] != "Não"]
     entradas
     selected_clusters = st.multiselect('Escolha os Clusters', entradas['Cluster'].unique())
     entradas = entradas[entradas['Cluster'].isin(selected_clusters)]
