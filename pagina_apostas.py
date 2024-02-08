@@ -83,7 +83,7 @@ def load_data7(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-jogador = load_data7(st.secrets["jogador"])
+base_jogador = load_data7(st.secrets["jogador"])
 
 
 
@@ -987,7 +987,7 @@ with tab2:
     st.plotly_chart(fig_tendencias)
 
     st.subheader("Análise Jogador")
-    jogador
+    base_jogador
 
 
 
