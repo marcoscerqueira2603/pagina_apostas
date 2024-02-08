@@ -1063,4 +1063,4 @@ with tab2:
     #jogador1.update_layout(title_text='Qtd de apostas e acertos por mês')
 
     # Exibir o gráfico 1 na coluna 1
-    col1.plotly_chart(jogador1)
+    st.plotly_chart(jogador1)
