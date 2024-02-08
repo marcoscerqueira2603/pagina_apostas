@@ -1029,3 +1029,38 @@ with tab2:
         # Adiciona à tabela final
         tabela_sim_nao = pd.concat([tabela_sim_nao, df_resultado])
     tabela_sim_nao
+
+    # Gráfico 1: Quantidade de aostas eitas
+    jogador1 = go.Figure()
+
+    tabela_sim = tabela_sim_nao[tabela_sim_nao.index == 'Sim']
+    tabela_nao = tabela_sim_nao[tabela_sim_nao.index == 'Não']
+
+    jogador1.add_trace(
+        go.Bar(
+            x=tabela_sim['Tipo'],
+            y=tabela_sim['QTD'],
+            name='QTD',
+            marker=dict(color='green'),
+            text=tabela_sim['QTD']
+        )
+    )
+
+
+    jogador1.add_trace(
+        go.Bar(
+            x=tabela_nao['Tipo'],
+            y=tabela_nao['QTD'],
+            name='QTD',
+            marker=dict(color='green'),
+            text=tabela_nao['QTD']
+        )
+    )
+
+    # Atualizar layout do gráfico 1
+    #jogador1.update_xaxes(title_text='Mês', showgrid=False)
+    #jogador1.update_yaxes(title_text='Qtd', showgrid=False)
+    #jogador1.update_layout(title_text='Qtd de apostas e acertos por mês')
+
+    # Exibir o gráfico 1 na coluna 1
+    col1.plotly_chart(jogador1)
