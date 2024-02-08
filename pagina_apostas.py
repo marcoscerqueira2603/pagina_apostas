@@ -1005,31 +1005,7 @@ with tab2:
     for tipo, colunas in tipos.items():
         
         base_jogador['Odd_Justa - ' + tipo] = 1 / (1 - poisson.pmf(0, base_jogador[colunas].mean(axis=1))) + base_jogador[colunas].std(axis=1)
-        base_jogador = base_jogador[base_jogador['Odd_Justa - ' + tipo] != "inf"]
-        base_jogador['Apostar? - ' + tipo] = base_jogador.apply(lambda row: 'Sim' if row['Odd Bet'] > row['Odd_Justa - ' + tipo] else 'Não', axis=1)
+        #base_jogador = base_jogador[base_jogador['Odd_Justa - ' + tipo] != "inf"]
+        #base_jogador['Apostar? - ' + tipo] = base_jogador.apply(lambda row: 'Sim' if row['Odd Bet'] > row['Odd_Justa - ' + tipo] else 'Não', axis=1)
 
-
-    tabela_sim_nao = pd.DataFrame()
-
-    # Itera sobre as colunas 'Sim' + tipo
-    for tipo in tipos.keys():
-        # Agrupa os dados
-        grupo = base_jogador.groupby('Apostar? - ' + tipo)
-        
-        # Calcula a soma da coluna 'Odd Bet' quando 'Bateu' é igual a 1
-        soma_bateu = grupo.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
-        
-        # Calcula a quantidade de valores em cada grupo
-        quantidade = grupo.size()
-        
-        # Calcula o aproveitamento
-        aproveitamento = soma_bateu / quantidade
-        aproveitamento =round((aproveitamento-1)*100,2)
-        
-        # Cria um DataFrame com os resultados
-        df_resultado = pd.DataFrame({'QTD': quantidade, 'Soma': soma_bateu, 'Aproveitamento': aproveitamento})
-        df_resultado['Tipo'] = 'Sim - ' + tipo
-        # Adiciona à tabela final
-        tabela_sim_nao = pd.concat([tabela_sim_nao, df_resultado])
-    
-    tabela_sim_nao
+    base_jogador
