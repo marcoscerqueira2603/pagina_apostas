@@ -1052,7 +1052,7 @@ with tab2:
             x=tabela_nao['Tipo'],
             y=tabela_nao['QTD'],
             name='QTD',
-            marker=dict(color='green'),
+            marker=dict(color='blue'),
             text=tabela_nao['QTD']
         )
     )
