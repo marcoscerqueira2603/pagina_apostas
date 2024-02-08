@@ -1084,3 +1084,47 @@ with tab2:
 
     # Exibir o gráfico 1 na coluna 1
     st.plotly_chart(jogador1)
+
+
+    fig_jogador = make_subplots(rows=2, cols=3, subplot_titles=("jogos_5", "jogos_10", "jogos_15"))
+
+    # Itera sobre os tipos
+    for i, tipo in enumerate(tipos.keys(), start=1):
+        # Filtra os dados para o tipo atual
+        tabela_tipo_sim = tabela_sim_nao[(tabela_sim_nao['Tipo'] == 'Sim - ' + tipo)]
+        tabela_tipo_nao = tabela_sim_nao[(tabela_sim_nao['Tipo'] == 'Não - ' + tipo)]
+        
+        # Adiciona as barras para "Sim"
+        fig_jogador.add_trace(
+            go.Bar(
+                x=['QTD', 'Soma'],
+                y=tabela_tipo_sim[['QTD', 'Soma']].values[0],
+                name='Sim',
+                marker=dict(color='green'),
+                text=tabela_tipo_sim[['QTD', 'Soma']].values[0]
+            ),
+            row=1,
+            col=i
+        )
+        
+        # Adiciona as barras para "Não"
+        fig_jogador.add_trace(
+            go.Bar(
+                x=['QTD', 'Soma'],
+                y=tabela_tipo_nao[['QTD', 'Soma']].values[0],
+                name='Não',
+                marker=dict(color='red'),
+                text=tabela_tipo_nao[['QTD', 'Soma']].values[0]
+            ),
+            row=2,
+            col=i
+        )
+
+    # Atualiza o layout do gráfico
+    fig_jogador.update_layout(
+        title='Quantidade e Soma para Sim e Não em cada Tipo',
+        barmode='group'
+    )
+
+    # Exibe o gráfico
+    fig_jogador.show()
