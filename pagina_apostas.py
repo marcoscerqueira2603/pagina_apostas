@@ -1007,6 +1007,6 @@ with tab2:
         base_jogador['Odd_Justa - ' + tipo] = 1 / (1 - poisson.pmf(0, base_jogador[colunas].mean(axis=1))) + base_jogador[colunas].std(axis=1)
         base_jogador.replace([np.inf, -np.inf], np.nan, inplace=True)
         base_jogador.fillna(0, inplace=True)
-        #base_jogador['Apostar? - ' + tipo] = base_jogador.apply(lambda row: 'Sim' if row['Odd Bet'] > row['Odd_Justa - ' + tipo] else 'Não', axis=1)
+        base_jogador['Apostar? - ' + tipo] = base_jogador.apply(lambda row: 'Sim' if row['Odd Bet'] > row['Odd_Justa - ' + tipo] else 'Não', axis=1)
 
     base_jogador
