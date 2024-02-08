@@ -78,6 +78,13 @@ def load_data6(sheets_url):
 
 entradas_semmetodo = load_data6(st.secrets["url_entradas_semmetodo"])
 
+@st.cache_data(ttl=20)
+def load_data7(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+jogador = load_data6(st.secrets["jogador"])
+
 
 
 # Interface para inserção de novos dados
@@ -979,7 +986,10 @@ with tab2:
     )
     st.plotly_chart(fig_tendencias)
 
-     
+    st.subheader("Análise Jogador")
+    jogador
 
 
 
+
+  
