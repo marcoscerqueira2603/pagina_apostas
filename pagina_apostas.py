@@ -1005,8 +1005,9 @@ with tab2:
     for tipo, colunas in tipos.items():
         
         base_jogador['Odd_Justa - ' + tipo] = 1 / (1 - poisson.pmf(0, base_jogador[colunas].mean(axis=1))) + base_jogador[colunas].std(axis=1)
+        base_jogador = base_jogador[base_jogador['Odd_Justa - ' + tipo] != "inf"]
         base_jogador['Apostar? - ' + tipo] = base_jogador.apply(lambda row: 'Sim' if row['Odd Bet'] > row['Odd_Justa - ' + tipo] else 'Não', axis=1)
-        base_jogador['Odd_Justa - ' + tipo] = base_jogador['Odd_Justa - ' + tipo].astype(float)
+
 
     tabela_sim_nao = pd.DataFrame()
 
