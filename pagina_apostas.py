@@ -83,7 +83,7 @@ def load_data7(sheets_url):
     csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
     return pd.read_csv(csv_url)
 
-jogador = load_data6(st.secrets["jogador"])
+jogador = load_data7(st.secrets["jogador"])
 
 
 
