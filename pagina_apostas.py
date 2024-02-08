@@ -1045,6 +1045,16 @@ with tab2:
             text=tabela_sim['QTD']
         )
     )
+    jogador1.add_trace(
+        go.Bar(
+            x=tabela_sim['Tipo'],
+            y=tabela_sim['Soma'],
+            name='Soma SIM',
+            marker=dict(color='gray'),
+            text=tabela_sim['QTD']
+        )
+    )    
+    
 
 
     jogador1.add_trace(
@@ -1056,6 +1066,16 @@ with tab2:
             text=tabela_nao['QTD']
         )
     )
+    jogador1.add_trace(
+        go.Bar(
+            x=tabela_nao['Tipo'],
+            y=tabela_nao['Soma'],
+            name='Soma Não',
+            marker=dict(color='red'),
+            text=tabela_nao['QTD']
+        )
+    )    
+
 
     # Atualizar layout do gráfico 1
     #jogador1.update_xaxes(title_text='Mês', showgrid=False)
