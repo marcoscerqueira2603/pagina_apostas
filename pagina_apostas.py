@@ -1040,7 +1040,7 @@ with tab2:
         go.Bar(
             x=tabela_sim['Tipo'],
             y=tabela_sim['QTD'],
-            name='QTD',
+            name='QTD SIM',
             marker=dict(color='green'),
             text=tabela_sim['QTD']
         )
@@ -1051,7 +1051,7 @@ with tab2:
         go.Bar(
             x=tabela_nao['Tipo'],
             y=tabela_nao['QTD'],
-            name='QTD',
+            name='QTD NÃO',
             marker=dict(color='blue'),
             text=tabela_nao['QTD']
         )
