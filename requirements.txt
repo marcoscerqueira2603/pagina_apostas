@@ -11,4 +11,3 @@ oauth2client
 plotly==5.9.0
 seaborn
 scipy
-poisson
