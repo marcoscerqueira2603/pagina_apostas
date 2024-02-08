@@ -987,8 +987,10 @@ with tab2:
     st.plotly_chart(fig_tendencias)
 
     st.subheader("Análise Jogador")
+    
+    base_jogador = base_jogador.drop(['Distribuição', 'Desvio', 'Odd Justa', 'Apostar'], axis=1)
+    base_jogador =  base_jogador[base_jogador['Começou?']  == 1]
     base_jogador
-
 
 
 
