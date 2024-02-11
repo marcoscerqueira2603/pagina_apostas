@@ -1008,6 +1008,7 @@ with tab2:
 
     tabela_sim_nao = pd.DataFrame()
 
+    base_jogador
     # Itera sobre as colunas 'Sim' + tipo
     for tipo in tipos.keys():
         # Agrupa os dados
