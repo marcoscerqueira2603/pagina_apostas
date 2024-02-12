@@ -585,7 +585,7 @@ with tab1:
     diferenca_b = odd_bet_2gols - prob_b
 
     nova_linha_2gols_poisson = {"Time A": casa, "Time B": fora, "Odd_A": prob_a,  "Odd_B": prob_b, 
-              "Odd Bet": odd_bet_2gols, 'Diferença_A': diferenca_a,  'Diferença_B': diferenca_b}
+              "Odd Bet": odd_bet_2gols, 'Diferença_A': diferenca_a,  'Diferença_B': diferenca_b, 'Entrar': "-", 'Bateu': '-'}
     
 
     novas_linhas = []
