@@ -932,7 +932,7 @@ with tab2:
     tendencias_2linhas_filtrada =  tendencias_2linhas[tendencias_2linhas['Bateu'] != "-"]
     tendencias_2linhas_filtrada['Bateu'] = tendencias_2linhas_filtrada['Bateu'].astype(int)
 
-    selected_clusters_tendencias = st.multiselect('Escolha o Tipo', tendencias_2linhas_filtrada['Tipo de Linha'].unique())
+    selected_clusters_tendencias = st.multiselect('Escolha o Tipo', tendencias_2linhas_filtrada['Tipo de Linha'].unique(), default=tendencias_2linhas_filtrada['Tipo de Linha'].unique())
     tendencias_2linhas_filtrada = tendencias_2linhas_filtrada[tendencias_2linhas_filtrada['Tipo de Linha'].isin(selected_clusters_tendencias)]    
 
     qtd_tendencias = len(tendencias_2linhas_filtrada['Bateu'])
