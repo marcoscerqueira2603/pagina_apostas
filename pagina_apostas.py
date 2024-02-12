@@ -614,7 +614,7 @@ with tab1:
                 num_rows = len(worksheet.get_all_values())
         
         # Inserir os dados nas linhas subsequentes
-                values_to_insert = nova_linha_2gols_poisson.values.tolist()
+                values_to_insert = list(nova_linha_2gols_poisson.values())
                 worksheet.insert_rows(values_to_insert, num_rows + 1) 
 
 
