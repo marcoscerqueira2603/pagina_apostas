@@ -586,6 +586,7 @@ with tab1:
     else:
         odd_bet_2gols = odd_bet_2gols
 
+    odd_bet_2gols = float(odd_bet_2gols)
 
     diferenca_a = odd_bet_2gols - prob_a
     diferenca_b = odd_bet_2gols - prob_b
