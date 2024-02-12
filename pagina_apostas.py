@@ -1090,7 +1090,7 @@ with tab2:
       tabela_sim_nao
 
     with col2:
-      tabela_2gols_poisson = pd.DataFrame()
+      df_2gols_poisson = pd.DataFrame()
       st.subheader("Análise 2.5 -  Poisson")
       base_2gols_poisson
       for tipo in tipos.keys():
@@ -1111,7 +1111,7 @@ with tab2:
           df_resultado_2gols_poisson = pd.DataFrame({'QTD': quantidade_2gols_poisson, 'Soma': soma_bateu_2gols_poisson, 'Aproveitamento': aproveitamento_2gols_poisson})
           #df_resultado_2gols_poisson['Tipo'] = 'Sim - ' + tipo
         # Adiciona à tabela final
-          tabela_2gols_poisson = pd.concat([tabela_2gols_poisson, df_resultado_2gols_poisson])
-
+          tabela_2gols_poisson = pd.concat([df_2gols_poisson, df_resultado_2gols_poisson])
+      tabela_2gols_poisson
 
    
