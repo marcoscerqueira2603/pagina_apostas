@@ -616,7 +616,8 @@ with tab1:
         # Inserir os dados nas linhas subsequentes
                 values_to_insert = list(nova_linha_2gols_poisson.values())
                 worksheet.insert_rows(values_to_insert, num_rows + 1) 
-
+    values_to_insert = list(nova_linha_2gols_poisson.values())
+    values_to_insert 
     # Adicionar as novas linhas ao DataFrame
             
     if novas_linhas:
