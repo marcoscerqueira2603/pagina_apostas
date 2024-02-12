@@ -1093,14 +1093,15 @@ with tab2:
       df_2gols_poisson = pd.DataFrame()
       st.subheader("Análise 2.5 -  Poisson")
       base_2gols_poisson = base_2gols_poisson[base_2gols_poisson['Bateu'] != "-"] 
-      base_2gols_poisson.columns
-      
+      tabela_2gols_poisson = base_2gols_poisson.groupby('Entrar')
+      soma_bateu_2gols_poisson = tabela_2gols_poisson.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
+      tabela_2gols_poisson
       for tipo in tipos.keys():
         # Agrupa os dados
           tabela_2gols_poisson = base_2gols_poisson.groupby('Entrar')
         
         # Calcula a soma da coluna 'Odd Bet' quando 'Bateu' é igual a 1
-          soma_bateu_2gols_poisson = base_2gols_poisson.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
+          soma_bateu_2gols_poisson = tabela_2gols_poisson.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
         
         # Calcula a quantidade de valores em cada grupo
           quantidade_2gols_poisson = tabela_2gols_poisson.size()
