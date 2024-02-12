@@ -610,7 +610,7 @@ with tab1:
                 novas_linha_2gols_poisson.append(nova_linha_2gols_poisson)
 
     if novas_linha_2gols_poisson:
-        nova_linha_2gols_poisson_df = pd.DataFrame(nova_linha_2gols_poisson, columns=base_2gols_poisson.columns)
+        nova_linha_2gols_poisson_df = pd.DataFrame(novas_linha_2gols_poisson, columns=base_2gols_poisson.columns)
         worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit#gid=0').get_worksheet(0)
         
         # Obter o número de linhas existentes na planilha
