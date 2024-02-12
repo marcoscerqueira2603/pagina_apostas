@@ -618,7 +618,12 @@ with tab1:
 
     base_2gols_poisson
     geral['Soma Gols'] = geral['Gols Feitos'] + geral['Gols sofridos']
-    geral
+    base_a = geral[geral['Nome do Time'] == casa]
+    base_b = geral[geral['Nome do Time'] == fora]
+    base_a = base_a.iloc[-10:]
+    base_b= base_b.iloc[-10:]
+    base_a
+    base_b
 
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
