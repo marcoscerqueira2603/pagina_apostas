@@ -617,7 +617,7 @@ with tab1:
                 values_to_insert = list(nova_linha_2gols_poisson.values())
                 worksheet.insert_rows(values_to_insert, num_rows + 1) 
 
-    worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit#gid=0').get_worksheet(0)
+    worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/17YiO2vWLU2iM8DHG7bFWI8VjKcx_aOqeww6bjvJOMRs/edit?usp=sharing').get_worksheet(0)
     worksheet
     # Adicionar as novas linhas ao DataFrame
             
