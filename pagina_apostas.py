@@ -608,7 +608,7 @@ with tab1:
             if st.form_submit_button('Adicionar linha 2.5'):
                 nova_linha_2gols_poisson  = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, "-", "-"]
                 novas_linha_2gols_poisson.append(nova_linha_2gols_poisson)
-    
+    novas_linha_2gols_poisson
     if novas_linha_2gols_poisson:
         nova_linha_2gols_poisson_df = pd.DataFrame(nova_linha_2gols_poisson, columns=base_2gols_poisson.columns)
         worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit#gid=0').get_worksheet(0)
