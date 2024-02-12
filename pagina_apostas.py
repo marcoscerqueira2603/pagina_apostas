@@ -626,8 +626,7 @@ with tab1:
         worksheet.insert_rows(values_to_insert, num_rows + 1) 
 
     # Adicionar as novas linhas ao DataFrame
-    
-    base_2gols_poisson
+ 
     if novas_linhas:
         novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias_2linhas.columns)
         #tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
