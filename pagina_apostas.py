@@ -566,6 +566,27 @@ with tab1:
         st.markdown('## **Interessante para Cantos 8.5**')    
 
 
+    #análise 2.5 poisson
+    
+    geral['Soma Gols'] = geral['Gols Feitos'] + geral['Gols sofridos']
+    base_a = geral[geral['Nome do Time'] == casa]
+    base_b = geral[geral['Nome do Time'] == fora]
+    base_a = base_a.iloc[-10:]
+    base_b= base_b.iloc[-10:]
+    chance_time_a = poisson.pmf(0, base_a['Soma Gols'].mean()) + poisson.pmf(1, base_a['Soma Gols'].mean()) + poisson.pmf(2, base_a['Soma Gols'].mean())
+    chance_time_b = poisson.pmf(0, base_b['Soma Gols'].mean()) + poisson.pmf(1, base_b['Soma Gols'].mean()) + poisson.pmf(2, base_b['Soma Gols'].mean())
+
+    prob_a = round(1/(1- chance_time_a),2)
+    prob_b = round(1/(1- chance_time_b),2)
+    odd_bet_2gols = st.text_input('Odd Bet 2 gols')
+    odd_bet_2gols
+
+    diferenca_a = odd_bet_2gols - prob_a
+    diferenca_b = odd_bet_2gols - prob_b
+
+    nova_linha_2gols_poisson = {"Time A": casa, "Time B": fora, "Odd_A": prob_a,  "Odd_B": prob_b, 
+              "Odd Bet": odd_bet_2gols, 'Diferença_A': diferenca_a,  'Diferença_B': diferenca_b}
+    
 
     novas_linhas = []
     with st.form('form'):
@@ -587,13 +608,13 @@ with tab1:
                 novas_linhas.append(nova_linha)
         with col4:
             if st.form_submit_button('Adicionar linha 2.5'):
-                worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/17YiO2vWLU2iM8DHG7bFWI8VjKcx_aOqeww6bjvJOMRs/edit#gid=1561702516').get_worksheet(0)
+                worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit?usp=sharing').get_worksheet(0)
         
         # Obter o número de linhas existentes na planilha
                 num_rows = len(worksheet.get_all_values())
         
         # Inserir os dados nas linhas subsequentes
-                values_to_insert = analise_adicao.values.tolist()
+                values_to_insert = nova_linha_2gols_poisson.values.tolist()
                 worksheet.insert_rows(values_to_insert, num_rows + 1) 
 
 
@@ -616,19 +637,7 @@ with tab1:
         # Notificar o usuário sobre a atualização bem-sucedida
         st.success("Dados adicionados com sucesso à planilha!")
 
-    base_2gols_poisson
-    geral['Soma Gols'] = geral['Gols Feitos'] + geral['Gols sofridos']
-    base_a = geral[geral['Nome do Time'] == casa]
-    base_b = geral[geral['Nome do Time'] == fora]
-    base_a = base_a.iloc[-10:]
-    base_b= base_b.iloc[-10:]
-    chance_time_a = poisson.pmf(0, base_a['Soma Gols'].mean()) + poisson.pmf(1, base_a['Soma Gols'].mean()) + poisson.pmf(2, base_a['Soma Gols'].mean())
-    chance_time_b = poisson.pmf(0, base_b['Soma Gols'].mean()) + poisson.pmf(1, base_b['Soma Gols'].mean()) + poisson.pmf(2, base_b['Soma Gols'].mean())
 
-    prob_a = round(1/(1- chance_time_a),2)
-    prob_b = round(1/(1- chance_time_b),2)
-    odd_bet_2gols = st.text_input('Odd Bet 2 gols')
-    odd_bet_2gols
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
     with col1:
