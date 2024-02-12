@@ -643,6 +643,14 @@ with tab1:
 
     st.title('Análise 2.5')
 
+    col1, col2= st.columns([0.5, 0.5,])
+    with col1:
+        st.metric(label='Média de gols da Liga', value=m_liga_gols)
+
+    with col2:
+        st.metric(label='Ocorrência de jogos > 1 gols', value=o_liga_gols_2)
+
+
     col1, col2= st.columns([1, 1,])
     with col1:
         st.subheader(casa)
