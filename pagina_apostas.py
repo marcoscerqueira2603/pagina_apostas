@@ -580,11 +580,10 @@ with tab1:
     prob_b = round(1/(1- chance_time_b),2)
 
     odd_bet_2gols =st.text_input('Odd Bet 2 gols')
-    if st.text_input('Odd Bet 2 gols') == "":
 
-        odd_bet_2gols = 1.5
+    if odd_bet_2gols == "":
+        odd_bet_2gols = 1.0
     else:
-
         odd_bet_2gols = odd_bet_2gols
 
 
