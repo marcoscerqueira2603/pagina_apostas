@@ -1102,7 +1102,7 @@ with tab2:
           tabela_2gols_poisson = base_2gols_poisson.groupby('Entrar')
         
         # Calcula a soma da coluna 'Odd Bet' quando 'Bateu' é igual a 1
-          soma_bateu_2gols_poisson = tabela_2gols_poisson.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
+          soma_bateu_2gols_poisson = base_2gols_poisson.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
 
         # Calcula a quantidade de valores em cada grupo
           quantidade_2gols_poisson = tabela_2gols_poisson.size()
