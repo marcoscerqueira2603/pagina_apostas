@@ -1093,8 +1093,9 @@ with tab2:
       df_2gols_poisson = pd.DataFrame()
       st.subheader("Análise 2.5 -  Poisson")
       base_2gols_poisson['Odd Bet'] = base_2gols_poisson['Odd Bet'].str.replace(',', '.').astype(float)
-      base_2gols_poisson = base_2gols_poisson[base_2gols_poisson['Bateu'] != "-"] 
-      tabela_2gols_poisson = base_2gols_poisson.groupby('Entrar')
+      base_2gols_poisson = base_2gols_poisson[base_2gols_poisson['Bateu'] != "-"]
+      base_2gols_poisson 
+      
 
       for tipo in tipos.keys():
         # Agrupa os dados
