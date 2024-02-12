@@ -1038,7 +1038,7 @@ with tab2:
     )
     st.plotly_chart(fig_tendencias)
 
-    st.subheader("Análise Jogador")
+    
     
     #apagar colunas existentes na tabela
     base_jogador = base_jogador.drop(['Distribuição', 'Desvio', 'Odd Justa', 'Apostar'], axis=1)
@@ -1085,10 +1085,33 @@ with tab2:
     col1, col2= st.columns(2)
 
     with col1:
-
+        
+      st.subheader("Análise Jogador")
       tabela_sim_nao
 
     with col2:
+      tabela_2gols_poisson = pd.DataFrame()
+      st.subheader("Análise 2.5 -  Poisson")
       base_2gols_poisson
+      for tipo in tipos.keys():
+        # Agrupa os dados
+          tabela_2gols_poisson = base_2gols_poisson.groupby('Entrar')
+        
+        # Calcula a soma da coluna 'Odd Bet' quando 'Bateu' é igual a 1
+          soma_bateu_2gols_poisson = tabela_2gols_poisson.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
+        
+        # Calcula a quantidade de valores em cada grupo
+          quantidade_2gols_poisson = tabela_2gols_poisson.size()
+        
+        # Calcula o aproveitamento
+          aproveitamento_2gols_poisson = soma_bateu_2gols_poisson / quantidade_2gols_poisson
+          aproveitamento_2gols_poisson =round((aproveitamento_2gols_poisson-1)*100,2)
+        
+        # Cria um DataFrame com os resultados
+          df_resultado_2gols_poisson = pd.DataFrame({'QTD': quantidade_2gols_poisson, 'Soma': soma_bateu_2gols_poisson, 'Aproveitamento': aproveitamento_2gols_poisson})
+          #df_resultado_2gols_poisson['Tipo'] = 'Sim - ' + tipo
+        # Adiciona à tabela final
+          tabela_2gols_poisson = pd.concat([tabela_2gols_poisson, df_resultado_2gols_poisson])
+
 
    
