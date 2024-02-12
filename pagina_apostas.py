@@ -85,6 +85,16 @@ def load_data7(sheets_url):
 
 base_jogador = load_data7(st.secrets["url_jogador"])
 
+@st.cache_data(ttl=20)
+def load_data8(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+base_2gols_poisson = load_data8(st.secrets["url_2gols_poisson"])
+
+
+
+
 
 
 # Interface para inserção de novos dados
@@ -234,7 +244,7 @@ with tab1:
     o_u5foraf_cantos_6 =  len(bd_u5foraf.loc[bd_u5foraf['Cantos']>6])
     o_u5forag_cantos_6 = len(bd_u5forag.loc[bd_u5forag['Cantos']>6])
 
-    ###7.5 Gols
+    ###7.5 cantos
 
     ##Liga
 
@@ -606,7 +616,7 @@ with tab1:
         # Notificar o usuário sobre a atualização bem-sucedida
         st.success("Dados adicionados com sucesso à planilha!")
 
-
+    base_2gols_poisson
 
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
