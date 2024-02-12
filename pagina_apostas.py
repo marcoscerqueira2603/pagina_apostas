@@ -1095,7 +1095,7 @@ with tab2:
       base_2gols_poisson = base_2gols_poisson[base_2gols_poisson['Bateu'] != "-"] 
       tabela_2gols_poisson = base_2gols_poisson.groupby('Entrar')
       soma_bateu_2gols_poisson = tabela_2gols_poisson.apply(lambda x: x[x['Bateu'] == 1]['Odd Bet'].sum())
-      tabela_2gols_poisson
+      soma_bateu_2gols_poisson 
       for tipo in tipos.keys():
         # Agrupa os dados
           tabela_2gols_poisson = base_2gols_poisson.groupby('Entrar')
