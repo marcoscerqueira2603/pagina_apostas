@@ -617,6 +617,8 @@ with tab1:
         st.success("Dados adicionados com sucesso à planilha!")
 
     base_2gols_poisson
+    geral
+    jogo
 
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
