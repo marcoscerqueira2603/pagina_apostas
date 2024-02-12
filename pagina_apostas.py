@@ -606,7 +606,8 @@ with tab1:
         with col4:
             if st.form_submit_button('Adicionar linha 2.5'):
                 nova_linha_2gols_poisson  = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, "-", "-"]
-                nova_linha_2gols_poisson_df = pd.DataFrame(nova_linha_2gols_poisson, columns=base_2gols_poisson.columns)
+                #nova_linha_2gols_poisson_df = pd.DataFrame(nova_linha_2gols_poisson, columns=base_2gols_poisson.columns)
+                nova_linha_2gols_poisson_df = base_2gols_poisson.append(pd.Series(nova_linha_2gols_poisson, index=base_2gols_poisson.columns), ignore_index=True)
                 worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit#gid=0').get_worksheet(0)
         
         # Obter o número de linhas existentes na planilha
