@@ -617,8 +617,6 @@ with tab1:
                 values_to_insert = list(nova_linha_2gols_poisson.values())
                 worksheet.insert_rows(values_to_insert, num_rows + 1) 
 
-    worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit?usp=sharing').get_worksheet(0)
-    worksheet
     # Adicionar as novas linhas ao DataFrame
             
     if novas_linhas:
@@ -626,7 +624,7 @@ with tab1:
         #tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
 
         # Atualizar a planilha com as novas linhas
-        worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/11pW8bTEOeKUXOb7kd53_MJwGUHG19fLWTfHvpIYVUIY/edit#gid=0').get_worksheet(0)
+        worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit?usp=sharing').get_worksheet(0)
         
         # Obter o número de linhas existentes na planilha
         num_rows = len(worksheet.get_all_values())
