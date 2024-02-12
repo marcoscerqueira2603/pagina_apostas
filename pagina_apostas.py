@@ -587,6 +587,7 @@ with tab1:
     nova_linha_2gols_poisson = {"Time A": casa, "Time B": fora, "Odd_A": prob_a,  "Odd_B": prob_b, 
               "Odd Bet": odd_bet_2gols, 'Diferença_A': diferenca_a,  'Diferença_B': diferenca_b, 'Entrar': "-", 'Bateu': '-'}
     
+    nova_linha_2gols_poisson = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, "-", "-"]
 
     novas_linhas = []
     with st.form('form'):
@@ -608,16 +609,17 @@ with tab1:
                 novas_linhas.append(nova_linha)
         with col4:
             if st.form_submit_button('Adicionar linha 2.5'):
+                nova_linha_2gols_poisson  = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, "-", "-"]
+                nova_linha_2gols_poisson_df = pd.DataFrame(nova_linha_2gols_poisson, columns=base_2gols_poisson.columns)
                 worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit#gid=0').get_worksheet(0)
         
         # Obter o número de linhas existentes na planilha
                 num_rows = len(worksheet.get_all_values())
         
         # Inserir os dados nas linhas subsequentes
-                values_to_insert = list(nova_linha_2gols_poisson.values())
+                values_to_insert = nova_linha_2gols_poisson_df.values.tolist()
                 worksheet.insert_rows(values_to_insert, num_rows + 1) 
-    values_to_insert = list(nova_linha_2gols_poisson.values())
-    values_to_insert 
+
     # Adicionar as novas linhas ao DataFrame
             
     if novas_linhas:
