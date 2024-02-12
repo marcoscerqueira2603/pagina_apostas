@@ -584,6 +584,11 @@ with tab1:
     diferenca_a = odd_bet_2gols - prob_a
     diferenca_b = odd_bet_2gols - prob_b
 
+    if diferenca_a > 0 and diferenca_b > 0:
+        apostar_2gols_poisson = "Sim"
+    else:
+        apostar_2gols_poisson= "Não"
+
 
     novas_linhas = []
     novas_linha_2gols_poisson = []
@@ -606,7 +611,7 @@ with tab1:
                 novas_linhas.append(nova_linha)
         with col4:
             if st.form_submit_button('Adicionar linha 2.5'):
-                nova_linha_2gols_poisson  = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, "-", "-"]
+                nova_linha_2gols_poisson  = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, apostar_2gols_poisson, "-"]
                 novas_linha_2gols_poisson.append(nova_linha_2gols_poisson)
 
     if novas_linha_2gols_poisson:
