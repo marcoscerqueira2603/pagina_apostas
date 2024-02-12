@@ -852,6 +852,9 @@ with tab2:
     
     totais_por_mes.rename(columns={col_investimento: 'Investimento', col_retorno: 'Retorno'}, inplace=True)
 
+    aproveitamento_bet = round(entradas['Resultado'].mean(),2)
+    
+    st.metric('Aproveitamento Geral',aproveitamento_bet)
     col1, col2 = st.columns(2)
 
 # Gráfico 1: Barras de Investimento e Retorno por Mês
