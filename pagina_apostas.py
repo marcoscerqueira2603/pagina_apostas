@@ -1074,6 +1074,14 @@ with tab2:
         df_resultado['Tipo'] = 'Sim - ' + tipo
         # Adiciona à tabela final
         tabela_sim_nao = pd.concat([tabela_sim_nao, df_resultado])
-    tabela_sim_nao
+
+    col1, col2= st.columns(2)
+
+    with col1:
+
+      tabela_sim_nao
+
+    with col2:
+      base_2gols_poisson
 
    
