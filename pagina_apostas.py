@@ -622,8 +622,11 @@ with tab1:
     base_b = geral[geral['Nome do Time'] == fora]
     base_a = base_a.iloc[-10:]
     base_b= base_b.iloc[-10:]
-    base_a
-    base_b
+    chance_time_a = poisson.pmf(0, base_a['Soma Gols'].mean()) + poisson.pmf(1, base_a['Soma Gols'].mean()) + poisson.pmf(2, base_a['Soma Gols'].mean())
+    chance_time_b = poisson.pmf(0, base_b['Soma Gols'].mean()) + poisson.pmf(1, base_b['Soma Gols'].mean()) + poisson.pmf(2, base_b['Soma Gols'].mean())
+
+    prob_a = round(1/(1- chance_time_a),2)
+    prob_b = round(1/(1- chance_time_b),2)
 
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
