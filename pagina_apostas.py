@@ -1093,7 +1093,7 @@ with tab2:
       df_2gols_poisson = pd.DataFrame()
       st.subheader("Análise 2.5 -  Poisson")
       base_2gols_poisson = base_2gols_poisson[base_2gols_poisson['Bateu'] != "-"] 
-      base_2gols_poisson
+      base_2gols_poisson.columns
       
       for tipo in tipos.keys():
         # Agrupa os dados
