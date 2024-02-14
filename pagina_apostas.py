@@ -923,9 +923,9 @@ with tab2:
     apostas_feitas.rename(columns={'Investimento': 'Qtd de Apostas', 'Resultado': 'Qtd de Acertos'}, inplace=True)
 
 
-    aproveitamento_bet = round(entradas['Resultado'].mean(),2)
-    
-    st.metric('Aproveitamento Geral',aproveitamento_bet)
+aproveitamento_bet = round(entradas['Resultado'].mean(),2)
+
+st.metric('Aproveitamento Geral',aproveitamento_bet)
 # Gráfico 1: Quantidade de aostas eitas
     fig1 = go.Figure()
 
