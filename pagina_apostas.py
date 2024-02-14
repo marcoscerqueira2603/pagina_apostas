@@ -883,6 +883,7 @@ with tab2:
     fig1.update_yaxes(title_text='Valor', showgrid=False)
     fig1.update_layout(title_text='Investimento e Retorno por Mês')
 
+
     # Exibir o gráfico 1 na coluna 1
     col1.plotly_chart(fig1)
 
@@ -912,9 +913,7 @@ with tab2:
     # Exibir o gráfico 2 na coluna 2
     col2.plotly_chart(fig2)
 
-    aproveitamento_bet = round(entradas['Resultado'].mean(),2)
-    
-    st.metric('Aproveitamento Geral',aproveitamento_bet)
+
 
     apostas_feitas = entradas.groupby('Mês').agg({'Investimento': 'count', 'Resultado': 'sum'}).reset_index()
     apostas_feitas['Resultado'] = pd.to_numeric(apostas_feitas['Resultado'], errors='coerce')
@@ -923,6 +922,10 @@ with tab2:
     apostas_feitas['% de Aproveitamento'] = round(((apostas_feitas['Resultado'] /apostas_feitas['Investimento'])) * 100, 2)
     apostas_feitas.rename(columns={'Investimento': 'Qtd de Apostas', 'Resultado': 'Qtd de Acertos'}, inplace=True)
 
+
+    aproveitamento_bet = round(entradas['Resultado'].mean(),2)
+    
+    st.metric('Aproveitamento Geral',aproveitamento_bet)
 # Gráfico 1: Quantidade de aostas eitas
     fig1 = go.Figure()
 
