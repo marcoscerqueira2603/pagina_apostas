@@ -852,9 +852,7 @@ with tab2:
     
     totais_por_mes.rename(columns={col_investimento: 'Investimento', col_retorno: 'Retorno'}, inplace=True)
 
-    aproveitamento_bet = round(entradas['Resultado'].mean(),2)
-    
-    st.metric('Aproveitamento Geral',aproveitamento_bet)
+
     col1, col2 = st.columns(2)
 
 # Gráfico 1: Barras de Investimento e Retorno por Mês
@@ -914,7 +912,9 @@ with tab2:
     # Exibir o gráfico 2 na coluna 2
     col2.plotly_chart(fig2)
 
-
+    aproveitamento_bet = round(entradas['Resultado'].mean(),2)
+    
+    st.metric('Aproveitamento Geral',aproveitamento_bet)
 
     apostas_feitas = entradas.groupby('Mês').agg({'Investimento': 'count', 'Resultado': 'sum'}).reset_index()
     apostas_feitas['Resultado'] = pd.to_numeric(apostas_feitas['Resultado'], errors='coerce')
