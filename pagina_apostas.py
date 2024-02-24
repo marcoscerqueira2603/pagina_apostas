@@ -820,7 +820,7 @@ with tab2:
     entradas['Odd'] = entradas['Odd'].str.replace(',', '.').astype(float)
     entradas['Retorno - reduzido a odd'] = entradas.apply(lambda row: row['Odd'] if row['Resultado'] == 1 else 0, axis=1)
     entradas['Retorno - reduzido a odd'] = entradas['Retorno - reduzido a odd'].astype(float)
-
+    entradas
     entradas['Investimento'] = entradas['Investimento'].str.replace(',', '.').astype(float)
     entradas['Retorno'] = entradas['Retorno'].str.replace(',', '.').astype(float)
 # Converter a coluna para float (ou int, dependendo do caso)
