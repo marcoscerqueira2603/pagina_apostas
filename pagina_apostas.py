@@ -92,6 +92,13 @@ def load_data8(sheets_url):
 
 base_2gols_poisson = load_data8(st.secrets["url_2gols_poisson"])
 
+@st.cache_data(ttl=20)
+def load_data9(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+entradas_2gols_xg = load_data9(st.secrets["url_2gols_XG"])
+
 
 
 
@@ -794,7 +801,9 @@ with tab2:
     entradas_2linhas['Cluster'] = entradas_2linhas['Cluster'] = '2Linhas'
     entradas_anytimes['Cluster'] = entradas_anytimes['Cluster'] = 'Anytime'
     entradas_semmetodo['Cluster'] = entradas_semmetodo['Cluster'] = 'Sem Método'
-    entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo])
+    entradas_2gols_xg['Cluster'] = entradas_2gols_xg['Cluster'] = "2 gols - XG"
+    
+    entradas = pd.concat([entradas_2gols, entradas_2linhas,entradas_anytimes, entradas_semmetodo, entradas_2gols_xg])
     entradas =  entradas[entradas['Aposta Anulada?'] != "Sim"]
     selected_clusters = st.multiselect('Escolha os Clusters', entradas['Cluster'].unique(), default=entradas['Cluster'].unique())
     entradas = entradas[entradas['Cluster'].isin(selected_clusters)]
