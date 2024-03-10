@@ -710,13 +710,10 @@ with tab1:
     contagem_hifens
     # Define a variável validacao_extras com base na contagem de hifens
     if contagem_hifens > 0:
-        validacao_extras1 = "Apagar"
+        validacao_extras = "Não apagar"
     else:
-        validacao_extras1 = "Não apagar"
-    validacao_extras1
+        validacao_extras = "Apagar"
 
-
-    validacao_extras = "Apagar"
 
     if validacao_extras == "Apagar":
         planilha_dados_extras =  client.open_by_url('https://docs.google.com/spreadsheets/d/1YHdEhh00fvu7DYsdBhmPBRqpOuJXT0uuxAdSzOjdWSg/edit#gid=0').get_worksheet(0)
