@@ -707,7 +707,7 @@ with tab1:
 
 
     contagem_hifens = (tendencias_2linhas["Bateu"] == "-").sum()
-
+    contagem_hifens
     # Define a variável validacao_extras com base na contagem de hifens
     if contagem_hifens > 0:
         validacao_extras1 = "Apagar"
