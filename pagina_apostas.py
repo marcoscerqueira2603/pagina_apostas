@@ -710,9 +710,9 @@ with tab1:
     
     # Define a variável validacao_extras com base na contagem de hifens
     if contagem_hifens > 0:
-        validacao_extras = "Não apagar"
-    else:
         validacao_extras = "Apagar"
+    else:
+        validacao_extras = "Não apagar"
 
 
     if validacao_extras == "Apagar":
