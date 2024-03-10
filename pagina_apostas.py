@@ -710,7 +710,16 @@ with tab1:
 
     if validacao_extras == "Apagar":
         planilha_dados_extras =  client.open_by_url('https://docs.google.com/spreadsheets/d/1YHdEhh00fvu7DYsdBhmPBRqpOuJXT0uuxAdSzOjdWSg/edit#gid=0').get_worksheet(0)
-        planilha_dados_extras.clear()
+
+        cells = planilha_dados_extras.range('A1:Z1000')  # Ajuste Z1000 conforme necessário para cobrir todas as suas células
+
+        for cell in cells:
+            cell.value = ''
+
+
+        planilha_dados_extras.update_cells(cells)
+    
+
 
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
