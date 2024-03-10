@@ -789,14 +789,14 @@ with tab1:
         st.metric(label='Média do visitante', value= m_liga_cantosf)
                       
 
-    dados_cantos_extras = [[casa, fora,  '1.5', 'Casa', o_u5casactf_cantos_1, o_u5casagtf_cantos_1,  o_u5foraftr_cantos_1, o_u5foragtr_cantos_1, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_1, o_ligaf_cantos_1],
-                            [casa, fora, '1.5', 'Fora', o_u5foraftf_cantos_1, o_u5foragtf_cantos_1,  o_u5casactr_cantos_1, o_u5casagtr_cantos_1, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,   o_ligac_cantos_1, o_ligaf_cantos_1],
-                            [casa, fora, '2.5', 'Casa', o_u5casactf_cantos_2, o_u5casagtf_cantos_2,  o_u5foraftr_cantos_2, o_u5foragtr_cantos_2, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
-                             [casa, fora, '2.5', 'Fora', o_u5foraftf_cantos_2, o_u5foragtf_cantos_2,  o_u5casactr_cantos_2, o_u5casagtr_cantos_2, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
-                            [casa, fora,  '3.5', 'Casa', o_u5casactf_cantos_3, o_u5casagtf_cantos_3,  o_u5foraftr_cantos_3, o_u5foragtr_cantos_3, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_3, o_ligaf_cantos_3],
-                             [casa, fora,  '3.5', 'Fora', o_u5foraftf_cantos_3, o_u5foragtf_cantos_3,  o_u5casactr_cantos_3, o_u5casagtr_cantos_3, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos, o_ligac_cantos_3, o_ligaf_cantos_3]]    
+    dados_cantos_extras = [[casa, fora,  '1.5', casa, o_u5casactf_cantos_1, o_u5casagtf_cantos_1,  o_u5foraftr_cantos_1, o_u5foragtr_cantos_1, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_1, o_ligaf_cantos_1],
+                            [casa, fora, '1.5', fora, o_u5foraftf_cantos_1, o_u5foragtf_cantos_1,  o_u5casactr_cantos_1, o_u5casagtr_cantos_1, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,   o_ligac_cantos_1, o_ligaf_cantos_1],
+                            [casa, fora, '2.5', casa, o_u5casactf_cantos_2, o_u5casagtf_cantos_2,  o_u5foraftr_cantos_2, o_u5foragtr_cantos_2, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
+                             [casa, fora, '2.5', fora, o_u5foraftf_cantos_2, o_u5foragtf_cantos_2,  o_u5casactr_cantos_2, o_u5casagtr_cantos_2, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
+                            [casa, fora,  '3.5', casa, o_u5casactf_cantos_3, o_u5casagtf_cantos_3,  o_u5foraftr_cantos_3, o_u5foragtr_cantos_3, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_3, o_ligaf_cantos_3],
+                             [casa, fora,  '3.5', fora, o_u5foraftf_cantos_3, o_u5foragtf_cantos_3,  o_u5casactr_cantos_3, o_u5casagtr_cantos_3, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos, o_ligac_cantos_3, o_ligaf_cantos_3]]    
 
-    analise = pd.DataFrame(dados_cantos_extras, columns= ['Casa', 'Fora', 'Tipo de Linha','Bateu','Casa Fazer - M','Casa Fazer - G', 'Fora Fazer - M', 'Fora Fazer - G', 'Média Casa - M','Média Casa - G', 'Média Fora - M','Média Fora - G', 'Ocorrencia Liga Casa','Ocorrencia Liga Fora'])
+    analise = pd.DataFrame(dados_cantos_extras, columns= ['Casa', 'Fora', 'Tipo de Linha','Time A','Time A Fazer - M','Time A Fazer - G', 'Time B Sofrer - M', 'Time B Sofrer - G', 'Time A Fazer Média - M','Time A Fazer Média - G', 'Time B Sofrer Média - M','Time B Sofrer Média - G', 'Ocorrencia Liga Casa','Ocorrencia Liga Fora'])
     analise = analise.reset_index(drop=True)
     analise
     
