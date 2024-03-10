@@ -622,7 +622,7 @@ with tab1:
     novas_linhas = []
     novas_linha_2gols_poisson = []
     #dados_cantos_extras = []
-
+    validacao_dados_extras = "Apagar"
     with st.form('form'):
         col1, col2, col3, col4 = st.columns([0.5, 0.5, 0.5, 0.5])
 
@@ -705,6 +705,12 @@ with tab1:
 
         values_to_insert2 = dados_cantos_extras_df.values.tolist()
         worksheet2.insert_rows(values_to_insert2, num_rows2 + 1)
+
+        if validacao_dados_extras == "Apagar":
+            worksheet2.clear()
+
+
+
 
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
