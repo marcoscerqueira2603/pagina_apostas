@@ -706,7 +706,7 @@ with tab1:
         worksheet2.insert_rows(values_to_insert2, num_rows2 + 1)
 
    
-    validacao_extras = "Apagar"
+    validacao_extras = "Apaar"
 
     if validacao_extras == "Apagar":
         planilha_dados_extras =  client.open_by_url('https://docs.google.com/spreadsheets/d/1YHdEhh00fvu7DYsdBhmPBRqpOuJXT0uuxAdSzOjdWSg/edit#gid=0').get_worksheet(0)
