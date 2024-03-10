@@ -706,12 +706,12 @@ with tab1:
         worksheet2.insert_rows(values_to_insert2, num_rows2 + 1)
 
    
-    validacao_extras = "Apagar"
+    validacao_extras = "Apgar"
 
     if validacao_extras == "Apagar":
         planilha_dados_extras =  client.open_by_url('https://docs.google.com/spreadsheets/d/1YHdEhh00fvu7DYsdBhmPBRqpOuJXT0uuxAdSzOjdWSg/edit#gid=0').get_worksheet(0)
 
-        cells = planilha_dados_extras.range('A1:Z1000')  # Ajuste Z1000 conforme necessário para cobrir todas as suas células
+        cells = planilha_dados_extras.range('A2:Z1000')  # Ajuste Z1000 conforme necessário para cobrir todas as suas células
 
         for cell in cells:
             cell.value = ''
