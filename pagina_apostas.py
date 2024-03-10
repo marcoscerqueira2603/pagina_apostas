@@ -675,7 +675,7 @@ with tab1:
         # Notificar o usuário sobre a atualização bem-sucedida
         st.success("Dados adicionados com sucesso à planilha!")
 
-
+    entradas_2linhas_extras
     st.title('Análise 1.5')
     col1, col2= st.columns([0.5, 0.5,])
     with col1:
