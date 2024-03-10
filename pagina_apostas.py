@@ -706,7 +706,7 @@ with tab1:
         worksheet2.insert_rows(values_to_insert2, num_rows2 + 1)
 
 
-    contagem_hifens = st.number_input('Alterar Validação')
+    contagem_hifens = st.number_input('Alterar Validação', value=int)
     
     # Define a variável validacao_extras com base na contagem de hifens
     if contagem_hifens > 0:
