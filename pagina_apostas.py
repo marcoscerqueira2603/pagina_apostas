@@ -631,12 +631,12 @@ with tab1:
                 nova_linha = [casa, fora, '-', '1.5', 'Gols', 'Jogo', o_u5casac_gols_1, o_u5casag_gols_1, o_u5foraf_gols_1, o_u5forag_gols_1, m_u5casac_gols, m_u5casag_gols, m_u5foraf_gols, m_u5forag_gols, m_liga_gols, m_liga_gols, o_liga_gols_1, o_liga_gols_1, liga_string, data_formatada]
                 novas_linhas.append(nova_linha)
 
-                novos_dados_cantos_extras = [casa, fora,  '1.5', casa, o_u5casactf_cantos_1, o_u5casagtf_cantos_1,  o_u5foraftr_cantos_1, o_u5foragtr_cantos_1, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_1, o_ligaf_cantos_1],
+                novos_dados_cantos_extras = [[casa, fora,  '1.5', casa, o_u5casactf_cantos_1, o_u5casagtf_cantos_1,  o_u5foraftr_cantos_1, o_u5foragtr_cantos_1, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_1, o_ligaf_cantos_1],
                             [casa, fora, '1.5', fora, o_u5foraftf_cantos_1, o_u5foragtf_cantos_1,  o_u5casactr_cantos_1, o_u5casagtr_cantos_1, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,   o_ligac_cantos_1, o_ligaf_cantos_1],
                             [casa, fora, '2.5', casa, o_u5casactf_cantos_2, o_u5casagtf_cantos_2,  o_u5foraftr_cantos_2, o_u5foragtr_cantos_2, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
                              [casa, fora, '2.5', fora, o_u5foraftf_cantos_2, o_u5foragtf_cantos_2,  o_u5casactr_cantos_2, o_u5casagtr_cantos_2, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
                             [casa, fora,  '3.5', casa, o_u5casactf_cantos_3, o_u5casagtf_cantos_3,  o_u5foraftr_cantos_3, o_u5foragtr_cantos_3, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_3, o_ligaf_cantos_3],
-                             [casa, fora,  '3.5', fora, o_u5foraftf_cantos_3, o_u5foragtf_cantos_3,  o_u5casactr_cantos_3, o_u5casagtr_cantos_3, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos, o_ligac_cantos_3, o_ligaf_cantos_3]
+                             [casa, fora,  '3.5', fora, o_u5foraftf_cantos_3, o_u5foragtf_cantos_3,  o_u5casactr_cantos_3, o_u5casagtr_cantos_3, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos, o_ligac_cantos_3, o_ligaf_cantos_3]]    
 
                 dados_cantos_extras.append(novos_dados_cantos_extras)
 
@@ -653,7 +653,7 @@ with tab1:
             if st.form_submit_button('Adicionar linha 2.5'):
                 nova_linha_2gols_poisson  = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, apostar_2gols_poisson, "-"]
                 novas_linha_2gols_poisson.append(nova_linha_2gols_poisson)
-
+                
     if novas_linha_2gols_poisson:
         nova_linha_2gols_poisson_df = pd.DataFrame(novas_linha_2gols_poisson, columns=base_2gols_poisson.columns)
         worksheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1t1FQveiownY0EsZeOLznEY5zT7I1jOzxy5Qst2vNR9g/edit#gid=0').get_worksheet(0)
@@ -666,7 +666,7 @@ with tab1:
         worksheet.insert_rows(values_to_insert, num_rows + 1) 
 
     # Adicionar as novas linhas ao DataFrame
- 
+    entradas_2linhas_extras
     if novas_linhas:
         novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias_2linhas.columns)
         #tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
