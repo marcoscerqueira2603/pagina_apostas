@@ -705,7 +705,17 @@ with tab1:
         values_to_insert2 = dados_cantos_extras_df.values.tolist()
         worksheet2.insert_rows(values_to_insert2, num_rows2 + 1)
 
-   
+
+    contagem_hifens = (tendencias_2linhas["Bateu"] == "-").sum()
+
+    # Define a variável validacao_extras com base na contagem de hifens
+    if contagem_hifens > 0:
+        validacao_extras1 = "Apagar"
+    else:
+        validacao_extras1 = "Não apagar"
+    validacao_extras1
+
+
     validacao_extras = "Apagar"
 
     if validacao_extras == "Apagar":
