@@ -698,7 +698,7 @@ with tab1:
         st.success("Dados adicionados com sucesso à planilha!")
 
 
-        dados_cantos_extras_df =  pd.DataFrame(dados_cantos_extras, columns = entradas_2linhas_extras.columns)
+        dados_cantos_extras_df =  pd.DataFrame(dados_cantos_extras, columns = ['Casa', 'Fora', 'Tipo de Linha','Time A','Time A Fazer - M','Time A Fazer - G', 'Time B Sofrer - M', 'Time B Sofrer - G', 'Time A Fazer Média - M','Time A Fazer Média - G', 'Time B Sofrer Média - M','Time B Sofrer Média - G', 'Ocorrencia Liga Casa','Ocorrencia Liga Fora'])
         worksheet2 = client.open_by_url('https://docs.google.com/spreadsheets/d/1YHdEhh00fvu7DYsdBhmPBRqpOuJXT0uuxAdSzOjdWSg/edit#gid=0').get_worksheet(0)
         num_rows2 = len(worksheet2.get_all_values())
 
