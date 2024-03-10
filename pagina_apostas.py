@@ -106,6 +106,14 @@ def load_data10(sheets_url):
 
 entradas_2gols_poisson = load_data10(st.secrets["url_entradas_2gols_poisson"])
 
+@st.cache_data(ttl=20)
+def load_data11(sheets_url):
+    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    return pd.read_csv(csv_url)
+
+entradas_2linhas_extras = load_data11(st.secrets["url_2linhas_extras"])
+
+
 
 
 
