@@ -639,7 +639,7 @@ with tab1:
                              [casa, fora,  '3.5', fora, o_u5foraftf_cantos_3, o_u5foragtf_cantos_3,  o_u5casactr_cantos_3, o_u5casagtr_cantos_3, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos, o_ligac_cantos_3, o_ligaf_cantos_3]]    
 
                 #dados_cantos_extras.append(novos_dados_cantos_extras)
-                dados_cantos_extras
+                
         with col2:
             if st.form_submit_button('Adicionar Linha 7.5'):
                 nova_linha = [casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7, liga_string, data_formatada]
@@ -666,7 +666,7 @@ with tab1:
         worksheet.insert_rows(values_to_insert, num_rows + 1) 
 
     # Adicionar as novas linhas ao DataFrame
-    entradas_2linhas_extras
+    
     if novas_linhas:
         novas_linhas_df = pd.DataFrame(novas_linhas, columns=tendencias_2linhas.columns)
         #tendencias = pd.concat([tendencias, novas_linhas_df], ignore_index=True)
