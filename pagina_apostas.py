@@ -706,8 +706,6 @@ with tab1:
         worksheet2.insert_rows(values_to_insert2, num_rows2 + 1)
 
 
-    contagem_hifens = (tendencias_2linhas["Bateu"] == "-").sum()
-    contagem_hifens
     contagem_hifens = st.number_input('Alterar Validação')
     
     # Define a variável validacao_extras com base na contagem de hifens
