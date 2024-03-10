@@ -644,11 +644,25 @@ with tab1:
             if st.form_submit_button('Adicionar Linha 7.5'):
                 nova_linha = [casa, fora, '-', '7.5', 'Cantos', 'Jogo', o_u5casac_cantos_7, o_u5casag_cantos_7, o_u5foraf_cantos_7, o_u5forag_cantos_7, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_7, o_liga_cantos_7, liga_string, data_formatada]
                 novas_linhas.append(nova_linha)
+
+                dados_cantos_extras = [[casa, fora,  '1.5', casa, o_u5casactf_cantos_1, o_u5casagtf_cantos_1,  o_u5foraftr_cantos_1, o_u5foragtr_cantos_1, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_1, o_ligaf_cantos_1],
+                            [casa, fora, '1.5', fora, o_u5foraftf_cantos_1, o_u5foragtf_cantos_1,  o_u5casactr_cantos_1, o_u5casagtr_cantos_1, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,   o_ligac_cantos_1, o_ligaf_cantos_1],
+                            [casa, fora, '2.5', casa, o_u5casactf_cantos_2, o_u5casagtf_cantos_2,  o_u5foraftr_cantos_2, o_u5foragtr_cantos_2, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
+                             [casa, fora, '2.5', fora, o_u5foraftf_cantos_2, o_u5foragtf_cantos_2,  o_u5casactr_cantos_2, o_u5casagtr_cantos_2, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
+                            [casa, fora,  '3.5', casa, o_u5casactf_cantos_3, o_u5casagtf_cantos_3,  o_u5foraftr_cantos_3, o_u5foragtr_cantos_3, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_3, o_ligaf_cantos_3],
+                             [casa, fora,  '3.5', fora, o_u5foraftf_cantos_3, o_u5foragtf_cantos_3,  o_u5casactr_cantos_3, o_u5casagtr_cantos_3, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos, o_ligac_cantos_3, o_ligaf_cantos_3]]    
         
         with col3:
             if st.form_submit_button('Adicionar Linha 8.5'):
                 nova_linha = [casa, fora, '-', '8.5', 'Cantos', 'Jogo', o_u5casac_cantos_8, o_u5casag_cantos_8, o_u5foraf_cantos_8, o_u5forag_cantos_8, m_u5casac_cantos, m_u5casag_cantos, m_u5foraf_cantos, m_u5forag_cantos, m_liga_cantos, m_liga_cantos, o_liga_cantos_8, o_liga_cantos_8,liga_string, data_formatada]
                 novas_linhas.append(nova_linha)
+
+                dados_cantos_extras = [[casa, fora,  '1.5', casa, o_u5casactf_cantos_1, o_u5casagtf_cantos_1,  o_u5foraftr_cantos_1, o_u5foragtr_cantos_1, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_1, o_ligaf_cantos_1],
+                            [casa, fora, '1.5', fora, o_u5foraftf_cantos_1, o_u5foragtf_cantos_1,  o_u5casactr_cantos_1, o_u5casagtr_cantos_1, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,   o_ligac_cantos_1, o_ligaf_cantos_1],
+                            [casa, fora, '2.5', casa, o_u5casactf_cantos_2, o_u5casagtf_cantos_2,  o_u5foraftr_cantos_2, o_u5foragtr_cantos_2, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
+                             [casa, fora, '2.5', fora, o_u5foraftf_cantos_2, o_u5foragtf_cantos_2,  o_u5casactr_cantos_2, o_u5casagtr_cantos_2, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos,  o_ligac_cantos_2, o_ligaf_cantos_2],
+                            [casa, fora,  '3.5', casa, o_u5casactf_cantos_3, o_u5casagtf_cantos_3,  o_u5foraftr_cantos_3, o_u5foragtr_cantos_3, m_u5casact_f_cantos,m_u5casagt_f_cantos,  m_u5foraft_r_cantos, m_u5foragt_r_cantos,  o_ligac_cantos_3, o_ligaf_cantos_3],
+                             [casa, fora,  '3.5', fora, o_u5foraftf_cantos_3, o_u5foragtf_cantos_3,  o_u5casactr_cantos_3, o_u5casagtr_cantos_3, m_u5foraft_f_cantos,m_u5foragt_f_cantos,  m_u5casact_r_cantos, m_u5casagt_r_cantos, o_ligac_cantos_3, o_ligaf_cantos_3]]    
         with col4:
             if st.form_submit_button('Adicionar linha 2.5'):
                 nova_linha_2gols_poisson  = [casa, fora, prob_a, prob_b, odd_bet_2gols, diferenca_a, diferenca_b, apostar_2gols_poisson, "-"]
