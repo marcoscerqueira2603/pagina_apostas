@@ -914,7 +914,7 @@ with tab2:
 
     col1, col2 = st.columns(2)
 
-    order_months = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
+    order_months = ['Jan', 'Feb','Mar', 'Apr', 'May','Jun','Jul', 'Aug', 'Sep','Oct', 'Nov']
     entradas['Mês'] = pd.Categorical(entradas['Mês'], categories=order_months, ordered=True)
 
     opcao_radio = st.radio("Escolha a opção:", ['Normal', 'Odd'])
@@ -1088,7 +1088,7 @@ with tab2:
     cores_paises = ['#1f78b4', '#33a02c', '#e31a1c', '#ff7f00', '#6a3d9a', '#b15928', '#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f']
     pais_cor = dict(zip(tendencias_2linhas_filtrada['Pais'], cores_paises))
     lista_paises = tendencias_2linhas_filtrada['Pais'].unique()
-    order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jul', 'Aug', 'Sep','Oct', 'Nov']
+    order_months_tendencias = ['Jan', 'Feb','Mar', 'Apr', 'May','Jun','Jul', 'Aug', 'Sep','Oct', 'Nov']
 
     tendencias_2linhas_filtrada_aprov = tendencias_2linhas_filtrada.pivot_table(index='Pais', columns='Tipo de Linha', values='Bateu', aggfunc='mean').reset_index()
     media_bateu_por_pais = tendencias_2linhas_filtrada.groupby('Pais')['Bateu'].mean().reset_index(name='Total')
